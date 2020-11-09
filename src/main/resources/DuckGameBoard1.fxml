@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane onKeyTyped="#onKeyTyped" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLControlers.FirstBoardController">
+   <Circle fx:id="player1" fill="#ff321f" layoutX="27.0" layoutY="380.0" onKeyTyped="#onKeyTyped" radius="27.0"
+           stroke="BLACK" strokeType="INSIDE"/>
+   <Button layoutX="269.0" layoutY="178.0" mnemonicParsing="false" onKeyTyped="#onKeyTyped" text="Button"/>
+</AnchorPane>

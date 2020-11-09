@@ -3,6 +3,7 @@
  */
 package The.Duck.Game;
 
+import FXMLControlers.MainMenuController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,12 +20,16 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-
+        //StageStyle.DECORATED;
+        //primaryStage.initStyle(StageStyle.DECORATED);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main.fxml"));
         Parent root = loader.load();
+
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("New Scene Title");
+        primaryStage.setTitle("The Duck Game");
+        //primaryStage.setX(150);
+        //primaryStage.setY(100);
         primaryStage.show();
     }
 }
