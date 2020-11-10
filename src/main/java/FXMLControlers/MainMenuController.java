@@ -1,70 +1,57 @@
 package FXMLControlers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
+import javafx.scene.text.Font;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 
 public class MainMenuController {
+
+    private static final String fontPath = "src/main/resources/graphics/kenvector_future_thin.ttf";
 
     @FXML
     private Button NewGameB;
     @FXML
     private Button QuitB;
+    @FXML
+    private Button CreditsB;
 
-    public MainMenuController() {
-        System.out.println("Main Menu Controller created");
+    private void setButtonFont(Button button) {
+
+        try {
+
+            button.setFont(Font.loadFont(new FileInputStream(fontPath), 23));
+
+        } catch (IOException e) {
+
+            System.err.println("Unable to load a custom font.");
+            button.setFont(Font.font("Verdana", 23));
+
+        }
+
     }
 
     @FXML
     public void initialize() {
-        NewGameB.hoverProperty().addListener(event -> {
 
-            if (NewGameB.hoverProperty().getValue()) {
-                System.out.println("Entering");
-            } else {
-                System.out.println("Escaping");
-            }
-            //NewGameB.setStyle( "-fx-background-color: red;" + "-fx-text-fill: white");
-
-        });
-
-        NewGameB.setOnMouseClicked(value -> {
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DuckGameBoard1.fxml"));
-            try {
-                Parent root = loader.load();
-                Stage stageSecond = new Stage();
-                stageSecond.setScene(new Scene(root));
-                stageSecond.show();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        });
-
-        QuitB.setOnMouseClicked(value -> {
-
-            Node n = (Node) value.getSource();
-            Stage primaryStage = (Stage) n.getScene().getWindow();
-            primaryStage.close();
-
-        });
-    }
-
-    @FXML
-    public void onActionEvent() {
-    }
-
-    @FXML
-    public void onMouseEntered() {
-        //System.out.println("Entered button area");
+        setButtonFont(QuitB);
+        setButtonFont(NewGameB);
+        setButtonFont(CreditsB);
 
     }
+
+    public Button getNewGameButton() {
+        return NewGameB;
+    }
+
+    public Button getQuitButton() {
+        return QuitB;
+    }
+
+    public Button getCreditsButton() {
+        return CreditsB;
+    }
+
 }

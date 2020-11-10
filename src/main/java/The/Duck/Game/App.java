@@ -19,17 +19,7 @@ public class App extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
-        //StageStyle.DECORATED;
-        //primaryStage.initStyle(StageStyle.DECORATED);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main.fxml"));
-        Parent root = loader.load();
-
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("The Duck Game");
-        //primaryStage.setX(150);
-        //primaryStage.setY(100);
-        primaryStage.show();
+    public void start(Stage primaryStage) {
+        MainMenuManager manager = new MainMenuManager(primaryStage);
     }
 }
