@@ -1,21 +1,28 @@
 package FXMLControlers;
 
 import javafx.fxml.FXML;
-import javafx.scene.shape.Circle;
+import javafx.scene.layout.AnchorPane;
+
+import javafx.scene.layout.Region;
 
 public class FirstBoardController {
 
     @FXML
-    private Circle player1;
+    private Region playerModel;
+    @FXML
+    private AnchorPane manePane;
+
 
     public void initialize() {
 
     }
 
-    public void onKeyTyped() {
+    public AnchorPane gatManePane() {
+        return manePane;
+    }
 
-        player1.setLayoutX(player1.getLayoutX() + 1.6);
-        System.out.println("Typed key");
+    public Region getPlayer() {
+        return playerModel;
     }
 
 }

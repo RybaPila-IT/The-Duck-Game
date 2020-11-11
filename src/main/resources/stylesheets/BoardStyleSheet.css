@@ -1,0 +1,6 @@
+.soldier {
+
+    -fx-background-image: url(/graphics/soldier_stand.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}

@@ -18,5 +18,32 @@
 
     -fx-background-image: url(/graphics/background.jpg);
     -fx-background-color: transparent;
+    -fx-pref-width: 1440px;
+    -fx-pref-height: 811px;
+}
+
+.anchor {
+
+    -fx-background-image: url(/graphics/grey_panel.png);
+    -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
+
+}
+
+.staticButton {
+
+    -fx-background-image: url(/graphics/grey_button05.png);
+    -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
+
+}
+
+.staticButton:pressed {
+
+    -fx-background-image: url(/graphics/grey_button05.png);
+    -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-pref-width: 190;
+    -fx-pref-height: 49;
 
 }

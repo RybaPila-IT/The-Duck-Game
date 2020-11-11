@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Region?>
+
+<AnchorPane prefHeight="811.0" prefWidth="1440.0" stylesheets="@stylesheets/BoardStyleSheet.css"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="FXMLControlers.FirstBoardController">
+   <children>
+      <Region fx:id="playerModel" layoutX="14.0" layoutY="687.0" prefHeight="110.0" prefWidth="80.0"
+              styleClass="soldier" stylesheets="@stylesheets/BoardStyleSheet.css"/>
+   </children>
+</AnchorPane>
