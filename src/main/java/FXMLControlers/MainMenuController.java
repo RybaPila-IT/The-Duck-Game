@@ -3,13 +3,10 @@ package FXMLControlers;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 
-import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -48,10 +45,6 @@ public class MainMenuController {
             button.setFont(Font.font("Verdana", 23));
 
         }
-
-    }
-
-    private void initializeCreditsPane() {
 
     }
 

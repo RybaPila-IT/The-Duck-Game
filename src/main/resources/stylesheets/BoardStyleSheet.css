@@ -4,3 +4,18 @@
     -fx-background-repeat: no-repeat;
     -fx-background-color: transparent;
 }
+
+.obstacle {
+    -fx-background-image: url(/graphics/grey_bricks.png);
+    -fx-background-color: transparent;
+    -fx-fill: transparent;
+
+}
+
+.pane {
+
+    -fx-background-image: url(/graphics/background.jpg);
+    -fx-background-color: transparent;
+    -fx-pref-width: 1440px;
+    -fx-pref-height: 811px;
+}

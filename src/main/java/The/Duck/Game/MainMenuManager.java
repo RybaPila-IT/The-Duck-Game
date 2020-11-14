@@ -5,8 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 
 public class MainMenuManager {
@@ -24,7 +22,10 @@ public class MainMenuManager {
     }
 
     private void setNewGameButton() {
-        controller.getNewGameButton().setOnMouseClicked(MouseEvent -> boardManager.StartGameBoard());
+        controller.getNewGameButton().setOnMouseClicked(MouseEvent -> {
+            boardManager = new GameBoardManager(mainMenuStage);
+            boardManager.StartGameBoard();
+        });
     }
 
     public MainMenuManager(Stage primaryStage) {

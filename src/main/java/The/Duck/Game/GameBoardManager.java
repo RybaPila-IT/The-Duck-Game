@@ -3,12 +3,16 @@ package The.Duck.Game;
 import FXMLControlers.FirstBoardController;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
+import javafx.scene.layout.Region;
+
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class GameBoardManager {
 
@@ -21,14 +25,50 @@ public class GameBoardManager {
     /**
      * Associated directly with gameplay.
      */
-    private boolean APressed, DPressed;
+    private ButtonInfo buttonInfo;
     private Player player;
-
 
     /**
      * Associated with animations.
      */
     private AnimationTimer timer;
+
+
+    private ArrayList<Obstacle> obstacles;
+
+
+    private void setGameBoardStageListeners() {
+        GameBoardStage.setOnCloseRequest(value -> {
+            CallingStage.show();
+            GameBoardStage.close();
+        });
+    }
+
+    private void setGameBoardSceneListeners() {
+
+        GameBoardScene.setOnKeyPressed(value -> {
+            if (value.getCode() == KeyCode.D)
+                buttonInfo.setDPressed(true);
+            else if (value.getCode() == KeyCode.A)
+                buttonInfo.setAPressed(true);
+            else if (value.getCode() == KeyCode.SPACE)
+                buttonInfo.setSpacePressed(true);
+
+        });
+
+        GameBoardScene.setOnKeyReleased(value -> {
+
+            if (value.getCode() == KeyCode.D)
+                buttonInfo.setDPressed(false);
+            else if (value.getCode() == KeyCode.A)
+                buttonInfo.setAPressed(false);
+            else if (value.getCode() == KeyCode.SPACE)
+                buttonInfo.setSpacePressed(false);
+
+        });
+
+    }
+
 
     public GameBoardManager(Stage callingStage) {
 
@@ -38,30 +78,20 @@ public class GameBoardManager {
 
         try {
 
+            /** Preprocessing of FXML board. */
             Parent root = loader.load();
             FirstBoardController controller = loader.getController();
-            player = new Player(controller.getPlayer());
+
+            /** Setting private fields. */
+            player = new Player(controller.getPlayer(), controller.getObstaclesList());
+            obstacles = controller.getObstaclesList();
+            buttonInfo = new ButtonInfo();
             GameBoardScene = new Scene(root);
             GameBoardStage.setScene(GameBoardScene);
 
-            GameBoardStage.setOnCloseRequest(value -> CallingStage.show());
-
-            GameBoardScene.setOnKeyPressed(value -> {
-                if (value.getCode() == KeyCode.D)
-                    DPressed = true;
-                else if (value.getCode() == KeyCode.A)
-                    APressed = true;
-
-            });
-
-            GameBoardScene.setOnKeyReleased(value -> {
-
-                if (value.getCode() == KeyCode.D)
-                    DPressed = false;
-                else if (value.getCode() == KeyCode.A)
-                    APressed = false;
-
-            });
+            /** Setting Listeners. */
+            setGameBoardStageListeners();
+            setGameBoardSceneListeners();
 
 
         } catch (IOException e) {
@@ -93,14 +123,15 @@ public class GameBoardManager {
 
     private void movePlayer() {
 
-        if (APressed)
+        if (buttonInfo.isAPressed())
             player.accelerate(false);
-        else if (DPressed)
+        else if (buttonInfo.isDPressed())
             player.accelerate(true);
-        else
-            player.slowDown();
+        else if (buttonInfo.isSpacePressed())
+            player.jump();
 
         player.movePlayerModel();
+
     }
 
 
