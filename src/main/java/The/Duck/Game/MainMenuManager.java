@@ -42,8 +42,6 @@ public class MainMenuManager {
             mainMenuScene = new Scene(root);
             mainMenuStage.setScene(mainMenuScene);
             boardManager = new GameBoardManager(mainMenuStage);
-            mainMenuStage.show();
-
 
             setQuitButton();
             setNewGameButton();
@@ -55,6 +53,10 @@ public class MainMenuManager {
 
         }
 
+    }
+
+    public void showMainMenu() {
+        mainMenuStage.show();
     }
 
 

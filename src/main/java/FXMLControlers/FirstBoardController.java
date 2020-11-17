@@ -3,7 +3,6 @@ package FXMLControlers;
 import The.Duck.Game.Obstacle;
 import javafx.fxml.FXML;
 
-import javafx.scene.Node;
 import javafx.scene.layout.Region;
 
 import java.util.ArrayList;
@@ -38,7 +37,6 @@ public class FirstBoardController {
         obstacleList.add(new Obstacle(Obstacle2));
         obstacleList.add(new Obstacle(Obstacle3));
         obstacleList.add(new Obstacle(Obstacle4));
-
 
         return obstacleList;
     }

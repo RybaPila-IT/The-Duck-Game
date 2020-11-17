@@ -3,14 +3,8 @@
  */
 package The.Duck.Game;
 
-import FXMLControlers.MainMenuController;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class App extends Application {
 
@@ -21,5 +15,6 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) {
         MainMenuManager manager = new MainMenuManager(primaryStage);
+        manager.showMainMenu();
     }
 }

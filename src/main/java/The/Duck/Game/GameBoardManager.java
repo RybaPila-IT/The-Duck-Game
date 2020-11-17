@@ -3,16 +3,11 @@ package The.Duck.Game;
 import FXMLControlers.FirstBoardController;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-
-import javafx.scene.layout.Region;
-
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class GameBoardManager {
 
@@ -32,9 +27,6 @@ public class GameBoardManager {
      * Associated with animations.
      */
     private AnimationTimer timer;
-
-
-    private ArrayList<Obstacle> obstacles;
 
 
     private void setGameBoardStageListeners() {
@@ -74,6 +66,7 @@ public class GameBoardManager {
 
         CallingStage = callingStage;
         GameBoardStage = new Stage();
+        GameBoardStage.setResizable(false);
         FXMLLoader loader = new FXMLLoader(getClass().getResource(GameBoard1Path));
 
         try {
@@ -84,7 +77,6 @@ public class GameBoardManager {
 
             /** Setting private fields. */
             player = new Player(controller.getPlayer(), controller.getObstaclesList());
-            obstacles = controller.getObstaclesList();
             buttonInfo = new ButtonInfo();
             GameBoardScene = new Scene(root);
             GameBoardStage.setScene(GameBoardScene);

@@ -1,9 +1,6 @@
 package The.Duck.Game;
 
-
-import javafx.scene.Node;
 import javafx.scene.layout.Region;
-
 import java.util.ArrayList;
 
 
@@ -18,7 +15,7 @@ public class Player {
     private static final double fallAcc = 0.0004;
     private static final double maxVerSize = 694.0;
 
-    private Region playerModel;
+    private final Region playerModel;
     private double horSpeed;
     private double verticalSpeed;
     private boolean jumping;
