@@ -1,9 +1,16 @@
+@font-face {
+    src: url(/graphics/kenvector_future_thin.ttf);
+}
+
+
 .button {
     -fx-background-image: url(../graphics/grey_button00.png);
     -fx-background-color: transparent;
     -fx-pref-height: 49px;
     -fx-pref-width: 190px;
     -fx-background-repeat: no-repeat;
+    -fx-font-family: "kenvector future thin regular";
+    -fx-font-size: 23;
 }
 
 .button:pressed {
@@ -12,6 +19,8 @@
     -fx-pref-height: 45px;
     -fx-pref-width: 190px;
     -fx-background-repeat: no-repeat;
+    -fx-font-family: "kenvector future thin regular";
+    -fx-font-size: 23;
 }
 
 .pane {

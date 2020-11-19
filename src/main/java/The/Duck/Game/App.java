@@ -14,7 +14,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        MainMenuManager manager = new MainMenuManager(primaryStage);
+        MainMenuManager manager = new MainMenuManager();
         manager.showMainMenu();
     }
 }

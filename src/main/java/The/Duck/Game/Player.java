@@ -1,8 +1,7 @@
 package The.Duck.Game;
 
+import FXMLControlers.PlayerController;
 import javafx.scene.layout.Region;
-import java.util.ArrayList;
-
 
 public class Player {
 
@@ -13,30 +12,34 @@ public class Player {
 
     private static final double maxVertSpeed = 0.4;
     private static final double fallAcc = 0.0004;
-    private static final double maxVerSize = 694.0;
+    private static final double maxVerSize = 701.0;
 
-    private final Region playerModel;
     private double horSpeed;
     private double verticalSpeed;
     private boolean jumping;
 
-    private final ArrayList<Obstacle> obstacles;
+    private PlayerController controller;
+    private Rectangle playerModel;
 
-    public Player(Region playerModel, ArrayList<Obstacle> Obstacles) {
-        this.playerModel = playerModel;
+
+    public Player(Region playerModel) {
+        this.controller = new PlayerController(playerModel);
         this.horSpeed = 0;
         this.verticalSpeed = 0;
-        this.obstacles = Obstacles;
+        this.playerModel = new Rectangle(playerModel);
     }
 
     public void accelerate(boolean toRight) {
         horSpeed = toRight ? Math.min(maxSpeed, horSpeed + accVal) : Math.max(-maxSpeed, horSpeed - accVal);
     }
 
-    public void slowDownHorizontally() {
+    private void slowDownHorizontally() {
 
         if (horSpeed != 0)
             horSpeed += (horSpeed > 0 ? -slowVal : slowVal);
+
+        if (Math.abs(horSpeed) < slowVal)
+            horSpeed = 0;
 
     }
 
@@ -49,16 +52,15 @@ public class Player {
 
     }
 
-    public Region getRegion() {
-        return playerModel;
-    }
-
     public void movePlayerModel() {
 
         makeHorizontalMovement();
         makeVerticalMovement();
         slowDownHorizontally();
         fall();
+
+        controller.setLayoutX(playerModel.getLayoutX());
+        controller.setLayoutY(playerModel.getLayoutY());
 
     }
 
@@ -70,6 +72,9 @@ public class Player {
                 verticalSpeed += fallAcc;
             else
                 verticalSpeed = Math.min(verticalSpeed + fallAcc, maxVerSize);
+
+            if (Math.abs(verticalSpeed) > 2 * fallAcc)
+                jumping = true;
 
         } else {
 
@@ -95,8 +100,11 @@ public class Player {
 
     private void doRegularVerticalMovement() {
 
-        double newYPos = playerModel.getLayoutY() + verticalSpeed;
-        playerModel.setLayoutY(Math.min(newYPos, maxVerSize));
+
+        playerModel.addVertically(verticalSpeed);
+
+        if (playerModel.getLayoutY() > maxVerSize)
+            playerModel.setY(maxVerSize);
 
     }
 
@@ -106,25 +114,29 @@ public class Player {
 
         if (collision != null) {
 
-            if (verticalSpeed != 0)
-                playerModel.setLayoutY(playerModel.getLayoutY() - verticalSpeed);
+            Rectangle obstacle = collision.getObstacleRegion();
 
-            if (verticalSpeed > 0)
+            if (verticalSpeed < 0)
+                playerModel.setY(obstacle.getSecondY() + 1);
+            else if (verticalSpeed > 0) {
+                playerModel.setY(obstacle.getLayoutY() - playerModel.getHeight());
                 jumping = false;
+            }
 
             verticalSpeed = 0;
-
         }
     }
 
+
     private Obstacle findCollision() {
+
+        BoardObstacles obstacles = BoardObstacles.getInstance();
 
         Obstacle toReturn = null;
 
-        for (Obstacle obstacle : obstacles)
+        for (Obstacle obstacle : obstacles.getObstacles())
             if (obstacle.intersects(playerModel))
                 toReturn = obstacle;
-
 
         return toReturn;
     }
@@ -135,28 +147,32 @@ public class Player {
 
         if (collided != null) {
 
-            if (horSpeed != 0)
-                playerModel.setLayoutX(playerModel.getLayoutX() - horSpeed);
+            Rectangle obstacle = collided.getObstacleRegion();
+
+            if (obstacle.getLayoutY() == playerModel.getSecondY())
+                return;
+
+            if (horSpeed > 0)
+                playerModel.setX(obstacle.getLayoutX() - playerModel.getWidth() - 1);
+            else if (horSpeed < 0)
+                playerModel.setX(obstacle.getSecondX() + 1);
 
             horSpeed = 0;
-
         }
 
     }
 
     private void doRegularHorizontalMove() {
 
-        double newXPos = playerModel.getLayoutX() + horSpeed;
+        playerModel.addHorizontally(horSpeed);
 
-        if (horSpeed > 0)
-            playerModel.setLayoutX(Math.min(newXPos, horMaxSize));
-        else
-            playerModel.setLayoutX(Math.max(newXPos, 0));
-
-        if (newXPos > horMaxSize)
-            horSpeed = horSpeed > 0 ? 0 : horSpeed;
-        else if (newXPos < 0)
-            horSpeed = horSpeed < 0 ? 0 : horSpeed;
+        if (playerModel.getLayoutX() > horMaxSize) {
+            playerModel.setX(horMaxSize);
+            horSpeed = 0;
+        } else if (playerModel.getLayoutX() < 0) {
+            playerModel.setX(0);
+            horSpeed = 0;
+        }
 
     }
 

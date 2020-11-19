@@ -2,11 +2,11 @@ package The.Duck.Game;
 
 public class ButtonInfo {
 
-    private boolean isAPressed;
-    private boolean isDPressed;
-    private boolean isSpacePressed;
+    private static boolean isAPressed;
+    private static boolean isDPressed;
+    private static boolean isSpacePressed;
 
-    public ButtonInfo() {
+    static {
 
         isAPressed = false;
         isDPressed = false;
@@ -14,27 +14,27 @@ public class ButtonInfo {
 
     }
 
-    public void setAPressed(boolean value) {
+    public static void setAPressed(boolean value) {
         isAPressed = value;
     }
 
-    public void setDPressed(boolean value) {
+    public static void setDPressed(boolean value) {
         isDPressed = value;
     }
 
-    public void setSpacePressed(boolean value) {
+    public static void setSpacePressed(boolean value) {
         isSpacePressed = value;
     }
 
-    public boolean isAPressed() {
+    public static boolean isAPressed() {
         return isAPressed;
     }
 
-    public boolean isDPressed() {
+    public static boolean isDPressed() {
         return isDPressed;
     }
 
-    public boolean isSpacePressed() {
+    public static boolean isSpacePressed() {
         return isSpacePressed;
     }
 }

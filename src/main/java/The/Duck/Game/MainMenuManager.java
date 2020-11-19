@@ -3,48 +3,25 @@ package The.Duck.Game;
 import FXMLControlers.MainMenuController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainMenuManager {
 
-    private static final String mainMenuFXMLPath = "/MainMenu.fxml";
-    private static final String theShootGame = "The Shoot Game";
+    private static final String MAIN_MENU_FXML = "/MainMenu.fxml";
 
-    private Stage mainMenuStage;
-    private Scene mainMenuScene;
     private MainMenuController controller;
     private GameBoardManager boardManager;
 
-    private void setQuitButton() {
-        controller.getQuitButton().setOnMouseClicked(MouseEvent -> mainMenuStage.close());
-    }
 
-    private void setNewGameButton() {
-        controller.getNewGameButton().setOnMouseClicked(MouseEvent -> {
-            boardManager = new GameBoardManager(mainMenuStage);
-            boardManager.StartGameBoard();
-        });
-    }
+    public MainMenuManager() {
 
-    public MainMenuManager(Stage primaryStage) {
-
-        mainMenuStage = primaryStage;
-        mainMenuStage.setTitle(theShootGame);
-        mainMenuStage.setResizable(false);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(mainMenuFXMLPath));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(MAIN_MENU_FXML));
 
         try {
-
+            // Needed for proper initialization loader and controller object.
             Parent root = loader.load();
             controller = loader.getController();
-            mainMenuScene = new Scene(root);
-            mainMenuStage.setScene(mainMenuScene);
-            boardManager = new GameBoardManager(mainMenuStage);
-
-            setQuitButton();
-            setNewGameButton();
+            controller.setManager(this);
 
         } catch (IOException e) {
 
@@ -56,7 +33,13 @@ public class MainMenuManager {
     }
 
     public void showMainMenu() {
-        mainMenuStage.show();
+        controller.showMainMenu();
+    }
+
+    public void startNewGame() {
+        controller.hideMainMenu();
+        boardManager = new GameBoardManager(this);
+        boardManager.StartGameBoard();
     }
 
 

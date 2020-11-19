@@ -4,86 +4,37 @@ import FXMLControlers.FirstBoardController;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.stage.Stage;
+
 import java.io.IOException;
 
 public class GameBoardManager {
 
-    private static final String GameBoard1Path = "/TheShootingGameBoard1.fxml";
+    private static final String GAME_BOARD_1_PATH = "/TheShootingGameBoard1.fxml";
 
-    private Stage CallingStage;
-    private Stage GameBoardStage;
-    private Scene GameBoardScene;
-
-    /**
-     * Associated directly with gameplay.
-     */
-    private ButtonInfo buttonInfo;
-    private Player player;
-
-    /**
-     * Associated with animations.
-     */
-    private AnimationTimer timer;
+    private final MainMenuManager callingManager;
+    private FirstBoardController controller;
+    private GameManager gameManager;
 
 
-    private void setGameBoardStageListeners() {
-        GameBoardStage.setOnCloseRequest(value -> {
-            CallingStage.show();
-            GameBoardStage.close();
-        });
-    }
+    public GameBoardManager(MainMenuManager callingManager) {
 
-    private void setGameBoardSceneListeners() {
-
-        GameBoardScene.setOnKeyPressed(value -> {
-            if (value.getCode() == KeyCode.D)
-                buttonInfo.setDPressed(true);
-            else if (value.getCode() == KeyCode.A)
-                buttonInfo.setAPressed(true);
-            else if (value.getCode() == KeyCode.SPACE)
-                buttonInfo.setSpacePressed(true);
-
-        });
-
-        GameBoardScene.setOnKeyReleased(value -> {
-
-            if (value.getCode() == KeyCode.D)
-                buttonInfo.setDPressed(false);
-            else if (value.getCode() == KeyCode.A)
-                buttonInfo.setAPressed(false);
-            else if (value.getCode() == KeyCode.SPACE)
-                buttonInfo.setSpacePressed(false);
-
-        });
-
-    }
-
-
-    public GameBoardManager(Stage callingStage) {
-
-        CallingStage = callingStage;
-        GameBoardStage = new Stage();
-        GameBoardStage.setResizable(false);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(GameBoard1Path));
+        this.callingManager = callingManager;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(GAME_BOARD_1_PATH));
 
         try {
 
             /** Preprocessing of FXML board. */
             Parent root = loader.load();
-            FirstBoardController controller = loader.getController();
+            controller = loader.getController();
+            controller.setManager(this);
 
-            /** Setting private fields. */
-            player = new Player(controller.getPlayer(), controller.getObstaclesList());
-            buttonInfo = new ButtonInfo();
-            GameBoardScene = new Scene(root);
-            GameBoardStage.setScene(GameBoardScene);
+            /** Setting GameManager and PlayerManager. */
+            PlayerManager playerManager = new PlayerManager(controller.getPlayer());
+            gameManager = new GameManager(playerManager);
 
-            /** Setting Listeners. */
-            setGameBoardStageListeners();
-            setGameBoardSceneListeners();
+            /** Setting BoardObstacles singleton value. */
+            BoardObstacles boardObstacles = BoardObstacles.getInstance();
+            boardObstacles.setObstacles(controller.getObstaclesList());
 
 
         } catch (IOException e) {
@@ -96,34 +47,14 @@ public class GameBoardManager {
 
     public void StartGameBoard() {
 
-        CallingStage.hide();
-        CreateGameLoop();
-        GameBoardStage.show();
+        gameManager.startGameLoop();
+        controller.showGameBoard();
     }
 
-    private void CreateGameLoop() {
-
-        timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                movePlayer();
-            }
-        };
-
-        timer.start();
-    }
-
-    private void movePlayer() {
-
-        if (buttonInfo.isAPressed())
-            player.accelerate(false);
-        else if (buttonInfo.isDPressed())
-            player.accelerate(true);
-        else if (buttonInfo.isSpacePressed())
-            player.jump();
-
-        player.movePlayerModel();
-
+    public void EndGameBoard() {
+        gameManager.stopGameLoop();
+        controller.endGame();
+        callingManager.showMainMenu();
     }
 
 
