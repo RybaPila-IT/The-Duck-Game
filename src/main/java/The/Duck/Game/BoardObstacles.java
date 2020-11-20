@@ -24,8 +24,17 @@ public class BoardObstacles {
         instance.obstacles = obstacles;
     }
 
-    public List<Obstacle> getObstacles() {
-        return instance.obstacles;
+    public Obstacle findCollision(Rectangle region) {
+
+        Obstacle toReturn = null;
+
+        for (Obstacle obstacle : instance.obstacles)
+            if (obstacle.intersects(region))
+                toReturn = obstacle;
+
+        return toReturn;
+
     }
+
 
 }

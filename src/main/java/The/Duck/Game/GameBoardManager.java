@@ -1,7 +1,6 @@
 package The.Duck.Game;
 
 import FXMLControlers.FirstBoardController;
-import javafx.animation.AnimationTimer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
@@ -36,6 +35,9 @@ public class GameBoardManager {
             BoardObstacles boardObstacles = BoardObstacles.getInstance();
             boardObstacles.setObstacles(controller.getObstaclesList());
 
+            /** Setting BoardWeapons singleton value. */
+            BoardWeapons boardWeapons = BoardWeapons.getInstance();
+            boardWeapons.setWeapons(controller.getWeaponList());
 
         } catch (IOException e) {
             System.err.println("GameBoardManager error. Unable to load FXML file with board layout");

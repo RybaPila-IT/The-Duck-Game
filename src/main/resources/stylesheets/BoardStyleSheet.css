@@ -19,3 +19,11 @@
     -fx-pref-width: 1440px;
     -fx-pref-height: 811px;
 }
+
+.weapon {
+
+    -fx-background-image: url(/graphics/weapon_face_right.png);
+    -fx-background-color: transparent;
+    -fx-pref-height: 47;
+    -fx-pref-width: 70;
+}

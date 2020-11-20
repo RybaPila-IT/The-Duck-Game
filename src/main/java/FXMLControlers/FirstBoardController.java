@@ -1,9 +1,6 @@
 package FXMLControlers;
 
-import The.Duck.Game.ButtonInfo;
-import The.Duck.Game.GameBoardManager;
-import The.Duck.Game.Obstacle;
-import The.Duck.Game.Player;
+import The.Duck.Game.*;
 import javafx.fxml.FXML;
 
 import javafx.scene.Scene;
@@ -32,6 +29,8 @@ public class FirstBoardController {
     private Region Obstacle4;
     @FXML
     private AnchorPane gameBoardPane;
+    @FXML
+    private Region weapon1;
 
     private Scene gameBoardScene;
     private Stage gameBoardStage;
@@ -44,6 +43,7 @@ public class FirstBoardController {
     }
 
     private void setSceneOnMouseEvents() {
+
         gameBoardScene.setOnKeyPressed(value -> {
 
             if (value.getCode() == KeyCode.D)
@@ -52,6 +52,8 @@ public class FirstBoardController {
                 ButtonInfo.setAPressed(true);
             else if (value.getCode() == KeyCode.SPACE)
                 ButtonInfo.setSpacePressed(true);
+            else if (value.getCode() == KeyCode.G)
+                ButtonInfo.setGPressed(true);
 
         });
 
@@ -63,6 +65,8 @@ public class FirstBoardController {
                 ButtonInfo.setAPressed(false);
             else if (value.getCode() == KeyCode.SPACE)
                 ButtonInfo.setSpacePressed(false);
+            else if (value.getCode() == KeyCode.G)
+                ButtonInfo.setGPressed(false);
 
         });
 
@@ -95,6 +99,15 @@ public class FirstBoardController {
     public Player getPlayer() {
         return new Player(playerModel);
     }
+
+    public List<Weapon> getWeaponList() {
+
+        ArrayList<Weapon> weaponList = new ArrayList<>();
+        weaponList.add(new Weapon(weapon1));
+
+        return weaponList;
+    }
+
 
     public List<Obstacle> getObstaclesList() {
 

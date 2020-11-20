@@ -5,13 +5,23 @@ public class ButtonInfo {
     private static boolean isAPressed;
     private static boolean isDPressed;
     private static boolean isSpacePressed;
+    private static boolean isGPressed;
 
     static {
 
         isAPressed = false;
         isDPressed = false;
         isSpacePressed = false;
+        isGPressed = false;
 
+    }
+
+    public static void setGPressed(boolean isGPressed) {
+        ButtonInfo.isGPressed = isGPressed;
+    }
+
+    public static boolean isGPressed() {
+        return isGPressed;
     }
 
     public static void setAPressed(boolean value) {

@@ -17,6 +17,7 @@ public class Player {
     private double horSpeed;
     private double verticalSpeed;
     private boolean jumping;
+    private Weapon weapon;
 
     private PlayerController controller;
     private Rectangle playerModel;
@@ -27,6 +28,7 @@ public class Player {
         this.horSpeed = 0;
         this.verticalSpeed = 0;
         this.playerModel = new Rectangle(playerModel);
+        this.weapon = null;
     }
 
     public void accelerate(boolean toRight) {
@@ -62,7 +64,42 @@ public class Player {
         controller.setLayoutX(playerModel.getLayoutX());
         controller.setLayoutY(playerModel.getLayoutY());
 
+        if (hasWeapon())
+            weapon.followOwner();
+
     }
+
+    public boolean tryToGrabWeapon() {
+
+        if (!hasWeapon()) {
+            weapon = BoardWeapons.getInstance().findCollision(playerModel);
+
+            if (hasWeapon())
+                weapon.setOwner(playerModel);
+
+        }
+
+        return hasWeapon();
+    }
+
+    public boolean tryToThrowWeaponAway() {
+
+        boolean thrown = false;
+
+        if (!jumping) {
+            weapon.setOwner(null);
+            weapon.fallDown();
+            weapon = null;
+            thrown = true;
+        }
+
+        return thrown;
+    }
+
+    private boolean hasWeapon() {
+        return weapon != null;
+    }
+
 
     private void fall() {
 
@@ -100,7 +137,6 @@ public class Player {
 
     private void doRegularVerticalMovement() {
 
-
         playerModel.addVertically(verticalSpeed);
 
         if (playerModel.getLayoutY() > maxVerSize)
@@ -110,7 +146,7 @@ public class Player {
 
     private void dealWithVerticalCollision() {
 
-        Obstacle collision = findCollision();
+        Obstacle collision = BoardObstacles.getInstance().findCollision(playerModel);
 
         if (collision != null) {
 
@@ -128,22 +164,9 @@ public class Player {
     }
 
 
-    private Obstacle findCollision() {
-
-        BoardObstacles obstacles = BoardObstacles.getInstance();
-
-        Obstacle toReturn = null;
-
-        for (Obstacle obstacle : obstacles.getObstacles())
-            if (obstacle.intersects(playerModel))
-                toReturn = obstacle;
-
-        return toReturn;
-    }
-
     private void dealWithHorizontalCollision() {
 
-        Obstacle collided = findCollision();
+        Obstacle collided = BoardObstacles.getInstance().findCollision(playerModel);
 
         if (collided != null) {
 
