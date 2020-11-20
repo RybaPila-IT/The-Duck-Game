@@ -6,6 +6,7 @@ public class ButtonInfo {
     private static boolean isDPressed;
     private static boolean isSpacePressed;
     private static boolean isGPressed;
+    private static boolean isKPressed;
 
     static {
 
@@ -13,7 +14,16 @@ public class ButtonInfo {
         isDPressed = false;
         isSpacePressed = false;
         isGPressed = false;
+        isKPressed = false;
 
+    }
+
+    public static void setKPressed(boolean value) {
+        isKPressed = value;
+    }
+
+    public static boolean isKPressed() {
+        return isKPressed;
     }
 
     public static void setGPressed(boolean isGPressed) {

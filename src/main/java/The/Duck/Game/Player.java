@@ -54,6 +54,10 @@ public class Player {
 
     }
 
+    public void shoot() {
+        weapon.shoot();
+    }
+
     public void movePlayerModel() {
 
         makeHorizontalMovement();

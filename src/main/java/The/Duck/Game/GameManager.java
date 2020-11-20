@@ -16,9 +16,14 @@ public class GameManager {
             @Override
             public void handle(long now) {
                 playerManager.movePlayer();
+                moveBullets();
             }
         };
 
+    }
+
+    private void moveBullets() {
+        BoardBullets.getInstance().moveBullets();
     }
 
     public void startGameLoop() {

@@ -30,6 +30,19 @@ public class Rectangle {
         y2 = y1 + height;
     }
 
+    public Rectangle(double x1, double y1, double w, double h) {
+
+        this.y1 = y1;
+        this.x1 = x1;
+
+        width = w;
+        height = h;
+
+        x2 = x1 + w;
+        y2 = y1 + h;
+    }
+
+
     public boolean intersects(Rectangle r) {
 
         if (x1 > r.x2 || r.x1 > x2)

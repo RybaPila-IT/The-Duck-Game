@@ -5,6 +5,8 @@ import javafx.scene.layout.Region;
 
 public class Weapon {
 
+    private static final int SHOTS_AMOUNT = 400;
+
     private int shots;
     private Rectangle area;
     private Rectangle owner;
@@ -15,7 +17,7 @@ public class Weapon {
 
         this.controller = new WeaponController(weaponCharacter);
         this.area = new Rectangle(weaponCharacter);
-        this.shots = 4;
+        this.shots = SHOTS_AMOUNT;
         this.owner = null;
 
     }
@@ -23,7 +25,7 @@ public class Weapon {
     public void shoot() {
 
         if (shots > 0) {
-            System.out.println("Shooting!");
+            BoardBullets.getInstance().addBullet(new Bullet(area));
             shots--;
         }
 

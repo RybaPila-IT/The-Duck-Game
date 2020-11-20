@@ -3,11 +3,18 @@ package The.Duck.Game;
 public class PlayerManager {
 
     private Player player;
-    private boolean hasWeapon = false;
-    private boolean readyToThrowAway = false;
-    private boolean readyToGrab = true;
+    private boolean hasWeapon;
+    private boolean readyToThrowAway;
+    private boolean readyToGrab;
+    private boolean readyToShoot;
 
     public PlayerManager(Player player) {
+
+        this.hasWeapon = false;
+        this.readyToThrowAway = false;
+        this.readyToGrab = true;
+        this.readyToShoot = true;
+
         this.player = player;
     }
 
@@ -47,11 +54,23 @@ public class PlayerManager {
         }
     }
 
+    private void playerShooting() {
+
+        if (ButtonInfo.isKPressed() && hasWeapon && readyToShoot) {
+            player.shoot();
+            readyToShoot = false;
+        } else if (!ButtonInfo.isKPressed()) {
+            readyToShoot = true;
+        }
+
+    }
+
 
     public void movePlayer() {
 
         playerMovement();
         playerWeaponHandling();
+        playerShooting();
 
         player.movePlayerModel();
     }

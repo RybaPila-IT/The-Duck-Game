@@ -3,6 +3,7 @@ package FXMLControlers;
 import The.Duck.Game.*;
 import javafx.fxml.FXML;
 
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
@@ -54,6 +55,8 @@ public class FirstBoardController {
                 ButtonInfo.setSpacePressed(true);
             else if (value.getCode() == KeyCode.G)
                 ButtonInfo.setGPressed(true);
+            else if (value.getCode() == KeyCode.K)
+                ButtonInfo.setKPressed(true);
 
         });
 
@@ -67,6 +70,8 @@ public class FirstBoardController {
                 ButtonInfo.setSpacePressed(false);
             else if (value.getCode() == KeyCode.G)
                 ButtonInfo.setGPressed(false);
+            else if (value.getCode() == KeyCode.K)
+                ButtonInfo.setKPressed(false);
 
         });
 
@@ -82,6 +87,10 @@ public class FirstBoardController {
 
         setStageOnClose();
         setSceneOnMouseEvents();
+
+        BoardConstants.setBoardWidth(gameBoardPane.getWidth());
+        BoardConstants.setBoardHeight(gameBoardPane.getHeight());
+        BoardConstants.setController(this);
     }
 
     public void setManager(GameBoardManager manager) {
@@ -118,6 +127,14 @@ public class FirstBoardController {
         obstacleList.add(new Obstacle(Obstacle4, Obstacle4));
 
         return obstacleList;
+    }
+
+    public void addToScene(Node node) {
+        gameBoardPane.getChildren().add(node);
+    }
+
+    public void removeNodeFromScene(Node node) {
+        gameBoardPane.getChildren().remove(node);
     }
 
 
