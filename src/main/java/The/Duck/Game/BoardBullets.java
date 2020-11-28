@@ -26,6 +26,13 @@ public class BoardBullets {
 
     public void moveBullets() {
 
+        if (!movedValidBullets())
+            clearBullets();
+
+    }
+
+    private boolean movedValidBullets() {
+
         boolean hasValidBullet = false;
 
         for (Bullet b : bullets) {
@@ -37,9 +44,15 @@ public class BoardBullets {
 
         }
 
-        if (!hasValidBullet)
-            bullets.clear();
+        return hasValidBullet;
+    }
 
+    private void clearBullets() {
+
+        for (Bullet b : bullets)
+            b.removeBulletFromScene();
+
+        bullets.clear();
     }
 
 

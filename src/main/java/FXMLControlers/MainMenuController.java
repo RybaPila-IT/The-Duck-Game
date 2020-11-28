@@ -3,6 +3,7 @@ package FXMLControlers;
 import The.Duck.Game.MainMenuManager;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
@@ -12,8 +13,12 @@ import javafx.util.Duration;
 public class MainMenuController {
 
     private static final String GAME_NAME = "The Shooting Game";
+
+    private final static double DURATION = 1.0;
     private static final int CREDITS_BEG_Y = -800;
     private static final int CREDITS_DEST_Y = 884;
+    private static final int HOW_TO_PLAY_BEG_Y = -1200;
+    private static final int HOW_TO_PLAY_DEST_Y = 1284;
 
     @FXML
     private Button NewGameB;
@@ -21,15 +26,16 @@ public class MainMenuController {
     private Button QuitB;
     @FXML
     private Button CreditsB;
+    @FXML
+    private Button HowToPlayB;
 
     @FXML
     private AnchorPane CreditsPane;
-    private boolean slidedIn = false;
-
+    @FXML
+    private AnchorPane HowToPlayPane;
     @FXML
     private AnchorPane MainPane;
 
-    private Scene mainMenuScene;
     private Stage mainMenuStage;
 
     private MainMenuManager manager;
@@ -41,11 +47,11 @@ public class MainMenuController {
         setCreditsButton();
         setQuitButton();
         setNewGameButton();
+        setHowToPlayButton();
 
-        mainMenuScene = new Scene(MainPane);
         mainMenuStage = new Stage();
 
-        mainMenuStage.setScene(mainMenuScene);
+        mainMenuStage.setScene(new Scene(MainPane));
         mainMenuStage.setTitle(GAME_NAME);
         mainMenuStage.setResizable(false);
     }
@@ -54,19 +60,38 @@ public class MainMenuController {
         this.manager = manager;
     }
 
-    private void moveCreditsPaneIn() {
-
+    private TranslateTransition getTransition(Node node, int dest) {
         TranslateTransition transition = new TranslateTransition();
-        transition.setDuration(Duration.seconds(0.7));
-        transition.setNode(CreditsPane);
-        transition.setToY(slidedIn ? CREDITS_BEG_Y : CREDITS_DEST_Y);
-        slidedIn = !slidedIn;
-        transition.play();
+        transition.setDuration(Duration.seconds(DURATION));
+        transition.setNode(node);
+        transition.setToY(dest);
 
+        return transition;
     }
 
+    public void slideCreditsPaneIn() {
+        TranslateTransition transition = getTransition(CreditsPane, CREDITS_DEST_Y);
+        transition.play();
+    }
+
+    public void slideCreditsPaneOut() {
+        TranslateTransition transition = getTransition(CreditsPane, CREDITS_BEG_Y);
+        transition.play();
+    }
+
+    public void slideHowToPlayPaneIn() {
+        TranslateTransition transition = getTransition(HowToPlayPane, HOW_TO_PLAY_DEST_Y);
+        transition.play();
+    }
+
+    public void slideHowToPlayPaneOut() {
+        TranslateTransition transition = getTransition(HowToPlayPane, HOW_TO_PLAY_BEG_Y);
+        transition.play();
+    }
+
+
     private void setCreditsButton() {
-        CreditsB.setOnMouseClicked(value -> moveCreditsPaneIn());
+        CreditsB.setOnMouseClicked(value -> manager.decideCreditsSliding());
     }
 
     private void setQuitButton() {
@@ -75,6 +100,10 @@ public class MainMenuController {
 
     private void setNewGameButton() {
         NewGameB.setOnMouseClicked(value -> manager.startNewGame());
+    }
+
+    private void setHowToPlayButton() {
+        HowToPlayB.setOnMouseClicked(value -> manager.decideHowToPlaySliding());
     }
 
     public void showMainMenu() {

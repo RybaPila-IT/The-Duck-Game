@@ -7,10 +7,11 @@ public class Weapon {
 
     private static final int SHOTS_AMOUNT = 400;
 
+    private boolean isWeaponFacingRight;
     private int shots;
-    private Rectangle area;
+    private final Rectangle area;
     private Rectangle owner;
-    private WeaponController controller;
+    private final WeaponController controller;
 
 
     public Weapon(Region weaponCharacter) {
@@ -19,13 +20,13 @@ public class Weapon {
         this.area = new Rectangle(weaponCharacter);
         this.shots = SHOTS_AMOUNT;
         this.owner = null;
-
+        this.isWeaponFacingRight = true;
     }
 
     public void shoot() {
 
         if (shots > 0) {
-            BoardBullets.getInstance().addBullet(new Bullet(area));
+            BoardBullets.getInstance().addBullet(new Bullet(area, isWeaponFacingRight));
             shots--;
         }
 
@@ -44,19 +45,21 @@ public class Weapon {
         return area;
     }
 
-    public boolean hasOwner() {
-        return owner != null;
-    }
+    public void followOwner(boolean isPlayerFacedRight, boolean jumping) {
 
-    public void followOwner() {
-
-        if (hasOwner()) {
-
+        if (isPlayerFacedRight)
             area.setX(owner.getSecondX() - 30);
+        else
+            area.setX(owner.getLayoutX() - 35);
+
+        if (jumping)
+            area.setY(owner.getLayoutY() - 45);
+        else
             area.setY(owner.getLayoutY());
 
-        }
+        isWeaponFacingRight = isPlayerFacedRight;
 
+        controller.setFacingRightGraphic(isPlayerFacedRight);
         controller.setLayoutX(area.getLayoutX());
         controller.setLayoutY(area.getSecondY());
 

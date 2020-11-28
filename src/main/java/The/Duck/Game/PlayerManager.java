@@ -2,7 +2,7 @@ package The.Duck.Game;
 
 public class PlayerManager {
 
-    private Player player;
+    private final Player player;
     private boolean hasWeapon;
     private boolean readyToThrowAway;
     private boolean readyToGrab;
@@ -65,13 +65,13 @@ public class PlayerManager {
 
     }
 
-
     public void movePlayer() {
 
         playerMovement();
         playerWeaponHandling();
         playerShooting();
 
+        player.setPlayerGraphic();
         player.movePlayerModel();
     }
 

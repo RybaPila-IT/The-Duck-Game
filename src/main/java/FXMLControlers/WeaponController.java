@@ -4,6 +4,9 @@ import javafx.scene.Node;
 
 public class WeaponController {
 
+    private static final String weaponFaceLeft = "weapon_left";
+    private static final String weaponFaceRight = "weapon_right";
+
     private Node weaponCharacter;
 
     public WeaponController(Node weapon) {
@@ -16,6 +19,12 @@ public class WeaponController {
 
     public void setLayoutY(double y) {
         weaponCharacter.setLayoutY(y);
+    }
+
+    public void setFacingRightGraphic(boolean isWeaponFacingRight) {
+        String styleClass = isWeaponFacingRight ? weaponFaceRight : weaponFaceLeft;
+        weaponCharacter.getStyleClass().clear();
+        weaponCharacter.getStyleClass().add(styleClass);
     }
 
 

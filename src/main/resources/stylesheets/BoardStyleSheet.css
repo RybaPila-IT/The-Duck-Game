@@ -1,35 +1,74 @@
-.soldier {
-
+.soldier-stand {
     -fx-background-image: url(/graphics/soldier_stand.png);
     -fx-background-repeat: no-repeat;
     -fx-background-color: transparent;
 }
 
+.soldier-walk-1-right {
+    -fx-background-image: url(/graphics/soldier_walk1.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
+.soldier-walk-2-right {
+    -fx-background-image: url(/graphics/soldier_walk2.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
+.soldier-walk-1-left {
+    -fx-background-image: url(/graphics/soldier_walk1-left.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
+.soldier-walk-2-left {
+    -fx-background-image: url(/graphics/soldier_walk2-left.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
+.soldier-jump-right {
+    -fx-background-image: url(/graphics/soldier_jump.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
+.soldier-jump-left {
+    -fx-background-image: url(/graphics/soldier-jump-left.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
+
 .obstacle {
     -fx-background-image: url(/graphics/grey_bricks.png);
     -fx-background-color: transparent;
     -fx-fill: transparent;
-
 }
 
 .pane {
-
     -fx-background-image: url(/graphics/background.jpg);
     -fx-background-color: transparent;
     -fx-pref-width: 1440px;
     -fx-pref-height: 811px;
 }
 
-.weapon {
-
+.weapon_right {
     -fx-background-image: url(/graphics/weapon_face_right.png);
     -fx-background-color: transparent;
     -fx-pref-height: 47px;
     -fx-pref-width: 70px;
 }
 
-.bullet {
+.weapon_left {
+    -fx-background-image: url(/graphics/weapon_face_left.png);
+    -fx-background-color: transparent;
+    -fx-pref-height: 47px;
+    -fx-pref-width: 70px;
+}
 
+.bullet {
     -fx-background-image: url(/graphics/bullet.png);
     -fx-background-color: transparent;
     -fx-pref-height: 16px;

@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
 
 public class BulletController {
 
-    private Node bulletArea;
+    private Node bullet;
 
 
     public BulletController(Rectangle bulletArea) {
@@ -20,15 +20,15 @@ public class BulletController {
         newRegion.setPrefHeight(bulletArea.getHeight());
         newRegion.getStyleClass().add("bullet");
 
-        this.bulletArea = newRegion;
+        this.bullet = newRegion;
     }
 
     public void setLayoutX(double x) {
-        bulletArea.setLayoutX(x);
+        bullet.setLayoutX(x);
     }
 
     public void removeBullet() {
-        BoardConstants.getController().removeNodeFromScene(bulletArea);
+        BoardConstants.getController().removeNodeFromScene(bullet);
     }
 
 }

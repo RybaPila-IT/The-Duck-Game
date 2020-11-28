@@ -88,8 +88,8 @@ public class FirstBoardController {
         setStageOnClose();
         setSceneOnMouseEvents();
 
-        BoardConstants.setBoardWidth(gameBoardPane.getWidth());
-        BoardConstants.setBoardHeight(gameBoardPane.getHeight());
+        BoardConstants.setBoardWidth(gameBoardPane.getPrefWidth());
+        BoardConstants.setBoardHeight(gameBoardPane.getPrefHeight());
         BoardConstants.setController(this);
     }
 

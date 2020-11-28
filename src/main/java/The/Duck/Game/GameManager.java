@@ -5,8 +5,8 @@ import javafx.animation.AnimationTimer;
 public class GameManager {
 
 
-    private final PlayerManager playerManager;
-    private AnimationTimer timer;
+    private PlayerManager playerManager;
+    private final AnimationTimer timer;
 
     public GameManager(PlayerManager playerManager) {
 

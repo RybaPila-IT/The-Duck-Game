@@ -21,7 +21,7 @@ public class BoardConstants {
     }
 
     public static void setBoardWidth(double boardWidth) {
-        BOARD_WIDTH = 1440;
+        BOARD_WIDTH = boardWidth;
     }
 
     public static double getBoardHeight() {

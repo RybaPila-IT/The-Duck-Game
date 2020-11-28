@@ -32,27 +32,18 @@
 }
 
 .anchor {
-
-    -fx-background-image: url(/graphics/grey_panel.png);
-    -fx-background-color: transparent;
+    -fx-background-color: rgba(0, 0, 0, 0.6);
     -fx-background-repeat: no-repeat;
-
 }
 
-.staticButton {
-
-    -fx-background-image: url(/graphics/grey_button05.png);
-    -fx-background-color: transparent;
-    -fx-background-repeat: no-repeat;
-
+.label-red {
+    -fx-text-fill: red;
+    -fx-font-family: "kenvector future thin regular";
+    -fx-alignment: center;
 }
 
-.staticButton:pressed {
-
-    -fx-background-image: url(/graphics/grey_button05.png);
-    -fx-background-color: transparent;
-    -fx-background-repeat: no-repeat;
-    -fx-pref-width: 190;
-    -fx-pref-height: 49;
-
+.label-white {
+    -fx-text-fill: white;
+    -fx-font-family: "kenvector future thin regular";
+    -fx-alignment: center;
 }

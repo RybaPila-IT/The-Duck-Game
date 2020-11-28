@@ -22,20 +22,20 @@ public class GameBoardManager {
 
         try {
 
-            /** Preprocessing of FXML board. */
+            // Preprocessing of FXML board.
             Parent root = loader.load();
             controller = loader.getController();
             controller.setManager(this);
 
-            /** Setting GameManager and PlayerManager. */
+            // Setting GameManager and PlayerManager.
             PlayerManager playerManager = new PlayerManager(controller.getPlayer());
             gameManager = new GameManager(playerManager);
 
-            /** Setting BoardObstacles singleton value. */
+            // Setting BoardObstacles singleton value.
             BoardObstacles boardObstacles = BoardObstacles.getInstance();
             boardObstacles.setObstacles(controller.getObstaclesList());
 
-            /** Setting BoardWeapons singleton value. */
+            // Setting BoardWeapons singleton value.
             BoardWeapons boardWeapons = BoardWeapons.getInstance();
             boardWeapons.setWeapons(controller.getWeaponList());
 

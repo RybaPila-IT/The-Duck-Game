@@ -9,11 +9,17 @@ public class MainMenuManager {
 
     private static final String MAIN_MENU_FXML = "/MainMenu.fxml";
 
+    private boolean isCreditsSlided;
+    private boolean isHowToPlaySlided;
+
     private MainMenuController controller;
     private GameBoardManager boardManager;
 
 
     public MainMenuManager() {
+
+        isCreditsSlided = false;
+        isHowToPlaySlided = false;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(MAIN_MENU_FXML));
 
@@ -40,6 +46,52 @@ public class MainMenuManager {
         controller.hideMainMenu();
         boardManager = new GameBoardManager(this);
         boardManager.StartGameBoard();
+    }
+
+    public void decideCreditsSliding() {
+
+        if (isCreditsSlided)
+            slideCreditsOut();
+        else
+            slideCreditsIn();
+
+    }
+
+    public void decideHowToPlaySliding() {
+
+        if (isHowToPlaySlided)
+            slideHowToPlayOut();
+        else
+            slideHowToPlayIn();
+
+    }
+
+    private void slideCreditsIn() {
+
+        if (isHowToPlaySlided)
+            slideHowToPlayOut();
+
+        isCreditsSlided = true;
+        controller.slideCreditsPaneIn();
+
+    }
+
+    private void slideCreditsOut() {
+        isCreditsSlided = false;
+        controller.slideCreditsPaneOut();
+    }
+
+    public void slideHowToPlayIn() {
+        if (isCreditsSlided)
+            slideCreditsOut();
+
+        isHowToPlaySlided = true;
+        controller.slideHowToPlayPaneIn();
+    }
+
+    public void slideHowToPlayOut() {
+        isHowToPlaySlided = false;
+        controller.slideHowToPlayPaneOut();
     }
 
 
