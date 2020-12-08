@@ -4,8 +4,8 @@ import javafx.scene.Node;
 
 public class WeaponController {
 
-    private static final String weaponFaceLeft = "weapon_left";
-    private static final String weaponFaceRight = "weapon_right";
+    private static final String WEAPON_FACE_LEFT = "weapon_left";
+    private static final String WEAPON_FACE_RIGHT = "weapon_right";
 
     private Node weaponCharacter;
 
@@ -22,7 +22,7 @@ public class WeaponController {
     }
 
     public void setFacingRightGraphic(boolean isWeaponFacingRight) {
-        String styleClass = isWeaponFacingRight ? weaponFaceRight : weaponFaceLeft;
+        String styleClass = isWeaponFacingRight ? WEAPON_FACE_RIGHT : WEAPON_FACE_LEFT;
         weaponCharacter.getStyleClass().clear();
         weaponCharacter.getStyleClass().add(styleClass);
     }

@@ -74,3 +74,17 @@
     -fx-pref-height: 16px;
     -fx-pref-width: 16px;
 }
+
+.jumper_green {
+    -fx-background-image: url(/graphics/green_jump.png);
+    -fx-background-color: transparent;
+    -fx-pref-height: 21px;
+    -fx-pref-width: 14px;
+}
+
+.jumper_red {
+    -fx-background-image: url(/graphics/red_jump.png);
+    -fx-background-color: transparent;
+    -fx-pref-height: 21px;
+    -fx-pref-width: 14px;
+}

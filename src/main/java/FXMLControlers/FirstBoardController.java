@@ -32,6 +32,12 @@ public class FirstBoardController {
     private AnchorPane gameBoardPane;
     @FXML
     private Region weapon1;
+    @FXML
+    private Region weapon2;
+    @FXML
+    private Region jumper1;
+    @FXML
+    private Region jumper2;
 
     private Scene gameBoardScene;
     private Stage gameBoardStage;
@@ -126,6 +132,9 @@ public class FirstBoardController {
         obstacleList.add(new Obstacle(Obstacle3));
         obstacleList.add(new Obstacle(Obstacle4));
         obstacleList.add(new Weapon(weapon1));
+        obstacleList.add(new Weapon(weapon2));
+        obstacleList.add(new Jumper(jumper1));
+        obstacleList.add(new Jumper(jumper2));
 
         return obstacleList;
     }

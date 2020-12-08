@@ -46,9 +46,9 @@ public class Player {
         return playerModel;
     }
 
-    public void jump() {
+    public void jump(double val) {
         if (!jumping) {
-            verticalSpeed = -MAX_VERT_SPEED;
+            verticalSpeed = (val == 0 ? -MAX_VERT_SPEED : val);
             jumping = true;
         }
     }
@@ -151,7 +151,7 @@ public class Player {
             if (Math.abs(verticalSpeed) > 2 * FALL_ACC)
                 jumping = true;
 
-        } else {
+        } else if (verticalSpeed >= 0) {
 
             verticalSpeed = 0;
             jumping = false;

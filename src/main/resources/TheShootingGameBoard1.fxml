@@ -27,5 +27,11 @@
                    stroke="BLACK" strokeType="INSIDE" styleClass="obstacle" width="46.0"/>
         <Region fx:id="weapon1" layoutX="727.0" layoutY="758.0" prefHeight="47.0" prefWidth="70.0"
                 styleClass="weapon_right"/>
+        <Region fx:id="jumper1" layoutX="1300.0" layoutY="789.0" prefHeight="21.0" prefWidth="14.0"
+                styleClass="jumper_green"/>
+        <Region fx:id="weapon2" layoutX="52.0" layoutY="503.0" prefHeight="47.0" prefWidth="70.0"
+                styleClass="weapon_right"/>
+        <Region fx:id="jumper2" layoutX="623.0" layoutY="614.0" prefHeight="21.0" prefWidth="14.0"
+                styleClass="jumper_green"/>
     </children>
 </AnchorPane>
