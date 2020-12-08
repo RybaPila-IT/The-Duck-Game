@@ -34,10 +34,6 @@ public class GameBoardManager {
             // Setting BoardObstacles singleton value.
             BoardElements.getInstance().setBoardObjectsList(controller.getObstaclesList());
 
-            // Setting BoardWeapons singleton value.
-            BoardWeapons boardWeapons = BoardWeapons.getInstance();
-            boardWeapons.setWeapons(controller.getWeaponList());
-
         } catch (IOException e) {
             System.err.println("GameBoardManager error. Unable to load FXML file with board layout");
             e.printStackTrace();
