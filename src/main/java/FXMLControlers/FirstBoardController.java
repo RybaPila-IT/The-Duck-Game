@@ -118,13 +118,14 @@ public class FirstBoardController {
     }
 
 
-    public List<Obstacle> getObstaclesList() {
+    public List<BoardObject> getObstaclesList() {
 
-        ArrayList<Obstacle> obstacleList = new ArrayList<>();
-        obstacleList.add(new Obstacle(Obstacle1, Obstacle1));
-        obstacleList.add(new Obstacle(Obstacle2, Obstacle2));
-        obstacleList.add(new Obstacle(Obstacle3, Obstacle3));
-        obstacleList.add(new Obstacle(Obstacle4, Obstacle4));
+        ArrayList<BoardObject> obstacleList = new ArrayList<>();
+        obstacleList.add(new Obstacle(Obstacle1));
+        obstacleList.add(new Obstacle(Obstacle2));
+        obstacleList.add(new Obstacle(Obstacle3));
+        obstacleList.add(new Obstacle(Obstacle4));
+        obstacleList.add(new Weapon(weapon1));
 
         return obstacleList;
     }

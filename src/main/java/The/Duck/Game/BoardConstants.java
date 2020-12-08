@@ -6,6 +6,7 @@ public class BoardConstants {
 
     private static double BOARD_WIDTH;
     private static double BOARD_HEIGHT;
+
     private static FirstBoardController controller;
 
     public static FirstBoardController getController() {

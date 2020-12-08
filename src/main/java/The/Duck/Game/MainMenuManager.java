@@ -13,8 +13,6 @@ public class MainMenuManager {
     private boolean isHowToPlaySlided;
 
     private MainMenuController controller;
-    private GameBoardManager boardManager;
-
 
     public MainMenuManager() {
 
@@ -44,7 +42,7 @@ public class MainMenuManager {
 
     public void startNewGame() {
         controller.hideMainMenu();
-        boardManager = new GameBoardManager(this);
+        GameBoardManager boardManager = new GameBoardManager(this);
         boardManager.StartGameBoard();
     }
 
@@ -93,6 +91,5 @@ public class MainMenuManager {
         isHowToPlaySlided = false;
         controller.slideHowToPlayPaneOut();
     }
-
 
 }

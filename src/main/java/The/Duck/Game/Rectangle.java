@@ -15,19 +15,30 @@ public class Rectangle {
     private double x2;
     private double y2;
 
-    private final double width;
-    private final double height;
+    private final double w;
+    private final double h;
 
 
     public Rectangle(Region region) {
+
         x1 = region.getLayoutX();
         y1 = region.getLayoutY();
 
-        width = region.getPrefWidth();
-        height = region.getPrefHeight();
+        w = region.getPrefWidth();
+        h = region.getPrefHeight();
 
-        x2 = x1 + width;
-        y2 = y1 + height;
+        x2 = x1 + w;
+        y2 = y1 + h;
+    }
+
+    public Rectangle(Rectangle rectangle) {
+
+        this.y1 = rectangle.y1;
+        this.y2 = rectangle.y2;
+        this.x1 = rectangle.x1;
+        this.x2 = rectangle.x2;
+        this.h = rectangle.h;
+        this.w = rectangle.w;
     }
 
     public Rectangle(double x1, double y1, double w, double h) {
@@ -35,8 +46,8 @@ public class Rectangle {
         this.y1 = y1;
         this.x1 = x1;
 
-        width = w;
-        height = h;
+        this.w = w;
+        this.h = h;
 
         x2 = x1 + w;
         y2 = y1 + h;
@@ -48,30 +59,43 @@ public class Rectangle {
         if (x1 > r.x2 || r.x1 > x2)
             return false;
 
-        if (y2 < r.y1 || r.y2 < y1)
-            return false;
-
-        return true;
+        return !(y2 < r.y1) && !(r.y2 < y1);
     }
 
     public void addHorizontally(double toAdd) {
+
         x1 += toAdd;
         x2 += toAdd;
     }
 
     public void addVertically(double toAdd) {
+
         y1 += toAdd;
         y2 += toAdd;
     }
 
     public void setX(double newX) {
+
         x1 = newX;
-        x2 = x1 + width;
+        x2 = x1 + w;
     }
 
     public void setY(double newY) {
+
         y1 = newY;
-        y2 = y1 + height;
+        y2 = y1 + h;
+    }
+
+    public void setSecondX(double newX) {
+
+        x2 = newX;
+        x1 = x2 - w;
+    }
+
+    public void setSecondY(double newY) {
+
+        y2 = newY;
+        y1 = y2 - h;
     }
 
     public double getLayoutX() {
@@ -91,11 +115,21 @@ public class Rectangle {
     }
 
     public double getWidth() {
-        return width;
+        return w;
     }
 
     public double getHeight() {
-        return height;
+        return h;
+    }
+
+    public boolean equals(Object obj) {
+
+        if (obj instanceof Rectangle) {
+            Rectangle o = (Rectangle) obj;
+            return x1 == o.x1 && y1 == o.y1 && x2 == o.x2 && y2 == o.y2;
+        }
+
+        return false;
     }
 
 }

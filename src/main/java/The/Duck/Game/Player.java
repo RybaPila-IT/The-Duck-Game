@@ -3,6 +3,8 @@ package The.Duck.Game;
 import FXMLControlers.PlayerController;
 import javafx.scene.layout.Region;
 
+import java.util.List;
+
 public class Player {
 
     private static final double MAX_SPEED = 0.25;
@@ -15,17 +17,20 @@ public class Player {
     private static final double MAX_VER_SIZE = 701.0;
 
     private boolean isPlayerFacedRight;
-    private double horSpeed;
+    private boolean wantsToGrabWeapon;
+    private double horizontalSpeed;
     private double verticalSpeed;
     private boolean jumping;
+
     private Weapon weapon;
+    private final Rectangle playerModel;
 
     private final PlayerController controller;
-    private final Rectangle playerModel;
 
     public Player(Region playerModel) {
         this.controller = new PlayerController(playerModel);
-        this.horSpeed = 0;
+        this.wantsToGrabWeapon = false;
+        this.horizontalSpeed = 0;
         this.verticalSpeed = 0;
         this.playerModel = new Rectangle(playerModel);
         this.weapon = null;
@@ -33,84 +38,106 @@ public class Player {
     }
 
     public void accelerate(boolean toRight) {
-        horSpeed = toRight ? Math.min(MAX_SPEED, horSpeed + ACC_VAL)
-                : Math.max(-MAX_SPEED, horSpeed - ACC_VAL);
+        horizontalSpeed = toRight ? Math.min(MAX_SPEED, horizontalSpeed + ACC_VAL)
+                : Math.max(-MAX_SPEED, horizontalSpeed - ACC_VAL);
     }
 
-    private void slowDownHorizontally() {
-
-        if (horSpeed != 0)
-            horSpeed += (horSpeed > 0 ? -SLOW_VAL : SLOW_VAL);
-
-        if (Math.abs(horSpeed) < SLOW_VAL)
-            horSpeed = 0;
-
+    public Rectangle getRegion() {
+        return playerModel;
     }
 
     public void jump() {
-
         if (!jumping) {
             verticalSpeed = -MAX_VERT_SPEED;
             jumping = true;
         }
-
     }
+
 
     public void shoot() {
         weapon.shoot();
     }
 
     public void movePlayerModel() {
-        makeHorizontalMovement();
-        makeVerticalMovement();
-        slowDownHorizontally();
-        fall();
+        movePlayer();
+        dealWithCollisions();
+        changePlayerSpeed();
         orderController();
-        manageWeapon();
     }
 
-    private void orderController() {
-        controller.setLayoutX(playerModel.getLayoutX());
-        controller.setLayoutY(playerModel.getLayoutY());
+    public boolean isPlayerFacedRight() {
+        return isPlayerFacedRight;
     }
 
-    private void manageWeapon() {
-        if (hasWeapon())
-            weapon.followOwner(isPlayerFacedRight, jumping);
+    public boolean isPlayerJumping() {
+        return jumping;
     }
 
-    public boolean tryToGrabWeapon() {
-
-        if (!hasWeapon()) {
-
-            weapon = BoardWeapons.getInstance().findCollision(playerModel);
-
-            if (hasWeapon())
-                weapon.setOwner(playerModel);
-
-        }
-
-        return hasWeapon();
+    public void setLayoutX(double x) {
+        playerModel.setX(x);
     }
 
-    public boolean tryToThrowWeaponAway() {
-
-        boolean thrown = false;
-
-        if (!jumping) {
-            weapon.setOwner(null);
-            weapon.fallDown();
-            weapon = null;
-            thrown = true;
-        }
-
-        return thrown;
+    public void setSecondX(double x) {
+        playerModel.setSecondX(x);
     }
 
-    private boolean hasWeapon() {
+    public void setLayoutY(double y) {
+        playerModel.setY(y);
+    }
+
+    public void setSecondY(double y) {
+        playerModel.setSecondY(y);
+    }
+
+    public double getHorizontalSpeed() {
+        return horizontalSpeed;
+    }
+
+    public void resetHorizontalSpeed() {
+        horizontalSpeed = 0;
+    }
+
+    public void resetVerticalSpeed() {
+        verticalSpeed = 0;
+    }
+
+    public double getVerticalSpeed() {
+        return verticalSpeed;
+    }
+
+    public void onGround() {
+        jumping = false;
+    }
+
+    public boolean wantsToGrabWeapon() {
+        return wantsToGrabWeapon && !hasWeapon();
+    }
+
+    public void setWeapon(Weapon w) {
+        weapon = w;
+    }
+
+    public void setWantsToGrabWeapon(boolean b) {
+        wantsToGrabWeapon = b;
+    }
+
+    public boolean hasWeapon() {
         return weapon != null;
     }
 
+    public void dropWeapon() {
+
+        if (!jumping) {
+            wantsToGrabWeapon = false;
+            weapon.fallDown();
+            weapon = null;
+        }
+
+    }
+
+    public void setPlayerGraphic() {
+        controller.setPlayerGraphic(jumping, isPlayerFacedRight, horizontalSpeed);
+    }
 
     private void fall() {
 
@@ -132,21 +159,52 @@ public class Player {
         }
     }
 
+    private void movePlayer() {
+        makeHorizontalMovement();
+        makeVerticalMovement();
+    }
+
+    private void changePlayerSpeed() {
+        slowDownHorizontally();
+        fall();
+    }
+
+    private void dealWithCollisions() {
+
+        List<BoardObject> elements = BoardElements.getInstance().collidedWith(playerModel);
+
+        for (BoardObject e : elements)
+            e.onPlayerCollision(this);
+
+    }
+
+
     private void makeHorizontalMovement() {
 
-        doRegularHorizontalMove();
-        dealWithHorizontalCollision();
+        playerModel.addHorizontally(horizontalSpeed);
+
+        if (playerModel.getLayoutX() > HOR_MAX_SIZE) {
+            playerModel.setX(HOR_MAX_SIZE);
+            horizontalSpeed = 0;
+        } else if (playerModel.getLayoutX() < 0) {
+            playerModel.setX(0);
+            horizontalSpeed = 0;
+        }
+
+        decidePlayerFacing();
+    }
+
+    private void slowDownHorizontally() {
+
+        if (horizontalSpeed != 0)
+            horizontalSpeed += (horizontalSpeed > 0 ? -SLOW_VAL : SLOW_VAL);
+
+        if (Math.abs(horizontalSpeed) < SLOW_VAL)
+            horizontalSpeed = 0;
 
     }
 
     private void makeVerticalMovement() {
-
-        doRegularVerticalMovement();
-        dealWithVerticalCollision();
-
-    }
-
-    private void doRegularVerticalMovement() {
 
         playerModel.addVertically(verticalSpeed);
 
@@ -155,85 +213,18 @@ public class Player {
 
     }
 
-    private void dealWithVerticalCollision() {
-
-        Obstacle collision = BoardObstacles.getInstance().findCollision(playerModel);
-
-        if (collision != null) {
-
-            setVerticalObstacleBounds(collision.getObstacleRegion());
-
-            verticalSpeed = 0;
-        }
-    }
-
-    private void setVerticalObstacleBounds(Rectangle obstacle) {
-
-        if (verticalSpeed < 0)
-            playerModel.setY(obstacle.getSecondY() + 1);
-        else if (verticalSpeed > 0) {
-            playerModel.setY(obstacle.getLayoutY() - playerModel.getHeight());
-            jumping = false;
-        }
-
-    }
-
-
-    private void dealWithHorizontalCollision() {
-
-        Obstacle collided = BoardObstacles.getInstance().findCollision(playerModel);
-
-        if (collided != null && !isPlayerOnPlatform(collided.getObstacleRegion())) {
-
-            setHorizontalObstacleBounds(collided.getObstacleRegion());
-
-            horSpeed = 0;
-        }
-
-    }
-
-    private boolean isPlayerOnPlatform(Rectangle obstacle) {
-        return obstacle.getLayoutY() == playerModel.getSecondY();
-    }
-
-
-    private void setHorizontalObstacleBounds(Rectangle obstacle) {
-
-        if (horSpeed > 0)
-            playerModel.setX(obstacle.getLayoutX() - playerModel.getWidth() - 1);
-        else if (horSpeed < 0)
-            playerModel.setX(obstacle.getSecondX() + 1);
-
-    }
-
-
-    private void doRegularHorizontalMove() {
-
-        playerModel.addHorizontally(horSpeed);
-
-        if (playerModel.getLayoutX() > HOR_MAX_SIZE) {
-            playerModel.setX(HOR_MAX_SIZE);
-            horSpeed = 0;
-        } else if (playerModel.getLayoutX() < 0) {
-            playerModel.setX(0);
-            horSpeed = 0;
-        }
-
-        decidePlayerFacing();
-    }
-
-
     private void decidePlayerFacing() {
 
-        if (isPlayerFacedRight && horSpeed < 0)
+        if (isPlayerFacedRight && horizontalSpeed < 0)
             isPlayerFacedRight = false;
-        else if (!isPlayerFacedRight && horSpeed > 0)
+        else if (!isPlayerFacedRight && horizontalSpeed > 0)
             isPlayerFacedRight = true;
 
     }
 
-    public void setPlayerGraphic() {
-        controller.setPlayerGraphic(jumping, isPlayerFacedRight, horSpeed);
+    private void orderController() {
+        controller.setLayoutX(playerModel.getLayoutX());
+        controller.setLayoutY(playerModel.getLayoutY());
     }
 
 

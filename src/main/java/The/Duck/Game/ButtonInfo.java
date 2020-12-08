@@ -9,13 +9,11 @@ public class ButtonInfo {
     private static boolean isKPressed;
 
     static {
-
         isAPressed = false;
         isDPressed = false;
         isSpacePressed = false;
         isGPressed = false;
         isKPressed = false;
-
     }
 
     public static void setKPressed(boolean value) {

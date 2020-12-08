@@ -4,26 +4,22 @@ import javafx.animation.AnimationTimer;
 
 public class GameManager {
 
-
-    private PlayerManager playerManager;
     private final AnimationTimer timer;
 
     public GameManager(PlayerManager playerManager) {
-
-        this.playerManager = playerManager;
 
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
                 playerManager.movePlayer();
-                moveBullets();
+                tickBoardElements();
             }
         };
 
     }
 
-    private void moveBullets() {
-        BoardBullets.getInstance().moveBullets();
+    private void tickBoardElements() {
+        BoardElements.getInstance().onTic();
     }
 
     public void startGameLoop() {

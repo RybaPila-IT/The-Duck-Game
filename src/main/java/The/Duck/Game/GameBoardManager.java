@@ -11,9 +11,9 @@ public class GameBoardManager {
     private static final String GAME_BOARD_1_PATH = "/TheShootingGameBoard1.fxml";
 
     private final MainMenuManager callingManager;
-    private FirstBoardController controller;
     private GameManager gameManager;
 
+    private FirstBoardController controller;
 
     public GameBoardManager(MainMenuManager callingManager) {
 
@@ -32,8 +32,7 @@ public class GameBoardManager {
             gameManager = new GameManager(playerManager);
 
             // Setting BoardObstacles singleton value.
-            BoardObstacles boardObstacles = BoardObstacles.getInstance();
-            boardObstacles.setObstacles(controller.getObstaclesList());
+            BoardElements.getInstance().setBoardObjectsList(controller.getObstaclesList());
 
             // Setting BoardWeapons singleton value.
             BoardWeapons boardWeapons = BoardWeapons.getInstance();
@@ -44,11 +43,9 @@ public class GameBoardManager {
             e.printStackTrace();
         }
 
-
     }
 
     public void StartGameBoard() {
-
         gameManager.startGameLoop();
         controller.showGameBoard();
     }
@@ -58,6 +55,5 @@ public class GameBoardManager {
         controller.endGame();
         callingManager.showMainMenu();
     }
-
 
 }

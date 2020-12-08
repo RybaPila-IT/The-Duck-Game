@@ -33,7 +33,7 @@ public class BoardWeapons {
         Weapon toRet = null;
 
         for (Weapon w : instance.weapons)
-            if (w.getArea().intersects(region))
+            if (w.intersects(region))
                 toRet = w;
 
         return toRet;

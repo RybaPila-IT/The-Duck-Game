@@ -3,19 +3,22 @@ package The.Duck.Game;
 public class PlayerManager {
 
     private final Player player;
-    private boolean hasWeapon;
-    private boolean readyToThrowAway;
-    private boolean readyToGrab;
+    private boolean readyToGrabWeapon;
+    private boolean readyToDropWeapon;
     private boolean readyToShoot;
 
     public PlayerManager(Player player) {
-
-        this.hasWeapon = false;
-        this.readyToThrowAway = false;
-        this.readyToGrab = true;
-        this.readyToShoot = true;
-
         this.player = player;
+        this.readyToGrabWeapon = true;
+        this.readyToDropWeapon = false;
+        this.readyToShoot = true;
+    }
+
+    public void movePlayer() {
+        playerMovement();
+        playerWeaponHandling();
+        playerShooting();
+        playerModelUpdates();
     }
 
     private void playerMovement() {
@@ -31,49 +34,32 @@ public class PlayerManager {
 
     private void playerWeaponHandling() {
 
-        if (ButtonInfo.isGPressed()) {
+        if (!player.hasWeapon() && ButtonInfo.isGPressed() && readyToGrabWeapon)
+            player.setWantsToGrabWeapon(true);
+        else if (!player.hasWeapon() && !ButtonInfo.isGPressed()) {
+            player.setWantsToGrabWeapon(false);
+            readyToGrabWeapon = true;
+        } else if (player.hasWeapon() && readyToDropWeapon && ButtonInfo.isGPressed()) {
+            player.dropWeapon();
+            readyToDropWeapon = false;
+            readyToGrabWeapon = false;
+        } else if (player.hasWeapon() && !ButtonInfo.isGPressed())
+            readyToDropWeapon = true;
 
-            if (!hasWeapon && readyToGrab)
-                hasWeapon = player.tryToGrabWeapon();
-            else if (readyToThrowAway) {
-
-                if (player.tryToThrowWeaponAway()) {
-                    readyToThrowAway = false;
-                    hasWeapon = false;
-                    readyToGrab = false;
-                }
-            }
-
-        } else {
-
-            if (hasWeapon)
-                readyToThrowAway = true;
-            else
-                readyToGrab = true;
-
-        }
     }
 
     private void playerShooting() {
-
-        if (ButtonInfo.isKPressed() && hasWeapon && readyToShoot) {
+        if (player.hasWeapon() && readyToShoot && ButtonInfo.isKPressed()) {
             player.shoot();
             readyToShoot = false;
-        } else if (!ButtonInfo.isKPressed()) {
+        } else if (player.hasWeapon() && !ButtonInfo.isKPressed()) {
             readyToShoot = true;
         }
-
     }
 
-    public void movePlayer() {
-
-        playerMovement();
-        playerWeaponHandling();
-        playerShooting();
-
+    private void playerModelUpdates() {
         player.setPlayerGraphic();
         player.movePlayerModel();
     }
-
 
 }

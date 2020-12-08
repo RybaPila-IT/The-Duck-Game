@@ -2,53 +2,53 @@ package The.Duck.Game;
 
 import FXMLControlers.BulletController;
 
-public class Bullet {
+import java.util.List;
+
+public class Bullet extends BoardObject {
 
     private static final double BULLET_WIDTH = 16;
     private static final double BULLET_HEIGHT = 16;
     private static final double BULLET_SPEED = 0.5;
 
-    private boolean isBulletFacingRight;
+    private final boolean isBulletFacingRight;
     private boolean onObstacle;
     private int onObstacleWait;
 
-    private Rectangle bulletArea;
-    private BulletController controller;
+    private final BulletController controller;
 
     public Bullet(Rectangle weapon, boolean isWeaponFacingRight) {
+
+        super(new Rectangle(isWeaponFacingRight ? weapon.getSecondX() : weapon.getLayoutX(),
+                weapon.getSecondY(), BULLET_WIDTH, BULLET_HEIGHT));
 
         isBulletFacingRight = isWeaponFacingRight;
         onObstacle = false;
         onObstacleWait = 160;
-
-        double x1 = isWeaponFacingRight ? weapon.getSecondX() : weapon.getLayoutX();
-        double y1 = weapon.getSecondY();
-
-        bulletArea = new Rectangle(x1, y1, BULLET_WIDTH, BULLET_HEIGHT);
-        controller = new BulletController(bulletArea);
+        controller = new BulletController(region);
     }
 
     private void changeBulletPosition() {
-        bulletArea.addHorizontally(isBulletFacingRight ? BULLET_SPEED : -BULLET_SPEED);
+        region.addHorizontally(isBulletFacingRight ? BULLET_SPEED : -BULLET_SPEED);
     }
 
     private void handleObstacleCollision() {
 
-        Obstacle collided = BoardObstacles.getInstance().findCollision(bulletArea);
+        List<BoardObject> objects = BoardElements.getInstance().collidedWith(region);
 
-        onObstacle = collided != null;
+        for (BoardObject object : objects)
+            if (object.isBulletProof()) {
+                region.setX(isBulletFacingRight ? object.getLayoutX() - 16 : object.getSecondX());
+                onObstacle = true;
+            }
 
-        if (collided != null)
-            bulletArea.setX(isBulletFacingRight ? collided.getObstacleRegion().getLayoutX() - 16
-                    : collided.getObstacleRegion().getSecondX());
     }
 
     private void informControllerAboutPosition() {
-        controller.setLayoutX(bulletArea.getLayoutX());
+        controller.setLayoutX(region.getLayoutX());
     }
 
     private void moveBulletOutOfBoard() {
-        bulletArea.setX(1800);
+        region.setX(1800);
     }
 
     public void moveBullet() {
@@ -63,12 +63,43 @@ public class Bullet {
     }
 
     public boolean outsideBoard() {
-        return bulletArea.getLayoutX() > BoardConstants.getBoardWidth() ||
-                bulletArea.getSecondX() < 0;
+        return region.getLayoutX() > BoardConstants.getBoardWidth() ||
+                region.getSecondX() < 0;
     }
 
     public void removeBulletFromScene() {
         controller.removeBullet();
     }
 
+    @Override
+    public void onTic() {
+
+        moveBullet();
+        if (outsideBoard())
+            removeBulletFromScene();
+
+    }
+
+    @Override
+    public void onPlayerCollision(Player player) {
+
+    }
+
+    @Override
+    public boolean isObjectValid() {
+        return !outsideBoard();
+    }
+
+    public boolean equals(Object obj) {
+
+        if (obj instanceof Bullet) {
+            Bullet o = (Bullet) obj;
+            return region.equals(o.region) &&
+                    onObstacle == o.onObstacle &&
+                    isBulletFacingRight == o.isBulletFacingRight &&
+                    onObstacleWait == o.onObstacleWait;
+        }
+
+        return false;
+    }
 }
