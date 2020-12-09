@@ -1,10 +1,10 @@
 @font-face {
-    src: url(/graphics/kenvector_future_thin.ttf);
+    src: url(/graphics/menu/kenvector_future_thin.ttf);
 }
 
 
 .button {
-    -fx-background-image: url(../graphics/grey_button00.png);
+    -fx-background-image: url(../graphics/menu/grey_button00.png);
     -fx-background-color: transparent;
     -fx-pref-height: 49px;
     -fx-pref-width: 190px;
@@ -14,7 +14,7 @@
 }
 
 .button:pressed {
-    -fx-background-image: url(/graphics/grey_button01.png);
+    -fx-background-image: url(/graphics/menu/grey_button01.png);
     -fx-background-color: transparent;
     -fx-pref-height: 45px;
     -fx-pref-width: 190px;
@@ -25,7 +25,7 @@
 
 .pane {
 
-    -fx-background-image: url(/graphics/background.jpg);
+    -fx-background-image: url(/graphics/menu/background.jpg);
     -fx-background-color: transparent;
     -fx-pref-width: 1440px;
     -fx-pref-height: 811px;

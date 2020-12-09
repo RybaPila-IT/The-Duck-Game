@@ -32,7 +32,6 @@ public class PlayerManager {
             player.accelerate(true);
         else if (ButtonInfo.isSpacePressed())
             player.jump(0);
-
     }
 
     private void playerWeaponHandling() {
@@ -48,7 +47,6 @@ public class PlayerManager {
             readyToGrabWeapon = false;
         } else if (player.hasWeapon() && !ButtonInfo.isGPressed())
             readyToDropWeapon = true;
-
     }
 
     private void playerShooting() {
