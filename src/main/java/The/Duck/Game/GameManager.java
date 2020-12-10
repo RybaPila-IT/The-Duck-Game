@@ -12,7 +12,7 @@ public class GameManager {
             @Override
             public void handle(long now) {
                 playerManager.movePlayer();
-                ExplosionManager.getInstance().generateExplosion();
+                // ExplosionManager.getInstance().generateExplosion();
                 tickBoardElements();
             }
         };

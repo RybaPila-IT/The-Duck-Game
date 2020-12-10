@@ -2,21 +2,17 @@ package FXMLControlers;
 
 import The.Duck.Game.*;
 import javafx.fxml.FXML;
-
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
-import javafx.stage.Stage;
-import javafx.scene.input.KeyCode;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FirstBoardController extends BoardController {
+public class SecondBoardController extends BoardController {
 
     @FXML
-    private Region playerModel;
+    private Region PlayerModel;
     @FXML
     private Region Obstacle1;
     @FXML
@@ -26,24 +22,24 @@ public class FirstBoardController extends BoardController {
     @FXML
     private Region Obstacle4;
     @FXML
-    private AnchorPane gameBoardPane;
+    private Region Obstacle5;
     @FXML
-    private Region weapon1;
+    private Region Portal1_L;
     @FXML
-    private Region weapon2;
+    private Region Portal1_R;
+
     @FXML
-    private Region jumper1;
-    @FXML
-    private Region jumper2;
+    private AnchorPane GameBoardPane;
 
     @FXML
     public void initialize() {
-        makeInit(gameBoardPane);
+        makeInit(GameBoardPane);
     }
 
     public Player getPlayer() {
-        return new Player(playerModel);
+        return new Player(PlayerModel);
     }
+
 
     public List<BoardObject> getObstaclesList() {
 
@@ -52,21 +48,20 @@ public class FirstBoardController extends BoardController {
         obstacleList.add(new Obstacle(Obstacle2));
         obstacleList.add(new Obstacle(Obstacle3));
         obstacleList.add(new Obstacle(Obstacle4));
-        obstacleList.add(new Weapon(weapon1));
-        obstacleList.add(new Weapon(weapon2));
-        obstacleList.add(new Jumper(jumper1));
-        obstacleList.add(new Jumper(jumper2));
+        obstacleList.add(new Obstacle(Obstacle5));
+
+        obstacleList.add(new Portal(Portal1_R, Portal1_L.getLayoutX() - 35, Portal1_L.getLayoutY() + 15, false));
+        obstacleList.add(new Portal(Portal1_L, Portal1_R.getLayoutX() + 65, Portal1_R.getLayoutY() + 15, true));
 
         return obstacleList;
     }
 
     public void addToScene(Node node) {
-        gameBoardPane.getChildren().add(node);
+        GameBoardPane.getChildren().add(node);
     }
 
     public void removeNodeFromScene(Node node) {
-        gameBoardPane.getChildren().remove(node);
+        GameBoardPane.getChildren().remove(node);
     }
-
 
 }

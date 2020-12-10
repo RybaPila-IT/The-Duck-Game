@@ -1,19 +1,19 @@
 package The.Duck.Game;
 
-import FXMLControlers.FirstBoardController;
+import FXMLControlers.BoardController;
 
 public class BoardConstants {
 
     private static double BOARD_WIDTH;
     private static double BOARD_HEIGHT;
 
-    private static FirstBoardController controller;
+    private static BoardController controller;
 
-    public static FirstBoardController getController() {
+    public static BoardController getController() {
         return controller;
     }
 
-    public static void setController(FirstBoardController controller) {
+    public static void setController(BoardController controller) {
         BoardConstants.controller = controller;
     }
 

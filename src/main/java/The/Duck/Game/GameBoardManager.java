@@ -1,6 +1,6 @@
 package The.Duck.Game;
 
-import FXMLControlers.FirstBoardController;
+import FXMLControlers.BoardController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
@@ -9,11 +9,12 @@ import java.io.IOException;
 public class GameBoardManager {
 
     private static final String GAME_BOARD_1_PATH = "/TheShootingGameBoard1.fxml";
+    private static final String GAME_BOARD_2_PATH = "/TheShootingGameBoard2.fxml";
 
     private final MainMenuManager callingManager;
     private GameManager gameManager;
 
-    private FirstBoardController controller;
+    private BoardController controller;
 
     public GameBoardManager(MainMenuManager callingManager) {
 

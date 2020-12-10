@@ -1,5 +1,6 @@
 package The.Duck.Game;
 
+import FXMLControlers.BoardController;
 import FXMLControlers.PlayerController;
 import javafx.scene.layout.Region;
 
@@ -15,6 +16,9 @@ public class Player {
     private static final double MAX_VERT_SPEED = 0.4;
     private static final double FALL_ACC = 0.0004;
     private static final double MAX_VER_SIZE = 701.0;
+
+    private static final double PLAYER_WIDTH = 80;
+    private static final double PLAYER_HEIGHT = 110;
 
     private boolean isPlayerFacedRight;
     private boolean wantsToGrabWeapon;
@@ -141,12 +145,12 @@ public class Player {
 
     private void fall() {
 
-        if (playerModel.getLayoutY() != MAX_VER_SIZE) {
+        if (playerModel.getLayoutY() != BoardConstants.getBoardHeight() - PLAYER_HEIGHT) {
 
             if (verticalSpeed < 0)
                 verticalSpeed += FALL_ACC;
             else
-                verticalSpeed = Math.min(verticalSpeed + FALL_ACC, MAX_VER_SIZE);
+                verticalSpeed = Math.min(verticalSpeed + FALL_ACC, MAX_VERT_SPEED);
 
             if (Math.abs(verticalSpeed) > 2 * FALL_ACC)
                 jumping = true;
@@ -183,8 +187,8 @@ public class Player {
 
         playerModel.addHorizontally(horizontalSpeed);
 
-        if (playerModel.getLayoutX() > HOR_MAX_SIZE) {
-            playerModel.setX(HOR_MAX_SIZE);
+        if (playerModel.getLayoutX() > BoardConstants.getBoardWidth() - PLAYER_WIDTH) {
+            playerModel.setX(BoardConstants.getBoardWidth() - PLAYER_WIDTH);
             horizontalSpeed = 0;
         } else if (playerModel.getLayoutX() < 0) {
             playerModel.setX(0);
@@ -208,8 +212,8 @@ public class Player {
 
         playerModel.addVertically(verticalSpeed);
 
-        if (playerModel.getLayoutY() > MAX_VER_SIZE)
-            playerModel.setY(MAX_VER_SIZE);
+        if (playerModel.getLayoutY() > BoardConstants.getBoardHeight() - PLAYER_HEIGHT)
+            playerModel.setY(BoardConstants.getBoardHeight() - PLAYER_HEIGHT);
 
     }
 
