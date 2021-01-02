@@ -4,11 +4,8 @@ import The.Duck.Game.*;
 import javafx.fxml.FXML;
 
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
-import javafx.stage.Stage;
-import javafx.scene.input.KeyCode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +13,9 @@ import java.util.List;
 public class FirstBoardController extends BoardController {
 
     @FXML
-    private Region playerModel;
+    private Region playerModel1;
+    @FXML
+    private Region playerModel2;
     @FXML
     private Region Obstacle1;
     @FXML
@@ -41,8 +40,12 @@ public class FirstBoardController extends BoardController {
         makeInit(gameBoardPane);
     }
 
-    public Player getPlayer() {
-        return new Player(playerModel);
+    public Player getFirstPlayer() {
+        return new Player(playerModel1, true);
+    }
+
+    public Player getSecondPlayer() {
+        return new Player(playerModel2, false);
     }
 
     public List<BoardObject> getObstaclesList() {

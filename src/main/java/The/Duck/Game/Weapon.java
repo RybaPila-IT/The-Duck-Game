@@ -7,10 +7,11 @@ public class Weapon extends BoardObject {
 
     private static final int SHOTS_AMOUNT = 400;
 
+    private final WeaponController controller;
+
     private boolean isWeaponFacingRight;
     private int shots;
     private Player owner;
-    private final WeaponController controller;
 
     private boolean hasOwner() {
         return owner != null;
@@ -74,7 +75,7 @@ public class Weapon extends BoardObject {
     @Override
     public void onPlayerCollision(Player player) {
 
-        if (player.wantsToGrabWeapon()) {
+        if (player.wantsToGrabWeapon() && !hasOwner()) {
             setOwner(player);
             player.setWeapon(this);
         }

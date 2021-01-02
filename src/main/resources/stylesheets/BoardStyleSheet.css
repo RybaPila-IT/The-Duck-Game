@@ -1,45 +1,86 @@
 .soldier-stand {
-    -fx-background-image: url(/graphics/player/soldier_stand.png);
+    -fx-background-image: url(/graphics/player_1/soldier_stand.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
+.adventurer-stand {
+    -fx-background-image: url(/graphics/player_2/adventurer_stand.png);
     -fx-background-repeat: no-repeat;
     -fx-background-color: transparent;
 }
 
 .soldier-walk-1-right {
-    -fx-background-image: url(/graphics/player/soldier_walk1.png);
+    -fx-background-image: url(/graphics/player_1/soldier_walk1.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
+.adventurer-walk-1-right {
+    -fx-background-image: url(/graphics/player_2/adventurer_walk1.png);
     -fx-background-repeat: no-repeat;
     -fx-background-color: transparent;
 }
 
 .soldier-walk-2-right {
-    -fx-background-image: url(/graphics/player/soldier_walk2.png);
+    -fx-background-image: url(/graphics/player_1/soldier_walk2.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
+.adventurer-walk-2-right {
+    -fx-background-image: url(/graphics/player_2/adventurer_walk2.png);
     -fx-background-repeat: no-repeat;
     -fx-background-color: transparent;
 }
 
 .soldier-walk-1-left {
-    -fx-background-image: url(/graphics/player/soldier_walk1-left.png);
+    -fx-background-image: url(/graphics/player_1/soldier_walk1-left.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
+.adventurer-walk-1-left {
+    -fx-background-image: url(/graphics/player_2/adventurer_walk_1_left.png);
     -fx-background-repeat: no-repeat;
     -fx-background-color: transparent;
 }
 
 .soldier-walk-2-left {
-    -fx-background-image: url(/graphics/player/soldier_walk2-left.png);
+    -fx-background-image: url(/graphics/player_1/soldier_walk2-left.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
+.adventurer-walk-2-left {
+    -fx-background-image: url(/graphics/player_2/adventurer_walk_2_left.png.png);
     -fx-background-repeat: no-repeat;
     -fx-background-color: transparent;
 }
 
 .soldier-jump-right {
-    -fx-background-image: url(/graphics/player/soldier_jump.png);
+    -fx-background-image: url(/graphics/player_1/soldier_jump.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
+.adventurer-jump-right {
+    -fx-background-image: url(/graphics/player_2/adventurer_jump.png);
     -fx-background-repeat: no-repeat;
     -fx-background-color: transparent;
 }
 
 .soldier-jump-left {
-    -fx-background-image: url(/graphics/player/soldier-jump-left.png);
+    -fx-background-image: url(/graphics/player_1/soldier-jump-left.png);
     -fx-background-repeat: no-repeat;
     -fx-background-color: transparent;
 }
 
+.adventurer-jump-left {
+    -fx-background-image: url(/graphics/player_2/adventurer_jump_left.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
 
 .obstacle_brick {
     -fx-background-image: url(/graphics/grey_bricks.png);

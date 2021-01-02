@@ -20,7 +20,7 @@ abstract public class BoardController {
 
 
     private void setStageOnClose() {
-        gameBoardStage.setOnCloseRequest(value -> manager.EndGameBoard());
+        gameBoardStage.setOnCloseRequest(value -> manager.endGame());
     }
 
     private void setSceneOnMouseEvents() {
@@ -28,31 +28,49 @@ abstract public class BoardController {
         gameBoardScene.setOnKeyPressed(value -> {
 
             if (value.getCode() == KeyCode.D)
-                ButtonInfo.setDPressed(true);
+                BoardConstants.getPlayer1Info().setPressedRight(true);
             else if (value.getCode() == KeyCode.A)
-                ButtonInfo.setAPressed(true);
+                BoardConstants.getPlayer1Info().setPressedLeft(true);
             else if (value.getCode() == KeyCode.SPACE)
-                ButtonInfo.setSpacePressed(true);
+                BoardConstants.getPlayer1Info().setPressedUp(true);
             else if (value.getCode() == KeyCode.G)
-                ButtonInfo.setGPressed(true);
+                BoardConstants.getPlayer1Info().setPressedGrab(true);
             else if (value.getCode() == KeyCode.K)
-                ButtonInfo.setKPressed(true);
-
+                BoardConstants.getPlayer1Info().setPressedShoot(true);
+            else if (value.getCode() == KeyCode.UP)
+                BoardConstants.getPlayer2Info().setPressedUp(true);
+            else if (value.getCode() == KeyCode.LEFT)
+                BoardConstants.getPlayer2Info().setPressedLeft(true);
+            else if (value.getCode() == KeyCode.RIGHT)
+                BoardConstants.getPlayer2Info().setPressedRight(true);
+            else if (value.getCode() == KeyCode.NUMPAD1)
+                BoardConstants.getPlayer2Info().setPressedGrab(true);
+            else if (value.getCode() == KeyCode.NUMPAD3)
+                BoardConstants.getPlayer2Info().setPressedShoot(true);
         });
 
         gameBoardScene.setOnKeyReleased(value -> {
 
             if (value.getCode() == KeyCode.D)
-                ButtonInfo.setDPressed(false);
+                BoardConstants.getPlayer1Info().setPressedRight(false);
             else if (value.getCode() == KeyCode.A)
-                ButtonInfo.setAPressed(false);
+                BoardConstants.getPlayer1Info().setPressedLeft(false);
             else if (value.getCode() == KeyCode.SPACE)
-                ButtonInfo.setSpacePressed(false);
+                BoardConstants.getPlayer1Info().setPressedUp(false);
             else if (value.getCode() == KeyCode.G)
-                ButtonInfo.setGPressed(false);
+                BoardConstants.getPlayer1Info().setPressedGrab(false);
             else if (value.getCode() == KeyCode.K)
-                ButtonInfo.setKPressed(false);
-
+                BoardConstants.getPlayer1Info().setPressedShoot(false);
+            else if (value.getCode() == KeyCode.UP)
+                BoardConstants.getPlayer2Info().setPressedUp(false);
+            else if (value.getCode() == KeyCode.LEFT)
+                BoardConstants.getPlayer2Info().setPressedLeft(false);
+            else if (value.getCode() == KeyCode.RIGHT)
+                BoardConstants.getPlayer2Info().setPressedRight(false);
+            else if (value.getCode() == KeyCode.NUMPAD1)
+                BoardConstants.getPlayer2Info().setPressedGrab(false);
+            else if (value.getCode() == KeyCode.NUMPAD3)
+                BoardConstants.getPlayer2Info().setPressedShoot(false);
         });
     }
 
@@ -85,7 +103,9 @@ abstract public class BoardController {
         gameBoardStage.close();
     }
 
-    abstract public Player getPlayer();
+    abstract public Player getFirstPlayer();
+
+    abstract public Player getSecondPlayer();
 
     abstract public List<BoardObject> getObstaclesList();
 

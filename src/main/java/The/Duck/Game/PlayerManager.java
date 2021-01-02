@@ -7,9 +7,11 @@ public class PlayerManager {
     private boolean readyToShoot;
 
     private final Player player;
+    private final ButtonInfo playerInfo;
 
-    public PlayerManager(Player player) {
+    public PlayerManager(Player player, ButtonInfo playerInfo) {
 
+        this.playerInfo = playerInfo;
         this.player = player;
         this.readyToGrabWeapon = true;
         this.readyToDropWeapon = false;
@@ -26,35 +28,35 @@ public class PlayerManager {
 
     private void playerMovement() {
 
-        if (ButtonInfo.isAPressed())
+        if (playerInfo.isPressedLeft())
             player.accelerate(false);
-        else if (ButtonInfo.isDPressed())
+        if (playerInfo.isPressedRight())
             player.accelerate(true);
-        else if (ButtonInfo.isSpacePressed())
+        if (playerInfo.isPressedUp())
             player.jump(0);
     }
 
     private void playerWeaponHandling() {
 
-        if (!player.hasWeapon() && ButtonInfo.isGPressed() && readyToGrabWeapon)
+        if (!player.hasWeapon() && playerInfo.isPressedGrab() && readyToGrabWeapon)
             player.setWantsToGrabWeapon(true);
-        else if (!player.hasWeapon() && !ButtonInfo.isGPressed()) {
+        else if (!player.hasWeapon() && !playerInfo.isPressedGrab()) {
             player.setWantsToGrabWeapon(false);
             readyToGrabWeapon = true;
-        } else if (player.hasWeapon() && readyToDropWeapon && ButtonInfo.isGPressed()) {
+        } else if (player.hasWeapon() && readyToDropWeapon && playerInfo.isPressedGrab()) {
             player.dropWeapon();
             readyToDropWeapon = false;
             readyToGrabWeapon = false;
-        } else if (player.hasWeapon() && !ButtonInfo.isGPressed())
+        } else if (player.hasWeapon() && !playerInfo.isPressedGrab())
             readyToDropWeapon = true;
     }
 
     private void playerShooting() {
 
-        if (player.hasWeapon() && readyToShoot && ButtonInfo.isKPressed()) {
+        if (player.hasWeapon() && readyToShoot && playerInfo.isPressedShoot()) {
             player.shoot();
             readyToShoot = false;
-        } else if (player.hasWeapon() && !ButtonInfo.isKPressed()) {
+        } else if (player.hasWeapon() && !playerInfo.isPressedShoot()) {
             readyToShoot = true;
         }
     }
@@ -63,6 +65,10 @@ public class PlayerManager {
 
         player.setPlayerGraphic();
         player.movePlayerModel();
+    }
+
+    public boolean isPlayerDead() {
+        return player.isDead();
     }
 
 }

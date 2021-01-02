@@ -12,7 +12,9 @@ import java.util.List;
 public class SecondBoardController extends BoardController {
 
     @FXML
-    private Region PlayerModel;
+    private Region PlayerModel1;
+    @FXML
+    private Region PlayerModel2;
     @FXML
     private Region Obstacle1;
     @FXML
@@ -36,8 +38,13 @@ public class SecondBoardController extends BoardController {
         makeInit(GameBoardPane);
     }
 
-    public Player getPlayer() {
-        return new Player(PlayerModel);
+    public Player getFirstPlayer() {
+        return new Player(PlayerModel1, true);
+    }
+
+    @Override
+    public Player getSecondPlayer() {
+        return new Player(PlayerModel2, false);
     }
 
 

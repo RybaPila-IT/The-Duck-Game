@@ -43,7 +43,6 @@ public class MainMenuManager {
     public void startNewGame() {
         controller.hideMainMenu();
         GameBoardManager boardManager = new GameBoardManager(this);
-        boardManager.StartGameBoard();
     }
 
     public void decideCreditsSliding() {

@@ -5,8 +5,8 @@ import javafx.scene.layout.Region;
 
 public class Jumper extends BoardObject {
 
-    private final static int ACTIVATION_COUNT = 130;
-    private final static double JUMP_STRENGTH = -0.70;
+    private final static int ACTIVATION_COUNT = 5;
+    private final static double JUMP_STRENGTH = -33;
 
     private boolean activated;
     private int tillActivation;

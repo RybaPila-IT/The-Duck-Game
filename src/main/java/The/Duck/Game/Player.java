@@ -1,6 +1,5 @@
 package The.Duck.Game;
 
-import FXMLControlers.BoardController;
 import FXMLControlers.PlayerController;
 import javafx.scene.layout.Region;
 
@@ -8,34 +7,41 @@ import java.util.List;
 
 public class Player {
 
-    private static final double MAX_SPEED = 0.25;
-    private static final double ACC_VAL = 0.002;
-    private static final double SLOW_VAL = 0.0003;
-    private static final double HOR_MAX_SIZE = 1360.0;
+    private static final double MAX_SPEED = 15;
+    private static final double ACC_VAL = 3;
+    private static final double SLOW_VAL = 0.5;
 
-    private static final double MAX_VERT_SPEED = 0.4;
-    private static final double FALL_ACC = 0.0004;
-    private static final double MAX_VER_SIZE = 701.0;
+    private static final double MAX_VERT_SPEED = 20;
+    private static final double FALL_ACC = 1.15;
 
     private static final double PLAYER_WIDTH = 80;
     private static final double PLAYER_HEIGHT = 110;
+
+    private static final int INITIAL_HEALTH = 3;
+
+    private final Rectangle playerModel;
+    private final PlayerController controller;
 
     private boolean isPlayerFacedRight;
     private boolean wantsToGrabWeapon;
     private double horizontalSpeed;
     private double verticalSpeed;
     private boolean jumping;
+    private int health;
 
     private Weapon weapon;
-    private final Rectangle playerModel;
 
-    private final PlayerController controller;
+    public Player(Region playerModel, boolean first) {
 
-    public Player(Region playerModel) {
-        this.controller = new PlayerController(playerModel);
+        List<String> styleClass = first ?
+                BoardConstants.getPlayer1StyleClass() :
+                BoardConstants.getPlayer2StyleClass();
+
+        this.controller = new PlayerController(playerModel, styleClass);
         this.wantsToGrabWeapon = false;
         this.horizontalSpeed = 0;
         this.verticalSpeed = 0;
+        this.health = INITIAL_HEALTH;
         this.playerModel = new Rectangle(playerModel);
         this.weapon = null;
         this.isPlayerFacedRight = true;
@@ -55,6 +61,14 @@ public class Player {
             verticalSpeed = (val == 0 ? -MAX_VERT_SPEED : val);
             jumping = true;
         }
+    }
+
+    public void decreaseHealth() {
+        health--;
+    }
+
+    public boolean isDead() {
+        return health <= 0;
     }
 
 

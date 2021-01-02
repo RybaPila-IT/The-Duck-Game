@@ -2,25 +2,30 @@ package FXMLControlers;
 
 import javafx.scene.Node;
 
+import java.util.List;
+
 public class PlayerController {
 
-    private static final String JUMPING_RIGHT = "soldier-jump-right";
-    private static final String JUMPING_LEFT = "soldier-jump-left";
-    private static final String WALK1_RIGHT = "soldier-walk-1-right";
-    private static final String WALK2_RIGHT = "soldier-walk-2-right";
-    private static final String WALK1_LEFT = "soldier-walk-1-left";
-    private static final String WALK2_LEFT = "soldier-walk-2-left";
-    private static final String STANDING = "soldier-stand";
+    private static final int JUMPING_RIGHT = 0;
+    private static final int JUMPING_LEFT = 1;
+    private static final int WALK1_RIGHT = 2;
+    private static final int WALK2_RIGHT = 3;
+    private static final int WALK1_LEFT = 4;
+    private static final int WALK2_LEFT = 5;
+    private static final int STANDING = 6;
 
-    private static final int COUNTER_VALUE = 200;
+    private static final int COUNTER_VALUE = 10;
+
+    private final List<String> styleClasses;
 
     private String currentWalkAnimation;
     private int walkAnimationCounter;
     private final Node playerCharacter;
 
-    public PlayerController(Node playerCharacter) {
+    public PlayerController(Node playerCharacter, List<String> styleClasses) {
+        this.styleClasses = styleClasses;
         this.playerCharacter = playerCharacter;
-        currentWalkAnimation = WALK1_RIGHT;
+        currentWalkAnimation = styleClasses.get(WALK1_RIGHT);
         walkAnimationCounter = COUNTER_VALUE;
     }
 
@@ -34,18 +39,18 @@ public class PlayerController {
 
     public void setPlayerGraphic(boolean jumping, boolean isFacedRight, double horSpeed) {
 
-        String animation = STANDING;
+        String animation = styleClasses.get(STANDING);
 
         if (jumping)
-            animation = isFacedRight ? JUMPING_RIGHT : JUMPING_LEFT;
+            animation = isFacedRight ? styleClasses.get(JUMPING_RIGHT) : styleClasses.get(JUMPING_LEFT);
         else if (horSpeed > 0) {
 
-            decideHorizontalGraphic(WALK1_RIGHT, WALK2_RIGHT);
+            decideHorizontalGraphic(styleClasses.get(WALK1_RIGHT), styleClasses.get(WALK2_RIGHT));
             animation = currentWalkAnimation;
 
         } else if (horSpeed < 0) {
 
-            decideHorizontalGraphic(WALK1_LEFT, WALK2_LEFT);
+            decideHorizontalGraphic(styleClasses.get(WALK1_LEFT), styleClasses.get(WALK2_LEFT));
             animation = currentWalkAnimation;
 
         }

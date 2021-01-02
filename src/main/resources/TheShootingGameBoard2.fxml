@@ -10,6 +10,8 @@
    <children>
       <Region fx:id="Obstacle1" layoutX="0.0" layoutY="850.0" prefHeight="20.0" prefWidth="140.0"
               styleClass="obstacle_rod"/>
+      <Region fx:id="PlayerModel2" layoutX="413.0" layoutY="890.0" prefHeight="110.0" prefWidth="80.0"
+              styleClass="adventurer-stand"/>
       <Region fx:id="Obstacle2" layoutX="681.0" layoutY="612.0" prefHeight="20.0" prefWidth="140.0"
               styleClass="obstacle_rod"/>
       <Region fx:id="Obstacle3" layoutX="304.0" layoutY="475.0" prefHeight="20.0" prefWidth="140.0"
@@ -20,7 +22,7 @@
                  stroke="BLACK" strokeType="INSIDE" styleClass="obstacle_rod" width="140.0"/>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" layoutX="681.0" layoutY="612.0"
                  stroke="BLACK" strokeType="INSIDE" styleClass="obstacle_rod" width="140.0"/>
-      <Region fx:id="PlayerModel" layoutX="205.0" layoutY="890.0" prefHeight="110.0" prefWidth="80.0"
+      <Region fx:id="PlayerModel1" layoutX="205.0" layoutY="890.0" prefHeight="110.0" prefWidth="80.0"
               styleClass="soldier-stand"/>
       <Region fx:id="Portal1_L" layoutX="765.0" layoutY="880.0" prefHeight="120.0" prefWidth="60.0"
               styleClass="portal_left"/>

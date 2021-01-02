@@ -2,57 +2,57 @@ package The.Duck.Game;
 
 public class ButtonInfo {
 
-    private static boolean isAPressed;
-    private static boolean isDPressed;
-    private static boolean isSpacePressed;
-    private static boolean isGPressed;
-    private static boolean isKPressed;
+    private boolean pressedRight;
+    private boolean pressedLeft;
+    private boolean pressedUp;
+    private boolean pressedGrab;
+    private boolean pressedShoot;
 
-    static {
-        isAPressed = false;
-        isDPressed = false;
-        isSpacePressed = false;
-        isGPressed = false;
-        isKPressed = false;
+    public ButtonInfo() {
+        pressedRight = false;
+        pressedLeft = false;
+        pressedUp = false;
+        pressedGrab = false;
+        pressedShoot = false;
     }
 
-    public static void setKPressed(boolean value) {
-        isKPressed = value;
+    public boolean isPressedRight() {
+        return pressedRight;
     }
 
-    public static boolean isKPressed() {
-        return isKPressed;
+    public void setPressedRight(boolean pressedRight) {
+        this.pressedRight = pressedRight;
     }
 
-    public static void setGPressed(boolean isGPressed) {
-        ButtonInfo.isGPressed = isGPressed;
+    public boolean isPressedLeft() {
+        return pressedLeft;
     }
 
-    public static boolean isGPressed() {
-        return isGPressed;
+    public void setPressedLeft(boolean pressedLeft) {
+        this.pressedLeft = pressedLeft;
     }
 
-    public static void setAPressed(boolean value) {
-        isAPressed = value;
+    public boolean isPressedUp() {
+        return pressedUp;
     }
 
-    public static void setDPressed(boolean value) {
-        isDPressed = value;
+    public void setPressedUp(boolean pressedUp) {
+        this.pressedUp = pressedUp;
     }
 
-    public static void setSpacePressed(boolean value) {
-        isSpacePressed = value;
+    public boolean isPressedGrab() {
+        return pressedGrab;
     }
 
-    public static boolean isAPressed() {
-        return isAPressed;
+    public void setPressedGrab(boolean pressedGrab) {
+        this.pressedGrab = pressedGrab;
     }
 
-    public static boolean isDPressed() {
-        return isDPressed;
+    public boolean isPressedShoot() {
+        return pressedShoot;
     }
 
-    public static boolean isSpacePressed() {
-        return isSpacePressed;
+    public void setPressedShoot(boolean pressedShoot) {
+        this.pressedShoot = pressedShoot;
     }
 }

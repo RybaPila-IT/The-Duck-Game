@@ -8,9 +8,12 @@ public class Bullet extends BoardObject {
 
     private static final double BULLET_WIDTH = 16;
     private static final double BULLET_HEIGHT = 16;
-    private static final double BULLET_SPEED = 0.5;
+    private static final double BULLET_SPEED = 40;
+    private static final int ON_OBSTACLE = 10;
+    private static final int ON_PLAYER = 3;
 
     private final boolean isBulletFacingRight;
+
     private boolean onObstacle;
     private int onObstacleWait;
 
@@ -23,7 +26,7 @@ public class Bullet extends BoardObject {
 
         isBulletFacingRight = isWeaponFacingRight;
         onObstacle = false;
-        onObstacleWait = 160;
+        onObstacleWait = ON_OBSTACLE;
         controller = new BulletController(region);
     }
 
@@ -48,7 +51,7 @@ public class Bullet extends BoardObject {
     }
 
     private void moveBulletOutOfBoard() {
-        region.setX(1800);
+        region.setX(BoardConstants.getBoardWidth() + 400);
     }
 
     public void moveBullet() {
@@ -75,6 +78,7 @@ public class Bullet extends BoardObject {
     public void onTic() {
 
         moveBullet();
+
         if (outsideBoard())
             removeBulletFromScene();
 
@@ -82,6 +86,13 @@ public class Bullet extends BoardObject {
 
     @Override
     public void onPlayerCollision(Player player) {
+
+        if (!onObstacle) {
+            region.setX(player.getRegion().getLayoutX() + 15);
+            onObstacle = true;
+            onObstacleWait = ON_PLAYER;
+            player.decreaseHealth();
+        }
 
     }
 
