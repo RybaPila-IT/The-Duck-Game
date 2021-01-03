@@ -35,5 +35,11 @@
                 styleClass="weapon_right"/>
         <Region fx:id="jumper2" layoutX="623.0" layoutY="614.0" prefHeight="21.0" prefWidth="14.0"
                 styleClass="jumper_green"/>
+        <Region fx:id="player1_heart1" prefHeight="30.0" prefWidth="30.0" styleClass="heart"/>
+        <Region fx:id="player1_heart2" layoutX="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="heart"/>
+        <Region fx:id="player1_heart3" layoutX="60.0" prefHeight="30.0" prefWidth="30.0" styleClass="heart"/>
+        <Region fx:id="player2_heart1" layoutX="1410.0" prefHeight="30.0" prefWidth="30.0" styleClass="heart"/>
+        <Region fx:id="player2_heart2" layoutX="1380.0" prefHeight="30.0" prefWidth="30.0" styleClass="heart"/>
+        <Region fx:id="player2_heart3" layoutX="1350.0" prefHeight="30.0" prefWidth="30.0" styleClass="heart"/>
     </children>
 </AnchorPane>

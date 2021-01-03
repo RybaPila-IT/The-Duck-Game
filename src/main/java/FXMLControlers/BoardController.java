@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 import java.util.List;
@@ -31,11 +32,11 @@ abstract public class BoardController {
                 BoardConstants.getPlayer1Info().setPressedRight(true);
             else if (value.getCode() == KeyCode.A)
                 BoardConstants.getPlayer1Info().setPressedLeft(true);
-            else if (value.getCode() == KeyCode.SPACE)
+            else if (value.getCode() == KeyCode.W)
                 BoardConstants.getPlayer1Info().setPressedUp(true);
-            else if (value.getCode() == KeyCode.G)
+            else if (value.getCode() == KeyCode.V)
                 BoardConstants.getPlayer1Info().setPressedGrab(true);
-            else if (value.getCode() == KeyCode.K)
+            else if (value.getCode() == KeyCode.B)
                 BoardConstants.getPlayer1Info().setPressedShoot(true);
             else if (value.getCode() == KeyCode.UP)
                 BoardConstants.getPlayer2Info().setPressedUp(true);
@@ -55,11 +56,11 @@ abstract public class BoardController {
                 BoardConstants.getPlayer1Info().setPressedRight(false);
             else if (value.getCode() == KeyCode.A)
                 BoardConstants.getPlayer1Info().setPressedLeft(false);
-            else if (value.getCode() == KeyCode.SPACE)
+            else if (value.getCode() == KeyCode.W)
                 BoardConstants.getPlayer1Info().setPressedUp(false);
-            else if (value.getCode() == KeyCode.G)
+            else if (value.getCode() == KeyCode.V)
                 BoardConstants.getPlayer1Info().setPressedGrab(false);
-            else if (value.getCode() == KeyCode.K)
+            else if (value.getCode() == KeyCode.B)
                 BoardConstants.getPlayer1Info().setPressedShoot(false);
             else if (value.getCode() == KeyCode.UP)
                 BoardConstants.getPlayer2Info().setPressedUp(false);

@@ -8,6 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FirstBoardController extends BoardController {
@@ -34,6 +35,19 @@ public class FirstBoardController extends BoardController {
     private Region jumper1;
     @FXML
     private Region jumper2;
+    @FXML
+    private Region player1_heart1;
+    @FXML
+    private Region player1_heart2;
+    @FXML
+    private Region player1_heart3;
+    @FXML
+    private Region player2_heart1;
+    @FXML
+    private Region player2_heart2;
+    @FXML
+    private Region player2_heart3;
+
 
     @FXML
     public void initialize() {
@@ -41,11 +55,13 @@ public class FirstBoardController extends BoardController {
     }
 
     public Player getFirstPlayer() {
-        return new Player(playerModel1, true);
+        return new Player(playerModel1, BoardConstants.getPlayer1StyleClass(),
+                Arrays.asList(player1_heart1, player1_heart2, player1_heart3));
     }
 
     public Player getSecondPlayer() {
-        return new Player(playerModel2, false);
+        return new Player(playerModel2, BoardConstants.getPlayer2StyleClass(),
+                Arrays.asList(player2_heart1, player2_heart2, player2_heart3));
     }
 
     public List<BoardObject> getObstaclesList() {
@@ -70,6 +86,4 @@ public class FirstBoardController extends BoardController {
     public void removeNodeFromScene(Node node) {
         gameBoardPane.getChildren().remove(node);
     }
-
-
 }

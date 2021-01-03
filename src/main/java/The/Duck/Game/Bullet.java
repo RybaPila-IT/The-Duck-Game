@@ -12,12 +12,11 @@ public class Bullet extends BoardObject {
     private static final int ON_OBSTACLE = 10;
     private static final int ON_PLAYER = 3;
 
+    private final BulletController controller;
     private final boolean isBulletFacingRight;
 
     private boolean onObstacle;
     private int onObstacleWait;
-
-    private final BulletController controller;
 
     public Bullet(Rectangle weapon, boolean isWeaponFacingRight) {
 
@@ -88,10 +87,12 @@ public class Bullet extends BoardObject {
     public void onPlayerCollision(Player player) {
 
         if (!onObstacle) {
+            player.decreaseHealth();
             region.setX(player.getRegion().getLayoutX() + 15);
             onObstacle = true;
             onObstacleWait = ON_PLAYER;
-            player.decreaseHealth();
+            Blood blood = new Blood(region.getLayoutX(), region.getLayoutY());
+            BoardElements.getInstance().addBoardObject(blood);
         }
 
     }

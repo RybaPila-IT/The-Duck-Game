@@ -1,5 +1,6 @@
 package FXMLControlers;
 
+import The.Duck.Game.BoardConstants;
 import javafx.scene.Node;
 
 import java.util.List;
@@ -17,16 +18,20 @@ public class PlayerController {
     private static final int COUNTER_VALUE = 10;
 
     private final List<String> styleClasses;
+    private final List<Node> health;
 
     private String currentWalkAnimation;
     private int walkAnimationCounter;
+    private int healthLevel;
     private final Node playerCharacter;
 
-    public PlayerController(Node playerCharacter, List<String> styleClasses) {
+    public PlayerController(Node playerCharacter, List<String> styleClasses, List<Node> health) {
+        this.health = health;
         this.styleClasses = styleClasses;
         this.playerCharacter = playerCharacter;
-        currentWalkAnimation = styleClasses.get(WALK1_RIGHT);
-        walkAnimationCounter = COUNTER_VALUE;
+        this.healthLevel = health.size() - 1;
+        this.currentWalkAnimation = styleClasses.get(WALK1_RIGHT);
+        this.walkAnimationCounter = COUNTER_VALUE;
     }
 
     public void setLayoutX(double x) {
@@ -69,6 +74,10 @@ public class PlayerController {
             walkAnimationCounter = COUNTER_VALUE;
         }
 
+    }
+
+    public void decreaseHealth() {
+        BoardConstants.getController().removeNodeFromScene(health.get(healthLevel--));
     }
 
 

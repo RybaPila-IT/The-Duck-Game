@@ -52,7 +52,7 @@ public class GameManager {
 
                     firstPlayerManager.movePlayer();
                     secondPlayerManager.movePlayer();
-                    // ExplosionManager.getInstance().generateExplosion();
+                    // ExplosionGenerator.getInstance().generateExplosion();
                     tickBoardElements();
                     frameDuration = FRAME_DURATION;
                 }

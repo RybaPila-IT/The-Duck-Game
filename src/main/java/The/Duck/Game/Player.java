@@ -1,6 +1,7 @@
 package The.Duck.Game;
 
 import FXMLControlers.PlayerController;
+import javafx.scene.Node;
 import javafx.scene.layout.Region;
 
 import java.util.List;
@@ -31,13 +32,8 @@ public class Player {
 
     private Weapon weapon;
 
-    public Player(Region playerModel, boolean first) {
-
-        List<String> styleClass = first ?
-                BoardConstants.getPlayer1StyleClass() :
-                BoardConstants.getPlayer2StyleClass();
-
-        this.controller = new PlayerController(playerModel, styleClass);
+    public Player(Region playerModel, List<String> styleClass, List<Node> health) {
+        this.controller = new PlayerController(playerModel, styleClass, health);
         this.wantsToGrabWeapon = false;
         this.horizontalSpeed = 0;
         this.verticalSpeed = 0;
@@ -65,6 +61,7 @@ public class Player {
 
     public void decreaseHealth() {
         health--;
+        controller.decreaseHealth();
     }
 
     public boolean isDead() {

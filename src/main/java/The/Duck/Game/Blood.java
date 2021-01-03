@@ -2,20 +2,21 @@ package The.Duck.Game;
 
 import FXMLControlers.AnimationController;
 
-public class Explosion extends SimpleAnimation {
+public class Blood extends SimpleAnimation {
 
-    private static final double HEIGHT = 64;
-    private static final double WIDTH = 64;
-    private static final double S_COUNTER = 2;
+    private static final double WIDTH = 20;
+    private static final double HEIGHT = 20;
+    private static final double S_COUNTER = 3;
 
     private final AnimationController controller;
 
-    public Explosion(double x, double y) {
+    public Blood(double x, double y) {
 
-        super(new Rectangle(x, y, WIDTH, HEIGHT), BoardConstants.getExplosionStyles(), S_COUNTER);
+        super(new Rectangle(x, y, WIDTH, HEIGHT), BoardConstants.getBloodStyles(), S_COUNTER);
 
         this.controller = new AnimationController(region);
     }
+
 
     @Override
     public void onTic() {
@@ -24,15 +25,14 @@ public class Explosion extends SimpleAnimation {
 
         if (nextAnimation != null)
             controller.setNewAnimation(nextAnimation);
-        else {
+        else
             controller.removeAnimation();
-            ExplosionGenerator.getInstance().explosionEnded();
-        }
+
     }
 
     @Override
     public void onPlayerCollision(Player player) {
-        System.out.println("Explosion and player collision");
+
     }
 
 }

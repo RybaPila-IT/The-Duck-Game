@@ -14,13 +14,23 @@ public class BoardConstants {
     private static BoardController controller;
     private static GameBoardManager manager;
 
-    private static ButtonInfo player1Info;
-    private static ButtonInfo player2Info;
+    private static final ButtonInfo player1Info;
+    private static final ButtonInfo player2Info;
 
-    private static List<String> player1StyleClass;
-    private static List<String> player2StyleClass;
+    private static final List<String> player1StyleClass;
+    private static final List<String> player2StyleClass;
+
+    private static final List<String> explosionStyles;
+    private static final List<String> bloodStyles;
+
+    private static final int EXPLOSION_NUMBER = 18;
+    private static final int BLOOD_NUMBER = 3;
+
+    private static final String EXPLOSION_PREFIX = "explosion_";
+    private static final String BLOOD_PREFIX = "blood_";
 
     static {
+
         player1Info = new ButtonInfo();
         player2Info = new ButtonInfo();
 
@@ -36,6 +46,21 @@ public class BoardConstants {
                         "adventurer-stand")
         );
 
+        explosionStyles = new ArrayList<>();
+        bloodStyles = new ArrayList<>();
+
+        for (int i = 0; i < EXPLOSION_NUMBER; i++)
+            explosionStyles.add(EXPLOSION_PREFIX + (i + 1));
+        for (int i = 0; i < BLOOD_NUMBER; i++)
+            bloodStyles.add(BLOOD_PREFIX + (i + 1));
+    }
+
+    public static List<String> getExplosionStyles() {
+        return explosionStyles;
+    }
+
+    public static List<String> getBloodStyles() {
+        return bloodStyles;
     }
 
     public static GameBoardManager getManager() {

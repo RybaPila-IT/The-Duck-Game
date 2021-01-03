@@ -7,6 +7,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SecondBoardController extends BoardController {
@@ -29,9 +30,20 @@ public class SecondBoardController extends BoardController {
     private Region Portal1_L;
     @FXML
     private Region Portal1_R;
-
     @FXML
     private AnchorPane GameBoardPane;
+    @FXML
+    private Region player1_heart1;
+    @FXML
+    private Region player1_heart2;
+    @FXML
+    private Region player1_heart3;
+    @FXML
+    private Region player2_heart1;
+    @FXML
+    private Region player2_heart2;
+    @FXML
+    private Region player2_heart3;
 
     @FXML
     public void initialize() {
@@ -39,12 +51,14 @@ public class SecondBoardController extends BoardController {
     }
 
     public Player getFirstPlayer() {
-        return new Player(PlayerModel1, true);
+        return new Player(PlayerModel1, BoardConstants.getPlayer1StyleClass(),
+                Arrays.asList(player1_heart1, player1_heart2, player1_heart3));
     }
 
     @Override
     public Player getSecondPlayer() {
-        return new Player(PlayerModel2, false);
+        return new Player(PlayerModel2, BoardConstants.getPlayer2StyleClass(),
+                Arrays.asList(player2_heart1, player2_heart2, player2_heart3));
     }
 
 
@@ -70,5 +84,4 @@ public class SecondBoardController extends BoardController {
     public void removeNodeFromScene(Node node) {
         GameBoardPane.getChildren().remove(node);
     }
-
 }

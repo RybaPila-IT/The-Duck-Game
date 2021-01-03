@@ -3,7 +3,6 @@ package The.Duck.Game;
 import FXMLControlers.BoardController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -76,7 +75,7 @@ public class GameBoardManager {
     }
 
     private boolean isMapLeft() {
-        return boardIdx >= GAME_BOARDS.size();
+        return boardIdx < GAME_BOARDS.size();
     }
 
     public void loadNewMap() {

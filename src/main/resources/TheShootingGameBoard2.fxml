@@ -34,5 +34,11 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" layoutY="220.0" stroke="BLACK"
                  strokeType="INSIDE" styleClass="obstacle_rod" width="180.0"/>
       <Region fx:id="Portal1_R" layoutY="100.0" prefHeight="120.0" prefWidth="60.0" styleClass="portal_right"/>
+      <Region fx:id="player1_heart1" prefHeight="30.0" prefWidth="30.0" styleClass="heart"/>
+      <Region fx:id="player1_heart2" layoutX="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="heart"/>
+      <Region fx:id="player1_heart3" layoutX="60.0" prefHeight="30.0" prefWidth="30.0" styleClass="heart"/>
+      <Region fx:id="player2_heart1" layoutX="795.0" prefHeight="30.0" prefWidth="30.0" styleClass="heart"/>
+      <Region fx:id="player2_heart2" layoutX="765.0" prefHeight="30.0" prefWidth="30.0" styleClass="heart"/>
+      <Region fx:id="player2_heart3" layoutX="735.0" prefHeight="30.0" prefWidth="30.0" styleClass="heart"/>
    </children>
 </AnchorPane>

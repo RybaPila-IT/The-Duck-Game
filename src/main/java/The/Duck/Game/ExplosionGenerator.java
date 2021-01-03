@@ -1,26 +1,28 @@
 package The.Duck.Game;
 
-public class ExplosionManager {
+public class ExplosionGenerator {
+
+    private static final int EXPLOSION_ALLOWED = 1;
+
+    private static ExplosionGenerator instance;
 
     private int explosions;
 
-    private static ExplosionManager instance;
-
-    private ExplosionManager() {
+    private ExplosionGenerator() {
         explosions = 0;
     }
 
-    public static ExplosionManager getInstance() {
+    public static ExplosionGenerator getInstance() {
 
         if (instance == null)
-            instance = new ExplosionManager();
+            instance = new ExplosionGenerator();
 
         return instance;
     }
 
     public void generateExplosion() {
 
-        if (explosions == 0) {
+        if (explosions < EXPLOSION_ALLOWED) {
             BoardElements.getInstance().addBoardObject(
                     new Explosion(Math.random() * BoardConstants.getBoardWidth(),
                             Math.random() * BoardConstants.getBoardHeight()));
