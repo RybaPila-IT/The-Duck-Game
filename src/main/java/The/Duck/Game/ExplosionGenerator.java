@@ -35,4 +35,8 @@ public class ExplosionGenerator {
         explosions--;
     }
 
+    public void clear() {
+        explosions = 0;
+    }
+
 }

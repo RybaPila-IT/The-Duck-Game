@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane fx:id="GameBoardPane" prefHeight="1000.0" prefWidth="825.0" styleClass="pane_vertical_gif"
+            stylesheets="@stylesheets/BoardStyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLControlers.ThirdBoardController">
+   <Region fx:id="PlayerModel1" layoutY="890.0" prefHeight="110.0" prefWidth="80.0" styleClass="soldier-stand"/>
+   <Region fx:id="PlayerModel2" layoutX="745.0" layoutY="890.0" prefHeight="110.0" prefWidth="80.0"
+           styleClass="adventurer-stand"/>
+   <Region fx:id="Doors2" layoutX="547.0" layoutY="830.0" prefHeight="128.0" prefWidth="64.0"
+           styleClass="doors_locked"/>
+   <Region fx:id="Doors1" layoutX="169.0" layoutY="830.0" prefHeight="128.0" prefWidth="64.0"
+           styleClass="doors_locked"/>
+   <Region fx:id="Doors21" layoutX="546.0" layoutY="366.0" prefHeight="128.0" prefWidth="64.0"
+           styleClass="doors_locked"/>
+   <Region fx:id="player1_heart1" prefHeight="30.0" prefWidth="30.0" styleClass="heart"/>
+   <Region fx:id="Weapon1" layoutX="745.0" layoutY="279.0" prefHeight="47.0" prefWidth="70.0"
+           styleClass="weapon_right"/>
+   <Region fx:id="Weapon11" layoutX="5.0" layoutY="158.0" prefHeight="47.0" prefWidth="70.0"
+           styleClass="weapon_right"/>
+   <Region fx:id="player1_heart2" layoutX="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="heart"/>
+   <Region fx:id="player1_heart3" layoutX="60.0" prefHeight="30.0" prefWidth="30.0" styleClass="heart"/>
+   <Region fx:id="player2_heart1" layoutX="795.0" prefHeight="30.0" prefWidth="30.0" styleClass="heart"/>
+   <Region fx:id="player2_heart2" layoutX="765.0" prefHeight="30.0" prefWidth="30.0" styleClass="heart"/>
+   <Region fx:id="player2_heart3" layoutX="735.0" prefHeight="30.0" prefWidth="30.0" styleClass="heart"/>
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="42.0" layoutX="515.0" layoutY="494.0"
+              stroke="BLACK" strokeType="INSIDE" styleClass="obstacle_rod" width="210.0"/>
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="294.0" layoutX="557.0" layoutY="536.0"
+              stroke="BLACK" strokeType="INSIDE" styleClass="obstacle_rod" width="43.0"/>
+   <Region fx:id="Obstacle2" layoutX="180.0" layoutY="326.0" prefHeight="504.0" prefWidth="42.0"
+           styleClass="obstacle_brick"/>
+   <Region fx:id="Obstacle3" layoutX="222.0" layoutY="649.0" prefHeight="42.0" prefWidth="84.0"
+           styleClass="obstacle_brick"/>
+   <Region fx:id="Obstacle4" layoutX="137.0" layoutY="958.0" prefHeight="42.0" prefWidth="504.0"
+           styleClass="obstacle_brick"/>
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="42.0" layoutX="137.0" layoutY="958.0"
+              stroke="BLACK" strokeType="INSIDE" styleClass="obstacle_rod" width="504.0"/>
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="42.0" layoutX="473.0" layoutY="777.0"
+              stroke="BLACK" strokeType="INSIDE" styleClass="obstacle_rod" width="84.0"/>
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="42.0" layoutX="222.0" layoutY="649.0"
+              stroke="BLACK" strokeType="INSIDE" styleClass="obstacle_rod" width="84.0"/>
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="294.0" layoutX="557.0" layoutY="72.0"
+              stroke="BLACK" strokeType="INSIDE" styleClass="obstacle_rod" width="43.0"/>
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="42.0" layoutX="741.0" layoutY="325.0"
+              stroke="BLACK" strokeType="INSIDE" styleClass="obstacle_rod" width="84.0"/>
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="505.0" layoutX="180.0" layoutY="325.0"
+              stroke="BLACK" strokeType="INSIDE" styleClass="obstacle_rod" width="43.0"/>
+   <Region fx:id="Obstacle21" layoutX="558.0" layoutY="72.0" prefHeight="294.0" prefWidth="42.0"
+           styleClass="obstacle_brick"/>
+   <Region fx:id="Obstacle31" layoutX="473.0" layoutY="777.0" prefHeight="42.0" prefWidth="84.0"
+           styleClass="obstacle_brick"/>
+   <Region fx:id="Obstacle32" layoutX="741.0" layoutY="325.0" prefHeight="42.0" prefWidth="84.0"
+           styleClass="obstacle_brick"/>
+   <Region fx:id="Obstacle33" layoutX="515.0" layoutY="494.0" prefHeight="42.0" prefWidth="210.0"
+           styleClass="obstacle_brick"/>
+   <Region fx:id="Obstacle22" layoutX="557.0" layoutY="536.0" prefHeight="294.0" prefWidth="42.0"
+           styleClass="obstacle_brick"/>
+   <Region fx:id="Obstacle331" layoutX="-2.0" layoutY="205.0" prefHeight="42.0" prefWidth="84.0"
+           styleClass="obstacle_brick"/>
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="42.0" layoutX="-2.0" layoutY="205.0"
+              stroke="BLACK" strokeType="INSIDE" styleClass="obstacle_rod" width="84.0"/>
+</AnchorPane>

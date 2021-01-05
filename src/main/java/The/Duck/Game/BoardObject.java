@@ -12,16 +12,8 @@ public abstract class BoardObject {
         return region.intersects(r);
     }
 
-    public boolean isBulletProof() {
-        return false;
-    }
-
-    public double getLayoutX() {
-        return region.getLayoutX();
-    }
-
-    public double getSecondX() {
-        return region.getSecondX();
+    public boolean isTransparent() {
+        return true;
     }
 
     public abstract void onTic();
@@ -29,4 +21,6 @@ public abstract class BoardObject {
     public abstract void onPlayerCollision(Player player);
 
     public abstract boolean isObjectValid();
+
+    public abstract void onBulletCollision(Bullet bullet);
 }

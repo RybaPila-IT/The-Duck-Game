@@ -10,14 +10,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class SecondBoardController extends BoardController {
+public class ThirdBoardController extends BoardController {
 
-    @FXML
-    private Region PlayerModel1;
-    @FXML
-    private Region PlayerModel2;
-    @FXML
-    private Region Obstacle1;
     @FXML
     private Region Obstacle2;
     @FXML
@@ -25,17 +19,31 @@ public class SecondBoardController extends BoardController {
     @FXML
     private Region Obstacle4;
     @FXML
-    private Region Obstacle5;
+    private Region Obstacle21;
     @FXML
-    private Region Portal1_L;
+    private Region Obstacle22;
     @FXML
-    private Region Portal1_R;
+    private Region Obstacle31;
     @FXML
-    private Region weapon1;
+    private Region Obstacle32;
     @FXML
-    private Region weapon2;
+    private Region Obstacle33;
     @FXML
-    private AnchorPane GameBoardPane;
+    private Region Obstacle331;
+    @FXML
+    private Region PlayerModel1;
+    @FXML
+    private Region PlayerModel2;
+    @FXML
+    private Region Weapon1;
+    @FXML
+    private Region Weapon11;
+    @FXML
+    private Region Doors1;
+    @FXML
+    private Region Doors2;
+    @FXML
+    private Region Doors21;
     @FXML
     private Region player1_heart1;
     @FXML
@@ -48,6 +56,10 @@ public class SecondBoardController extends BoardController {
     private Region player2_heart2;
     @FXML
     private Region player2_heart3;
+
+
+    @FXML
+    private AnchorPane GameBoardPane;
 
     @FXML
     public void initialize() {
@@ -65,36 +77,30 @@ public class SecondBoardController extends BoardController {
                 Arrays.asList(player2_heart1, player2_heart2, player2_heart3));
     }
 
-
     public List<BoardObject> getBoardObjectsList() {
 
-        ArrayList<BoardObject> obstacleList = new ArrayList<>();
-        obstacleList.add(new Obstacle(Obstacle1));
-        obstacleList.add(new Obstacle(Obstacle2));
-        obstacleList.add(new Obstacle(Obstacle3));
-        obstacleList.add(new Obstacle(Obstacle4));
-        obstacleList.add(new Obstacle(Obstacle5));
-
-        obstacleList.add(new Portal(Portal1_R, Portal1_L.getLayoutX() - 35, Portal1_L.getLayoutY() + 15, false));
-        obstacleList.add(new Portal(Portal1_L, Portal1_R.getLayoutX() + 65, Portal1_R.getLayoutY() + 15, true));
-
-        obstacleList.add(new Weapon(weapon1));
-        obstacleList.add(new Weapon(weapon2));
-
-        return obstacleList;
+        return new ArrayList<>(
+                Arrays.asList(new Obstacle(Obstacle2), new Obstacle(Obstacle3), new Obstacle(Obstacle331),
+                        new Obstacle(Obstacle21), new Obstacle(Obstacle22), new Obstacle(Obstacle32),
+                        new Obstacle(Obstacle33), new Obstacle(Obstacle4), new Obstacle(Obstacle31),
+                        new Door(Doors1), new Door(Doors2), new Door(Doors21), new Weapon(Weapon1),
+                        new Weapon(Weapon11))
+        );
     }
 
+    @Override
     public void addToScene(Node node) {
         GameBoardPane.getChildren().add(node);
     }
 
+    @Override
     public void removeNodeFromScene(Node node) {
         GameBoardPane.getChildren().remove(node);
     }
 
     @Override
     public double[] getSpawnPointsForWeapons() {
-        return new double[]{weapon1.getLayoutX(), weapon1.getLayoutY(),
-                weapon2.getLayoutX(), weapon2.getLayoutY()};
+        return new double[]{Weapon1.getLayoutX(), Weapon1.getLayoutY(),
+                Weapon11.getLayoutX(), Weapon11.getLayoutY()};
     }
 }

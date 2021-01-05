@@ -7,6 +7,7 @@ public class ButtonInfo {
     private boolean pressedUp;
     private boolean pressedGrab;
     private boolean pressedShoot;
+    private boolean interact;
 
     public ButtonInfo() {
         pressedRight = false;
@@ -14,6 +15,7 @@ public class ButtonInfo {
         pressedUp = false;
         pressedGrab = false;
         pressedShoot = false;
+        interact = false;
     }
 
     public boolean isPressedRight() {
@@ -22,6 +24,14 @@ public class ButtonInfo {
 
     public void setPressedRight(boolean pressedRight) {
         this.pressedRight = pressedRight;
+    }
+
+    public boolean isInteract() {
+        return interact;
+    }
+
+    public void setInteract(boolean interact) {
+        this.interact = interact;
     }
 
     public boolean isPressedLeft() {
@@ -54,5 +64,13 @@ public class ButtonInfo {
 
     public void setPressedShoot(boolean pressedShoot) {
         this.pressedShoot = pressedShoot;
+    }
+
+    public void clear() {
+        pressedRight = false;
+        pressedLeft = false;
+        pressedUp = false;
+        pressedGrab = false;
+        pressedShoot = false;
     }
 }

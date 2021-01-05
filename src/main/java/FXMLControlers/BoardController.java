@@ -48,6 +48,14 @@ abstract public class BoardController {
                 BoardConstants.getPlayer2Info().setPressedGrab(true);
             else if (value.getCode() == KeyCode.NUMPAD3)
                 BoardConstants.getPlayer2Info().setPressedShoot(true);
+            else if (value.getCode() == KeyCode.P && !BoardConstants.isExplosionOn())
+                BoardConstants.setExplosionOn(true);
+            else if (value.getCode() == KeyCode.P)
+                BoardConstants.setExplosionOn(false);
+            else if (value.getCode() == KeyCode.N)
+                BoardConstants.getPlayer1Info().setInteract(true);
+            else if (value.getCode() == KeyCode.NUMPAD5)
+                BoardConstants.getPlayer2Info().setInteract(true);
         });
 
         gameBoardScene.setOnKeyReleased(value -> {
@@ -72,6 +80,10 @@ abstract public class BoardController {
                 BoardConstants.getPlayer2Info().setPressedGrab(false);
             else if (value.getCode() == KeyCode.NUMPAD3)
                 BoardConstants.getPlayer2Info().setPressedShoot(false);
+            else if (value.getCode() == KeyCode.N)
+                BoardConstants.getPlayer1Info().setInteract(false);
+            else if (value.getCode() == KeyCode.NUMPAD5)
+                BoardConstants.getPlayer2Info().setInteract(false);
         });
     }
 
@@ -104,14 +116,37 @@ abstract public class BoardController {
         gameBoardStage.close();
     }
 
+    public Region createNewRegion(Rectangle r) {
+
+        Region region = new Region();
+        BoardConstants.getController().addToScene(region);
+        region.setLayoutY(r.getLayoutY());
+        region.setLayoutX(r.getLayoutX());
+        region.setPrefWidth(r.getWidth());
+        region.setPrefHeight(r.getHeight());
+
+        return region;
+    }
+
+    public Region createNewRegion(Rectangle r, String style) {
+
+        Region region = createNewRegion(r);
+        region.getStyleClass().add(style);
+
+        return region;
+    }
+
+
     abstract public Player getFirstPlayer();
 
     abstract public Player getSecondPlayer();
 
-    abstract public List<BoardObject> getObstaclesList();
+    abstract public List<BoardObject> getBoardObjectsList();
 
     abstract public void addToScene(Node node);
 
     abstract public void removeNodeFromScene(Node node);
+
+    abstract public double[] getSpawnPointsForWeapons();
 
 }

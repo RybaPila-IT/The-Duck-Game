@@ -4,11 +4,13 @@ import javafx.animation.AnimationTimer;
 
 public class GameManager {
 
+    private final int DEAD_WAIT = 120;
     private final static double FRAME_DURATION = 1.0 / 90.0;
     private final static double GIGA = 1e9;
 
     private final AnimationTimer timer;
 
+    private int deadWait;
     private double frameDuration;
     private long previousTic;
 
@@ -19,6 +21,7 @@ public class GameManager {
 
     public GameManager(PlayerManager firstPlayerManager, PlayerManager secondPlayerManager) {
 
+        deadWait = 0;
         frameDuration = 0.0;
         previousTic = 0;
 
@@ -52,7 +55,11 @@ public class GameManager {
 
                     firstPlayerManager.movePlayer();
                     secondPlayerManager.movePlayer();
-                    // ExplosionGenerator.getInstance().generateExplosion();
+
+                    if (BoardConstants.isExplosionOn())
+                        ExplosionGenerator.getInstance().generateExplosion();
+
+                    BoardConstants.getWeaponRespawn().spawnWeapon();
                     tickBoardElements();
                     frameDuration = FRAME_DURATION;
                 }
@@ -60,7 +67,8 @@ public class GameManager {
                 previousTic = now;
 
                 if (firstPlayerManager.isPlayerDead() || secondPlayerManager.isPlayerDead())
-                    BoardConstants.getManager().loadNewMap();
+                    if (deadWait++ >= DEAD_WAIT)
+                        BoardConstants.getManager().loadNewMap();
 
             }
         };

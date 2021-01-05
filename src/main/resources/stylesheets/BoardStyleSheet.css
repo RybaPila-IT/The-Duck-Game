@@ -10,6 +10,18 @@
     -fx-background-color: transparent;
 }
 
+.soldier-dead {
+    -fx-background-image: url(/graphics/player_1/soldier_hurt.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
+.adventurer-dead {
+    -fx-background-image: url(/graphics/player_2/adventurer_hurt.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
 .soldier-walk-1-right {
     -fx-background-image: url(/graphics/player_1/soldier_walk1.png);
     -fx-background-repeat: no-repeat;
@@ -106,6 +118,18 @@
     -fx-fill: transparent;
 }
 
+.doors_locked {
+    -fx-background-image: url(/graphics/doors/doors_closed.png);
+    -fx-background-color: transparent;
+    -fx-fill: transparent;
+}
+
+.doors_unlocked {
+    -fx-background-image: url(/graphics/doors/doors_opened.png);
+    -fx-background-color: transparent;
+    -fx-fill: transparent;
+}
+
 
 .pane {
     -fx-background-image: url(/graphics/menu/background.jpg);
@@ -116,6 +140,13 @@
 
 .pane_vertical {
     -fx-background-image: url(/graphics/menu/vertical_background.png);
+    -fx-background-color: transparent;
+    -fx-pref-width: 825px;
+    -fx-pref-height: 1000px;
+}
+
+.pane_vertical_gif {
+    -fx-background-image: url(/graphics/menu/vertical_city.gif);
     -fx-background-color: transparent;
     -fx-pref-width: 825px;
     -fx-pref-height: 1000px;
@@ -157,75 +188,63 @@
 }
 
 .explosion_1 {
-    -fx-background-image: url(/graphics/explosion/0001.png);
-}
-
-.explosion_2 {
-    -fx-background-image: url(/graphics/explosion/0002.png);
-}
-
-.explosion_3 {
     -fx-background-image: url(/graphics/explosion/0003.png);
 }
 
-.explosion_4 {
+.explosion_2 {
     -fx-background-image: url(/graphics/explosion/0004.png);
 }
 
-.explosion_5 {
+.explosion_3 {
     -fx-background-image: url(/graphics/explosion/0005.png);
 }
 
-.explosion_6 {
+.explosion_4 {
     -fx-background-image: url(/graphics/explosion/0006.png);
 }
 
-.explosion_7 {
+.explosion_5 {
     -fx-background-image: url(/graphics/explosion/0007.png);
 }
 
-.explosion_8 {
+.explosion_6 {
     -fx-background-image: url(/graphics/explosion/0008.png);
 }
 
-.explosion_9 {
+.explosion_7 {
     -fx-background-image: url(/graphics/explosion/0009.png);
 }
 
-.explosion_10 {
+.explosion_8 {
     -fx-background-image: url(/graphics/explosion/0010.png);
 }
 
-.explosion_11 {
+.explosion_9 {
     -fx-background-image: url(/graphics/explosion/0011.png);
 }
 
-.explosion_12 {
+.explosion_10 {
     -fx-background-image: url(/graphics/explosion/0012.png);
 }
 
-.explosion_13 {
+.explosion_11 {
     -fx-background-image: url(/graphics/explosion/0013.png);
 }
 
-.explosion_14 {
+.explosion_12 {
     -fx-background-image: url(/graphics/explosion/0014.png);
 }
 
-.explosion_15 {
+.explosion_13 {
     -fx-background-image: url(/graphics/explosion/0015.png);
 }
 
-.explosion_16 {
+.explosion_14 {
     -fx-background-image: url(/graphics/explosion/0016.png);
 }
 
-.explosion_17 {
+.explosion_15 {
     -fx-background-image: url(/graphics/explosion/0017.png);
-}
-
-.explosion_18 {
-    -fx-background-image: url(/graphics/explosion/0018.png);
 }
 
 .blood_1 {

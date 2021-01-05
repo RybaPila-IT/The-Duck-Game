@@ -39,4 +39,12 @@ public class Portal extends BoardObject {
     public boolean isObjectValid() {
         return true;
     }
+
+    @Override
+    public void onBulletCollision(Bullet bullet) {
+
+        double yOffset = bullet.region.getLayoutY() - region.getLayoutY();
+        bullet.region.setX(xToTeleport);
+        bullet.region.setY(yToTeleport + yOffset);
+    }
 }

@@ -3,9 +3,11 @@ package The.Duck.Game;
 import FXMLControlers.WeaponController;
 import javafx.scene.layout.Region;
 
+import java.util.List;
+
 public class Weapon extends BoardObject {
 
-    private static final int SHOTS_AMOUNT = 400;
+    private static final int SHOTS_AMOUNT = 4;
 
     private final WeaponController controller;
 
@@ -48,11 +50,21 @@ public class Weapon extends BoardObject {
 
     public void shoot() {
 
-        if (shots > 0) {
+        if (shots > 0 && noCollision()) {
             BoardElements.getInstance().addBoardObject(new Bullet(region, isWeaponFacingRight));
             shots--;
         }
 
+    }
+
+    private boolean noCollision() {
+        List<BoardObject> collided = BoardElements.getInstance().collidedWith(region);
+
+        for (BoardObject c : collided)
+            if (!c.isTransparent())
+                return false;
+
+        return true;
     }
 
     private void setOwner(Player owner) {
@@ -68,8 +80,13 @@ public class Weapon extends BoardObject {
 
     @Override
     public void onTic() {
+
         if (hasOwner())
             followOwner();
+        else if (!isObjectValid()) {
+            controller.remove();
+            BoardConstants.getWeaponRespawn().weaponNotValid();
+        }
     }
 
     @Override
@@ -84,7 +101,11 @@ public class Weapon extends BoardObject {
 
     @Override
     public boolean isObjectValid() {
-        return true;
+        return shots > 0 || hasOwner();
+    }
+
+    @Override
+    public void onBulletCollision(Bullet bullet) {
     }
 
     public boolean equals(Object obj) {

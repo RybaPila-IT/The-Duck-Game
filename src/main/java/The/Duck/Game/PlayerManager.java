@@ -20,10 +20,18 @@ public class PlayerManager {
 
     public void movePlayer() {
 
-        playerMovement();
-        playerWeaponHandling();
-        playerShooting();
+        if (!isPlayerDead()) {
+            playerMovement();
+            playerWeaponHandling();
+            playerShooting();
+            playerExtraActions();
+        }
+
         playerModelUpdates();
+    }
+
+    private void playerExtraActions() {
+        player.setWantsToInteract(playerInfo.isInteract());
     }
 
     private void playerMovement() {
@@ -49,6 +57,7 @@ public class PlayerManager {
             readyToGrabWeapon = false;
         } else if (player.hasWeapon() && !playerInfo.isPressedGrab())
             readyToDropWeapon = true;
+
     }
 
     private void playerShooting() {
@@ -65,6 +74,7 @@ public class PlayerManager {
 
         player.setPlayerGraphic();
         player.movePlayerModel();
+
     }
 
     public boolean isPlayerDead() {

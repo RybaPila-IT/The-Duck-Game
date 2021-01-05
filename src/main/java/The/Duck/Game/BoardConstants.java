@@ -10,9 +10,11 @@ public class BoardConstants {
 
     private static double BOARD_WIDTH;
     private static double BOARD_HEIGHT;
+    private static boolean EXPLOSION_ON;
 
     private static BoardController controller;
     private static GameBoardManager manager;
+    private static WeaponRespawn weaponRespawn;
 
     private static final ButtonInfo player1Info;
     private static final ButtonInfo player2Info;
@@ -23,7 +25,7 @@ public class BoardConstants {
     private static final List<String> explosionStyles;
     private static final List<String> bloodStyles;
 
-    private static final int EXPLOSION_NUMBER = 18;
+    private static final int EXPLOSION_NUMBER = 15;
     private static final int BLOOD_NUMBER = 3;
 
     private static final String EXPLOSION_PREFIX = "explosion_";
@@ -31,19 +33,21 @@ public class BoardConstants {
 
     static {
 
+        EXPLOSION_ON = false;
+
         player1Info = new ButtonInfo();
         player2Info = new ButtonInfo();
 
         player1StyleClass = new ArrayList<>(
                 Arrays.asList("soldier-jump-right", "soldier-jump-left", "soldier-walk-1-right",
                         "soldier-walk-2-right", "soldier-walk-1-left", "soldier-walk-2-left",
-                        "soldier-stand")
+                        "soldier-stand", "soldier-dead")
         );
 
         player2StyleClass = new ArrayList<>(
                 Arrays.asList("adventurer-jump-right", "adventurer-jump-left", "adventurer-walk-1-right",
                         "adventurer-walk-2-right", "adventurer-walk-1-left", "adventurer-walk-2-left",
-                        "adventurer-stand")
+                        "adventurer-stand", "adventurer-dead")
         );
 
         explosionStyles = new ArrayList<>();
@@ -83,6 +87,22 @@ public class BoardConstants {
         return player1Info;
     }
 
+    public static boolean isExplosionOn() {
+        return EXPLOSION_ON;
+    }
+
+    public static void setExplosionOn(boolean explosionOn) {
+        EXPLOSION_ON = explosionOn;
+    }
+
+    public static WeaponRespawn getWeaponRespawn() {
+        return weaponRespawn;
+    }
+
+    public static void setWeaponRespawn(WeaponRespawn weaponRespawn) {
+        BoardConstants.weaponRespawn = weaponRespawn;
+    }
+
     public static ButtonInfo getPlayer2Info() {
         return player2Info;
     }
@@ -109,5 +129,13 @@ public class BoardConstants {
 
     public static void setBoardHeight(double boardHeight) {
         BOARD_HEIGHT = boardHeight;
+    }
+
+    public static void clear() {
+        BOARD_HEIGHT = 0;
+        BOARD_WIDTH = 0;
+        EXPLOSION_ON = false;
+        player1Info.clear();
+        player2Info.clear();
     }
 }

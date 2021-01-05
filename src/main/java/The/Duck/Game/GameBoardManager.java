@@ -14,7 +14,7 @@ public class GameBoardManager {
 
     static {
         GAME_BOARDS = new ArrayList<>(
-                Arrays.asList("/TheShootingGameBoard1.fxml", "/TheShootingGameBoard2.fxml")
+                Arrays.asList("/TheShootingGameBoard1.fxml", "/TheShootingGameBoard2.fxml", "/TheShootingGameBoard3.fxml")
         );
     }
 
@@ -65,13 +65,20 @@ public class GameBoardManager {
 
             gameManager = new GameManager(firstPlayerManager, secondPlayerManager);
 
+            BoardConstants.setWeaponRespawn(new WeaponRespawn(controller.getSpawnPointsForWeapons()));
+
             // Setting BoardObstacles singleton value.
-            BoardElements.getInstance().setBoardObjectsList(controller.getObstaclesList());
+            BoardElements.getInstance().setBoardObjectsList(controller.getBoardObjectsList());
 
         } catch (IOException e) {
             System.err.println("GameBoardManager error. Unable to load FXML file with board layout");
             e.printStackTrace();
         }
+    }
+
+    private void clearBoardConstants() {
+        BoardConstants.clear();
+        ExplosionGenerator.getInstance().clear();
     }
 
     private boolean isMapLeft() {
@@ -87,6 +94,7 @@ public class GameBoardManager {
             if (existsBoard())
                 endGameBoard();
 
+            clearBoardConstants();
             loadNewDataForMap();
             startGameBoard();
         }

@@ -1,18 +1,20 @@
 package The.Duck.Game;
 
-import FXMLControlers.BulletController;
+import FXMLControlers.BasicController;
+import javafx.scene.layout.Region;
 
 import java.util.List;
 
 public class Bullet extends BoardObject {
 
+    private static final String BULLET_STYLE = "bullet";
     private static final double BULLET_WIDTH = 16;
     private static final double BULLET_HEIGHT = 16;
     private static final double BULLET_SPEED = 40;
     private static final int ON_OBSTACLE = 10;
     private static final int ON_PLAYER = 3;
 
-    private final BulletController controller;
+    private final BasicController controller;
     private final boolean isBulletFacingRight;
 
     private boolean onObstacle;
@@ -26,11 +28,19 @@ public class Bullet extends BoardObject {
         isBulletFacingRight = isWeaponFacingRight;
         onObstacle = false;
         onObstacleWait = ON_OBSTACLE;
-        controller = new BulletController(region);
+        controller = new BasicController(BoardConstants.getController().createNewRegion(region, BULLET_STYLE));
     }
 
     private void changeBulletPosition() {
         region.addHorizontally(isBulletFacingRight ? BULLET_SPEED : -BULLET_SPEED);
+    }
+
+    public void setOnObstacle(boolean onObstacle) {
+        this.onObstacle = onObstacle;
+    }
+
+    public boolean isBulletFacingRight() {
+        return isBulletFacingRight;
     }
 
     private void handleObstacleCollision() {
@@ -38,14 +48,12 @@ public class Bullet extends BoardObject {
         List<BoardObject> objects = BoardElements.getInstance().collidedWith(region);
 
         for (BoardObject object : objects)
-            if (object.isBulletProof()) {
-                region.setX(isBulletFacingRight ? object.getLayoutX() - 16 : object.getSecondX());
-                onObstacle = true;
-            }
+            object.onBulletCollision(this);
 
     }
 
     private void informControllerAboutPosition() {
+        controller.setLayoutY(region.getLayoutY());
         controller.setLayoutX(region.getLayoutX());
     }
 
@@ -70,7 +78,7 @@ public class Bullet extends BoardObject {
     }
 
     public void removeBulletFromScene() {
-        controller.removeBullet();
+        controller.remove();
     }
 
     @Override
@@ -87,7 +95,10 @@ public class Bullet extends BoardObject {
     public void onPlayerCollision(Player player) {
 
         if (!onObstacle) {
-            player.decreaseHealth();
+
+            if (!player.isDead())
+                player.decreaseHealth();
+
             region.setX(player.getRegion().getLayoutX() + 15);
             onObstacle = true;
             onObstacleWait = ON_PLAYER;
@@ -100,6 +111,10 @@ public class Bullet extends BoardObject {
     @Override
     public boolean isObjectValid() {
         return !outsideBoard();
+    }
+
+    @Override
+    public void onBulletCollision(Bullet bullet) {
     }
 
     public boolean equals(Object obj) {

@@ -23,6 +23,7 @@ public class Player {
     private final Rectangle playerModel;
     private final PlayerController controller;
 
+    private boolean wantsToInteract;
     private boolean isPlayerFacedRight;
     private boolean wantsToGrabWeapon;
     private double horizontalSpeed;
@@ -35,6 +36,7 @@ public class Player {
     public Player(Region playerModel, List<String> styleClass, List<Node> health) {
         this.controller = new PlayerController(playerModel, styleClass, health);
         this.wantsToGrabWeapon = false;
+        this.wantsToInteract = false;
         this.horizontalSpeed = 0;
         this.verticalSpeed = 0;
         this.health = INITIAL_HEALTH;
@@ -78,6 +80,14 @@ public class Player {
         dealWithCollisions();
         changePlayerSpeed();
         orderController();
+    }
+
+    public boolean wantsToInteract() {
+        return wantsToInteract;
+    }
+
+    public void setWantsToInteract(boolean wantsToInteract) {
+        this.wantsToInteract = wantsToInteract;
     }
 
     public boolean isPlayerFacedRight() {

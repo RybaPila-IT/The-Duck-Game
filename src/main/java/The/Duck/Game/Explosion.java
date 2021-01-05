@@ -25,14 +25,20 @@ public class Explosion extends SimpleAnimation {
         if (nextAnimation != null)
             controller.setNewAnimation(nextAnimation);
         else {
-            controller.removeAnimation();
+            controller.remove();
             ExplosionGenerator.getInstance().explosionEnded();
         }
     }
 
     @Override
     public void onPlayerCollision(Player player) {
-        System.out.println("Explosion and player collision");
+        while (!player.isDead())
+            player.decreaseHealth();
+    }
+
+    @Override
+    public void onBulletCollision(Bullet bullet) {
+
     }
 
 }

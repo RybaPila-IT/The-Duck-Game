@@ -31,12 +31,16 @@ public class Obstacle extends BoardObject {
     }
 
     @Override
-    public boolean isBulletProof() {
-        return true;
+    public void onBulletCollision(Bullet bullet) {
+
+        bullet.region.setX(bullet.isBulletFacingRight() ? region.getLayoutX() - 16 : region.getSecondX());
+        bullet.setOnObstacle(true);
+
     }
 
-    public Rectangle getObstacleRegion() {
-        return region;
+    @Override
+    public boolean isTransparent() {
+        return false;
     }
 
     private void horizontalPlayerCollision(Player player) {
