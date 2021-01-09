@@ -23,10 +23,12 @@ public class GameBoardManager {
     private GameManager gameManager;
     private BoardController controller;
 
+    private boolean single;
     private int boardIdx;
 
-    public GameBoardManager(MainMenuManager callingManager) {
+    public GameBoardManager(MainMenuManager callingManager, boolean single) {
 
+        this.single = single;
         this.boardIdx = 0;
         this.callingManager = callingManager;
 
@@ -63,7 +65,8 @@ public class GameBoardManager {
             PlayerManager firstPlayerManager = new PlayerManager(controller.getFirstPlayer(), BoardConstants.getPlayer1Info());
             PlayerManager secondPlayerManager = new PlayerManager(controller.getSecondPlayer(), BoardConstants.getPlayer2Info());
 
-            gameManager = new GameManager(firstPlayerManager, secondPlayerManager);
+            Bot gameBot = single ? null : controller.getBoardBot();
+            gameManager = new GameManager(firstPlayerManager, secondPlayerManager, gameBot);
 
             BoardConstants.setWeaponRespawn(new WeaponRespawn(controller.getSpawnPointsForWeapons()));
 

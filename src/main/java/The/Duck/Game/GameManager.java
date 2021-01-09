@@ -19,7 +19,7 @@ public class GameManager {
     //private boolean arrayFilled = false ;
 
 
-    public GameManager(PlayerManager firstPlayerManager, PlayerManager secondPlayerManager) {
+    public GameManager(PlayerManager firstPlayerManager, PlayerManager secondPlayerManager, Bot bot) {
 
         deadWait = 0;
         frameDuration = 0.0;
@@ -52,6 +52,8 @@ public class GameManager {
                         System.out.println(String.format("Current frame rate: %.3f", frameRate));
                     } */
 
+                    if (bot != null)
+                        bot.controlOnTic();
 
                     firstPlayerManager.movePlayer();
                     secondPlayerManager.movePlayer();

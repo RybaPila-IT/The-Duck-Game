@@ -40,9 +40,9 @@ public class MainMenuManager {
         controller.showMainMenu();
     }
 
-    public void startNewGame() {
+    public void startNewGame(boolean single) {
         controller.hideMainMenu();
-        GameBoardManager boardManager = new GameBoardManager(this);
+        GameBoardManager boardManager = new GameBoardManager(this, single);
     }
 
     public void decideCreditsSliding() {

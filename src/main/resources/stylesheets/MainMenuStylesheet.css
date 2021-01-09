@@ -10,7 +10,7 @@
     -fx-pref-width: 190px;
     -fx-background-repeat: no-repeat;
     -fx-font-family: "kenvector future thin regular";
-    -fx-font-size: 23;
+    -fx-font-size: 18;
 }
 
 .button:pressed {
@@ -20,7 +20,7 @@
     -fx-pref-width: 190px;
     -fx-background-repeat: no-repeat;
     -fx-font-family: "kenvector future thin regular";
-    -fx-font-size: 23;
+    -fx-font-size: 18;
 }
 
 .pane {

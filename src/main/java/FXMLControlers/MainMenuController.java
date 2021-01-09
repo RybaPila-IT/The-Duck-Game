@@ -21,7 +21,9 @@ public class MainMenuController {
     private static final int HOW_TO_PLAY_DEST_Y = 1284;
 
     @FXML
-    private Button NewGameB;
+    private Button NewGameBMulti;
+    @FXML
+    private Button NewGameBSingle;
     @FXML
     private Button QuitB;
     @FXML
@@ -46,7 +48,8 @@ public class MainMenuController {
 
         setCreditsButton();
         setQuitButton();
-        setNewGameButton();
+        setNewGameButtonSingle();
+        setNewGameButtonMulti();
         setHowToPlayButton();
 
         mainMenuStage = new Stage();
@@ -98,8 +101,12 @@ public class MainMenuController {
         QuitB.setOnMouseClicked(value -> mainMenuStage.close());
     }
 
-    private void setNewGameButton() {
-        NewGameB.setOnMouseClicked(value -> manager.startNewGame());
+    private void setNewGameButtonSingle() {
+        NewGameBSingle.setOnMouseClicked(value -> manager.startNewGame(true));
+    }
+
+    private void setNewGameButtonMulti() {
+        NewGameBMulti.setOnMouseClicked(value -> manager.startNewGame(false));
     }
 
     private void setHowToPlayButton() {

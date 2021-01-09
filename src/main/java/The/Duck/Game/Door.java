@@ -5,7 +5,7 @@ import javafx.scene.layout.Region;
 
 public class Door extends BoardObject {
 
-    private static final int INITIAL_HEALTH = 5;
+    private static final int INITIAL_HEALTH = 4;
 
     private final DoorController controller;
 

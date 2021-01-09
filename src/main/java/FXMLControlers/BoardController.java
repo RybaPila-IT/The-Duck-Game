@@ -136,6 +136,7 @@ abstract public class BoardController {
         return region;
     }
 
+    abstract public Bot getBoardBot();
 
     abstract public Player getFirstPlayer();
 
