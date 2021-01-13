@@ -1,0 +1,49 @@
+@font-face {
+    src: url(/Graphics/board/kenvector_future_thin.ttf);
+}
+
+
+.button {
+    -fx-background-image: url(grey_button00.png);
+    -fx-background-color: transparent;
+    -fx-pref-height: 49px;
+    -fx-pref-width: 190px;
+    -fx-background-repeat: no-repeat;
+    -fx-font-family: "kenvector future thin regular";
+    -fx-font-size: 19;
+}
+
+.button:pressed {
+    -fx-background-image: url(/Graphics/board/grey_button01.png);
+    -fx-background-color: transparent;
+    -fx-pref-height: 45px;
+    -fx-pref-width: 190px;
+    -fx-background-repeat: no-repeat;
+    -fx-font-family: "kenvector future thin regular";
+    -fx-font-size: 19;
+}
+
+.pane {
+
+    -fx-background-image: url(/Graphics/board/background.jpg);
+    -fx-background-color: transparent;
+    -fx-pref-width: 1440px;
+    -fx-pref-height: 811px;
+}
+
+.anchor {
+    -fx-background-color: rgba(0, 0, 0, 0.6);
+    -fx-background-repeat: no-repeat;
+}
+
+.label-red {
+    -fx-text-fill: red;
+    -fx-font-family: "kenvector future thin regular";
+    -fx-alignment: center;
+}
+
+.label-white {
+    -fx-text-fill: white;
+    -fx-font-family: "kenvector future thin regular";
+    -fx-alignment: center;
+}

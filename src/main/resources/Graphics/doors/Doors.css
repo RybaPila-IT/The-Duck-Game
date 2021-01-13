@@ -1,0 +1,11 @@
+.doors_locked {
+    -fx-background-image: url(/Graphics/doors/doors_closed.png);
+    -fx-background-color: transparent;
+    -fx-fill: transparent;
+}
+
+.doors_unlocked {
+    -fx-background-image: url(/Graphics/doors/doors_opened.png);
+    -fx-background-color: transparent;
+    -fx-fill: transparent;
+}

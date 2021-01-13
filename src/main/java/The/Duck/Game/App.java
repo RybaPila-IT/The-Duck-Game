@@ -3,6 +3,7 @@
  */
 package The.Duck.Game;
 
+import The.Duck.Game.GameManagers.MainMenuManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
