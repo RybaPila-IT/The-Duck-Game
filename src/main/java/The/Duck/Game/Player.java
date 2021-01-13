@@ -26,9 +26,9 @@ public class Player {
     private boolean wantsToInteract;
     private boolean isPlayerFacedRight;
     private boolean wantsToGrabWeapon;
+    private boolean jumping;
     private double horizontalSpeed;
     private double verticalSpeed;
-    private boolean jumping;
     private int health;
 
     private Weapon weapon;

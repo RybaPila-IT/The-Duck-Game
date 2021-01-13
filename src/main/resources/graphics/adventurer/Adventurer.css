@@ -1,0 +1,47 @@
+.adventurer-stand {
+    -fx-background-image: url(/graphics/adventurer/adventurer_stand.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
+.adventurer-dead {
+    -fx-background-image: url(/graphics/adventurer/adventurer_hurt.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
+.adventurer-walk-1-right {
+    -fx-background-image: url(/graphics/adventurer/adventurer_walk1.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
+.adventurer-walk-2-right {
+    -fx-background-image: url(/graphics/adventurer/adventurer_walk2.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
+.adventurer-walk-1-left {
+    -fx-background-image: url(/graphics/adventurer/adventurer_walk_1_left.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
+.adventurer-walk-2-left {
+    -fx-background-image: url(/graphics/adventurer/adventurer_walk_2_left.png.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
+.adventurer-jump-right {
+    -fx-background-image: url(/graphics/adventurer/adventurer_jump.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
+.adventurer-jump-left {
+    -fx-background-image: url(/graphics/adventurer/adventurer_jump_left.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}

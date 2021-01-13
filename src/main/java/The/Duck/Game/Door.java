@@ -3,7 +3,7 @@ package The.Duck.Game;
 import FXMLControlers.DoorController;
 import javafx.scene.layout.Region;
 
-public class Door extends BoardObject {
+public class Door extends BoardObject implements BulletCollisionSensitive {
 
     private static final int INITIAL_HEALTH = 4;
 
@@ -26,7 +26,7 @@ public class Door extends BoardObject {
     @Override
     public void onTic() {
 
-        if (!isObjectValid())
+        if (!isValid())
             controller.remove();
 
     }
@@ -51,7 +51,7 @@ public class Door extends BoardObject {
     }
 
     @Override
-    public boolean isObjectValid() {
+    public boolean isValid() {
         return health > 0;
     }
 

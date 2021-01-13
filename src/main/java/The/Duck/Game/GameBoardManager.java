@@ -10,6 +10,7 @@ import java.util.List;
 
 public class GameBoardManager {
 
+
     private static final List<String> GAME_BOARDS;
 
     static {
@@ -65,7 +66,7 @@ public class GameBoardManager {
             PlayerManager firstPlayerManager = new PlayerManager(controller.getFirstPlayer(), BoardConstants.getPlayer1Info());
             PlayerManager secondPlayerManager = new PlayerManager(controller.getSecondPlayer(), BoardConstants.getPlayer2Info());
 
-            Bot gameBot = single ? null : controller.getBoardBot();
+            Bot gameBot = single ? controller.getBoardBot() : null;
             gameManager = new GameManager(firstPlayerManager, secondPlayerManager, gameBot);
 
             BoardConstants.setWeaponRespawn(new WeaponRespawn(controller.getSpawnPointsForWeapons()));

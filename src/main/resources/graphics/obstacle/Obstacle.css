@@ -1,0 +1,11 @@
+.obstacle_brick {
+    -fx-background-image: url(/graphics/obstacle/grey_bricks.png);
+    -fx-background-color: transparent;
+    -fx-fill: transparent;
+}
+
+.obstacle_rod {
+    -fx-background-image: url(/graphics/obstacle/pattern16.png);
+    -fx-background-color: transparent;
+    -fx-fill: transparent;
+}

@@ -48,7 +48,10 @@ public class Bullet extends BoardObject {
         List<BoardObject> objects = BoardElements.getInstance().collidedWith(region);
 
         for (BoardObject object : objects)
-            object.onBulletCollision(this);
+            if (object instanceof BulletCollisionSensitive) {
+                BulletCollisionSensitive collided = (BulletCollisionSensitive) object;
+                collided.onBulletCollision(this);
+            }
 
     }
 
@@ -109,12 +112,8 @@ public class Bullet extends BoardObject {
     }
 
     @Override
-    public boolean isObjectValid() {
+    public boolean isValid() {
         return !outsideBoard();
-    }
-
-    @Override
-    public void onBulletCollision(Bullet bullet) {
     }
 
     public boolean equals(Object obj) {

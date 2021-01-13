@@ -46,12 +46,8 @@ public class Jumper extends BoardObject {
     }
 
     @Override
-    public boolean isObjectValid() {
+    public boolean isValid() {
         return true;
     }
 
-    @Override
-    public void onBulletCollision(Bullet bullet) {
-
-    }
 }

@@ -36,9 +36,4 @@ public class Explosion extends SimpleAnimation {
             player.decreaseHealth();
     }
 
-    @Override
-    public void onBulletCollision(Bullet bullet) {
-
-    }
-
 }

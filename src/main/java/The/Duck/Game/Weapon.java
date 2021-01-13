@@ -83,7 +83,7 @@ public class Weapon extends BoardObject {
 
         if (hasOwner())
             followOwner();
-        else if (!isObjectValid()) {
+        else if (!isValid()) {
             controller.remove();
             BoardConstants.getWeaponRespawn().weaponNotValid();
         }
@@ -100,12 +100,8 @@ public class Weapon extends BoardObject {
     }
 
     @Override
-    public boolean isObjectValid() {
+    public boolean isValid() {
         return shots > 0 || hasOwner();
-    }
-
-    @Override
-    public void onBulletCollision(Bullet bullet) {
     }
 
     public boolean equals(Object obj) {

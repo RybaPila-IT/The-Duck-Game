@@ -1,0 +1,13 @@
+.jumper_green {
+    -fx-background-image: url(/graphics/jumper/green_jump.png);
+    -fx-background-color: transparent;
+    -fx-pref-height: 21px;
+    -fx-pref-width: 14px;
+}
+
+.jumper_red {
+    -fx-background-image: url(/graphics/jumper/red_jump.png);
+    -fx-background-color: transparent;
+    -fx-pref-height: 21px;
+    -fx-pref-width: 14px;
+}

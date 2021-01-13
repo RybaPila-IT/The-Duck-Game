@@ -48,7 +48,7 @@ public abstract class SimpleAnimation extends BoardObject {
     }
 
     @Override
-    public boolean isObjectValid() {
+    public boolean isValid() {
         return isAnimationValid();
     }
 

@@ -4,8 +4,9 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.shape.Rectangle?>
 
+<?import java.net.URL?>
 <AnchorPane fx:id="GameBoardPane" prefHeight="1000.0" prefWidth="825.0" styleClass="pane_vertical_gif"
-            stylesheets="@stylesheets/BoardStyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLControlers.ThirdBoardController">
    <Region fx:id="PlayerModel1" layoutY="890.0" prefHeight="110.0" prefWidth="80.0" styleClass="soldier-stand"/>
    <Region fx:id="PlayerModel2" layoutX="745.0" layoutY="890.0" prefHeight="110.0" prefWidth="80.0"
@@ -52,14 +53,26 @@
            styleClass="obstacle_brick"/>
    <Region fx:id="Obstacle31" layoutX="473.0" layoutY="777.0" prefHeight="42.0" prefWidth="84.0"
            styleClass="obstacle_brick"/>
-   <Region fx:id="Obstacle32" layoutX="741.0" layoutY="325.0" prefHeight="42.0" prefWidth="84.0"
-           styleClass="obstacle_brick"/>
-   <Region fx:id="Obstacle33" layoutX="515.0" layoutY="494.0" prefHeight="42.0" prefWidth="210.0"
-           styleClass="obstacle_brick"/>
-   <Region fx:id="Obstacle22" layoutX="557.0" layoutY="536.0" prefHeight="294.0" prefWidth="42.0"
-           styleClass="obstacle_brick"/>
-   <Region fx:id="Obstacle331" layoutX="-2.0" layoutY="205.0" prefHeight="42.0" prefWidth="84.0"
-           styleClass="obstacle_brick"/>
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="42.0" layoutX="-2.0" layoutY="205.0"
-              stroke="BLACK" strokeType="INSIDE" styleClass="obstacle_rod" width="84.0"/>
+    <Region fx:id="Obstacle32" layoutX="741.0" layoutY="325.0" prefHeight="42.0" prefWidth="84.0"
+            styleClass="obstacle_brick"/>
+    <Region fx:id="Obstacle33" layoutX="515.0" layoutY="494.0" prefHeight="42.0" prefWidth="210.0"
+            styleClass="obstacle_brick"/>
+    <Region fx:id="Obstacle22" layoutX="557.0" layoutY="536.0" prefHeight="294.0" prefWidth="42.0"
+            styleClass="obstacle_brick"/>
+    <Region fx:id="Obstacle331" layoutX="-2.0" layoutY="205.0" prefHeight="42.0" prefWidth="84.0"
+            styleClass="obstacle_brick"/>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="42.0" layoutX="-2.0" layoutY="205.0"
+               stroke="BLACK" strokeType="INSIDE" styleClass="obstacle_rod" width="84.0"/>
+    <stylesheets>
+        <URL value="@graphics/board/Board.css"/>
+        <URL value="@graphics/blood/Blood.css"/>
+        <URL value="@graphics/explosion/Explosion.css"/>
+        <URL value="@graphics/doors/Doors.css"/>
+        <URL value="@graphics/jumper/Jumper.css"/>
+        <URL value="@graphics/portal/Portal.css"/>
+        <URL value="@graphics/soldier/Soldier.css"/>
+        <URL value="@graphics/adventurer/Adventurer.css"/>
+        <URL value="@graphics/weapon/Weapon.css"/>
+        <URL value="@graphics/obstacle/Obstacle.css"/>
+    </stylesheets>
 </AnchorPane>

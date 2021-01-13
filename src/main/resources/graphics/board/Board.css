@@ -1,0 +1,25 @@
+.pane {
+    -fx-background-image: url(/graphics/board/background.jpg);
+    -fx-background-color: transparent;
+    -fx-pref-width: 1440px;
+    -fx-pref-height: 811px;
+}
+
+.pane_vertical {
+    -fx-background-image: url(/graphics/board/vertical_background.png);
+    -fx-background-color: transparent;
+    -fx-pref-width: 825px;
+    -fx-pref-height: 1000px;
+}
+
+.pane_vertical_gif {
+    -fx-background-image: url(/graphics/board/vertical_city.gif);
+    -fx-background-color: transparent;
+    -fx-pref-width: 825px;
+    -fx-pref-height: 1000px;
+}
+
+.heart {
+    -fx-background-image: url(/graphics/board/heart.png);
+}
+

@@ -1,6 +1,6 @@
 package The.Duck.Game;
 
-public abstract class BoardObject {
+public abstract class BoardObject implements TickResponsive, PlayerCollisionSensitive {
 
     protected final Rectangle region;
 
@@ -20,7 +20,5 @@ public abstract class BoardObject {
 
     public abstract void onPlayerCollision(Player player);
 
-    public abstract boolean isObjectValid();
-
-    public abstract void onBulletCollision(Bullet bullet);
+    public abstract boolean isValid();
 }

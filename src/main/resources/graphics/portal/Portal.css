@@ -1,0 +1,11 @@
+.portal_left {
+    -fx-background-image: url(/graphics/portal/portal_left.gif);
+    -fx-background-color: transparent;
+    -fx-fill: transparent;
+}
+
+.portal_right {
+    -fx-background-image: url(/graphics/portal/portal_right.gif);
+    -fx-background-color: transparent;
+    -fx-fill: transparent;
+}

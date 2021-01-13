@@ -1,0 +1,20 @@
+.weapon_right {
+    -fx-background-image: url(/graphics/weapon/weapon_face_right.png);
+    -fx-background-color: transparent;
+    -fx-pref-height: 47px;
+    -fx-pref-width: 70px;
+}
+
+.weapon_left {
+    -fx-background-image: url(/graphics/weapon/weapon_face_left.png);
+    -fx-background-color: transparent;
+    -fx-pref-height: 47px;
+    -fx-pref-width: 70px;
+}
+
+.bullet {
+    -fx-background-image: url(/graphics/weapon/bullet.png);
+    -fx-background-color: transparent;
+    -fx-pref-height: 16px;
+    -fx-pref-width: 16px;
+}

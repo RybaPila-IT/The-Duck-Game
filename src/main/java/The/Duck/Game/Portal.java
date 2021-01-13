@@ -2,7 +2,7 @@ package The.Duck.Game;
 
 import javafx.scene.layout.Region;
 
-public class Portal extends BoardObject {
+public class Portal extends BoardObject implements BulletCollisionSensitive {
 
     private final double xToTeleport;
     private final double yToTeleport;
@@ -36,7 +36,7 @@ public class Portal extends BoardObject {
     }
 
     @Override
-    public boolean isObjectValid() {
+    public boolean isValid() {
         return true;
     }
 

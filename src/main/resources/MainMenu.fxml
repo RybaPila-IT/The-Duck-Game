@@ -5,18 +5,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane fx:id="MainPane" prefHeight="811.0" prefWidth="1440.0" scaleShape="false" styleClass="pane"
-            stylesheets="@stylesheets/MainMenuStylesheet.css" xmlns="http://javafx.com/javafx/11.0.1"
+            stylesheets="@graphics/board/MainMenu.css" xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLControlers.MainMenuController">
     <Button fx:id="NewGameBMulti" layoutX="52.0" layoutY="279.0" mnemonicParsing="false"
-            stylesheets="@stylesheets/MainMenuStylesheet.css" text="Multi Player"/>
+            stylesheets="@graphics/board/MainMenu.css" text="Multi Player"/>
     <Button fx:id="NewGameBSingle" layoutX="52.0" layoutY="378.0" mnemonicParsing="false" prefHeight="49.0"
-            prefWidth="190.0" stylesheets="@stylesheets/MainMenuStylesheet.css" text="Single Player"/>
+            prefWidth="190.0" stylesheets="@graphics/board/MainMenu.css" text="Single Player"/>
     <Button fx:id="QuitB" layoutX="52.0" layoutY="675.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="190.0"
-            stylesheets="@stylesheets/MainMenuStylesheet.css" text="Quit"/>
+            stylesheets="@graphics/board/MainMenu.css" text="Quit"/>
     <Button fx:id="CreditsB" layoutX="52.0" layoutY="477.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="190.0"
-            stylesheets="@stylesheets/MainMenuStylesheet.css" text="Credits"/>
+            stylesheets="@graphics/board/MainMenu.css" text="Credits"/>
     <AnchorPane fx:id="CreditsPane" layoutX="826.0" layoutY="-800.0" prefHeight="600.0" prefWidth="400.0"
-                styleClass="anchor" stylesheets="@stylesheets/MainMenuStylesheet.css">
+                styleClass="anchor" stylesheets="@graphics/board/MainMenu.css">
         <Label layoutX="100.0" layoutY="90.0" style="-fx-font-size: 33;" styleClass="label-red" text="Created by"/>
         <Label layoutX="100.0" layoutY="180.0" style="-fx-font-size: 38;" styleClass="label-white" text="Radoslaw"/>
         <Label layoutX="50.0" layoutY="270.0" style="-fx-font-size: 38;" styleClass="label-white" text="Radziukiewicz"/>
@@ -24,7 +24,7 @@
     <Button fx:id="HowToPlayB" layoutX="52.0" layoutY="576.0" mnemonicParsing="false" prefHeight="49.0"
             prefWidth="190.0" text="How To Play"/>
     <AnchorPane fx:id="HowToPlayPane" layoutX="826.0" layoutY="-1200.0" prefHeight="600.0" prefWidth="400.0"
-                styleClass="anchor" stylesheets="@stylesheets/MainMenuStylesheet.css">
+                styleClass="anchor" stylesheets="@graphics/board/MainMenu.css">
         <Label layoutX="130.0" layoutY="90.0" style="-fx-font-size: 33;" styleClass="label-red" text="Target"/>
         <Label layoutX="100.0" layoutY="130.0" style="-fx-font-size: 22;" styleClass="label-white"
                text="Kill the enemy"/>

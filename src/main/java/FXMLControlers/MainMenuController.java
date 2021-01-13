@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -13,6 +14,7 @@ import javafx.util.Duration;
 public class MainMenuController {
 
     private static final String GAME_NAME = "The Shooting Game";
+    private static final String ICON_PATH = "/graphics/weapon/weapon_2_face_left.png";
 
     private final static double DURATION = 1.0;
     private static final int CREDITS_BEG_Y = -800;
@@ -57,13 +59,21 @@ public class MainMenuController {
         mainMenuStage.setScene(new Scene(MainPane));
         mainMenuStage.setTitle(GAME_NAME);
         mainMenuStage.setResizable(false);
+
+        setIcon();
     }
 
     public void setManager(MainMenuManager manager) {
         this.manager = manager;
     }
 
+
+    private void setIcon() {
+        mainMenuStage.getIcons().add(new Image(ICON_PATH));
+    }
+
     private TranslateTransition getTransition(Node node, int dest) {
+
         TranslateTransition transition = new TranslateTransition();
         transition.setDuration(Duration.seconds(DURATION));
         transition.setNode(node);

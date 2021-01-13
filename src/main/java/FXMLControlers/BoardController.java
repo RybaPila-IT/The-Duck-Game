@@ -3,6 +3,7 @@ package FXMLControlers;
 import The.Duck.Game.*;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
@@ -13,6 +14,7 @@ import java.util.List;
 abstract public class BoardController {
 
     private final static String GAME_NAME = "The Shooting Game";
+    private static final String ICON_PATH = "/graphics/weapon/weapon_2_face_left.png";
 
     private Scene gameBoardScene;
     private Stage gameBoardStage;
@@ -87,15 +89,20 @@ abstract public class BoardController {
         });
     }
 
+    private void customizeGameStage() {
+
+        gameBoardStage.setScene(gameBoardScene);
+        gameBoardStage.setResizable(false);
+        gameBoardStage.setTitle(GAME_NAME);
+        gameBoardStage.getIcons().add(new Image(ICON_PATH));
+    }
+
     protected void makeInit(AnchorPane pane) {
 
         gameBoardScene = new Scene(pane);
         gameBoardStage = new Stage();
 
-        gameBoardStage.setScene(gameBoardScene);
-        gameBoardStage.setResizable(false);
-        gameBoardStage.setTitle(GAME_NAME);
-
+        customizeGameStage();
         setStageOnClose();
         setSceneOnMouseEvents();
 

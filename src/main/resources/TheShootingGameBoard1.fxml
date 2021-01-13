@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.shape.Rectangle?>
 
 <AnchorPane fx:id="gameBoardPane" prefHeight="811.0" prefWidth="1440.0" styleClass="pane"
-            stylesheets="@stylesheets/BoardStyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLControlers.FirstBoardController">
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="FXMLControlers.FirstBoardController">
     <children>
         <Region fx:id="playerModel1" layoutX="7.0" layoutY="701.0" prefHeight="110.0" prefWidth="80.0"
-                styleClass="soldier-stand" stylesheets="@stylesheets/BoardStyleSheet.css"/>
+                styleClass="soldier-stand" stylesheets="@graphics/board/Board.css"/>
         <Region fx:id="playerModel2" layoutX="825.0" layoutY="701.0" prefHeight="110.0" prefWidth="80.0"
                 styleClass="adventurer-stand"/>
         <Region fx:id="Obstacle1" layoutY="550.0" prefHeight="44.0" prefWidth="220.0" styleClass="obstacle_brick"/>
@@ -22,7 +23,7 @@
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="45.0" layoutX="427.0" layoutY="635.0"
                    stroke="BLACK" strokeType="INSIDE" styleClass="obstacle_brick" width="222.0"/>
         <Region fx:id="Obstacle3" layoutX="427.0" layoutY="635.0" prefHeight="44.0" prefWidth="220.0"
-                styleClass="obstacle_brick" stylesheets="@stylesheets/BoardStyleSheet.css"/>
+                styleClass="obstacle_brick" stylesheets="@graphics/board/Board.css"/>
         <Region fx:id="Obstacle4" layoutX="1000.0" layoutY="591.0" prefHeight="220.0" prefWidth="44.0"
                 styleClass="obstacle_brick"/>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="220.0" layoutX="1000.0" layoutY="590.0"
@@ -42,4 +43,16 @@
         <Region fx:id="player2_heart2" layoutX="1380.0" prefHeight="30.0" prefWidth="30.0" styleClass="heart"/>
         <Region fx:id="player2_heart3" layoutX="1350.0" prefHeight="30.0" prefWidth="30.0" styleClass="heart"/>
     </children>
+    <stylesheets>
+        <URL value="@graphics/board/Board.css"/>
+        <URL value="@graphics/blood/Blood.css"/>
+        <URL value="@graphics/explosion/Explosion.css"/>
+        <URL value="@graphics/doors/Doors.css"/>
+        <URL value="@graphics/jumper/Jumper.css"/>
+        <URL value="@graphics/portal/Portal.css"/>
+        <URL value="@graphics/soldier/Soldier.css"/>
+        <URL value="@graphics/adventurer/Adventurer.css"/>
+        <URL value="@graphics/weapon/Weapon.css"/>
+        <URL value="@graphics/obstacle/Obstacle.css"/>
+    </stylesheets>
 </AnchorPane>

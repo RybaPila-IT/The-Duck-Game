@@ -41,7 +41,7 @@ public class BoardElements {
 
         for (BoardObject o : boardObjects) {
             o.onTic();
-            if (!o.isObjectValid())
+            if (!o.isValid())
                 invalid.add(o);
         }
 

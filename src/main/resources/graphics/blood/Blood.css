@@ -1,0 +1,11 @@
+.blood_1 {
+    -fx-background-image: url(/graphics/blood/blood_1.png);
+}
+
+.blood_2 {
+    -fx-background-image: url(/graphics/blood/blood_2.png);
+}
+
+.blood_3 {
+    -fx-background-image: url(/graphics/blood/blood_3.png);
+}

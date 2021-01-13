@@ -2,7 +2,7 @@ package The.Duck.Game;
 
 import javafx.scene.layout.Region;
 
-public class Obstacle extends BoardObject {
+public class Obstacle extends BoardObject implements BulletCollisionSensitive {
 
 
     public Obstacle(Region region) {
@@ -26,7 +26,7 @@ public class Obstacle extends BoardObject {
     }
 
     @Override
-    public boolean isObjectValid() {
+    public boolean isValid() {
         return true;
     }
 

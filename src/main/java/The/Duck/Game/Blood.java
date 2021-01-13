@@ -32,12 +32,6 @@ public class Blood extends SimpleAnimation {
 
     @Override
     public void onPlayerCollision(Player player) {
-
-    }
-
-    @Override
-    public void onBulletCollision(Bullet bullet) {
-
     }
 
 }
