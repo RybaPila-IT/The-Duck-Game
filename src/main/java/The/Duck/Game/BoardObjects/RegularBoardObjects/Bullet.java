@@ -24,6 +24,12 @@ public class Bullet extends BoardObject {
     private boolean onObstacle;
     private int onObstacleWait;
 
+    /**
+     * Bullet constructor.
+     *
+     * @param weapon              Weapon which spawned bullet as the result of shooting action.
+     * @param isWeaponFacingRight Information about in which direction bullet will be moving.
+     */
     public Bullet(Rectangle weapon, boolean isWeaponFacingRight) {
 
         super(new Rectangle(isWeaponFacingRight ? weapon.getSecondX() : weapon.getLayoutX(),
@@ -35,16 +41,90 @@ public class Bullet extends BoardObject {
         controller = new BasicController(BoardConstants.getInstance().getController().createNewRegion(region, BULLET_STYLE));
     }
 
-    private void changeBulletPosition() {
-        region.addHorizontally(isBulletFacingRight ? BULLET_SPEED : -BULLET_SPEED);
-    }
-
     public void setOnObstacle(boolean onObstacle) {
         this.onObstacle = onObstacle;
     }
 
     public boolean isBulletFacingRight() {
         return isBulletFacingRight;
+    }
+
+    public void moveBullet() {
+
+        if (!onObstacle) {
+            changeBulletPosition();
+            handleObstacleCollision();
+        } else if (onObstacleWait-- <= 0)
+            moveBulletOutOfBoard();
+
+        informControllerAboutPosition();
+    }
+
+    public boolean outsideBoard() {
+        return region.getLayoutX() > BoardConstants.getInstance().getBoardWidth() ||
+                region.getSecondX() < 0;
+    }
+
+    public void removeBulletFromScene() {
+        controller.remove();
+    }
+
+    /**
+     * Procedure managing bullet on game Tic.
+     *
+     * <p>
+     * This procedure will move bullet.
+     * Being stuck at the obstacle is also
+     * counted as bullet movement.
+     * If bullet is no longer valid (which
+     * is determined by being outside of the board)
+     * it will be removed from the game scene.
+     * </p>
+     */
+    @Override
+    public void onTic() {
+
+        moveBullet();
+
+        if (outsideBoard())
+            removeBulletFromScene();
+
+    }
+
+    /**
+     * Procedure performing player collision.
+     *
+     * <p>
+     * If collision is valid (bullet is not on the obstacle and
+     * player is not dead) bullet will deal damage to the player
+     * and force him to reduce his health level.
+     * </p>
+     */
+    @Override
+    public void onPlayerCollision(Player player) {
+
+        if (!onObstacle) {
+
+            if (!player.isDead())
+                player.decreaseHealth();
+
+            region.setX(player.getRegion().getLayoutX() + 15);
+            onObstacle = true;
+            onObstacleWait = ON_PLAYER;
+            Blood blood = new Blood(region.getLayoutX(), region.getLayoutY());
+            BoardElements.getInstance().addBoardObject(blood);
+        }
+
+    }
+
+    /**
+     * Object validation function.
+     *
+     * @return True if bullet is not outside board; False otherwise.
+     */
+    @Override
+    public boolean isValid() {
+        return !outsideBoard();
     }
 
     private void handleObstacleCollision() {
@@ -68,68 +148,8 @@ public class Bullet extends BoardObject {
         region.setX(BoardConstants.getInstance().getBoardWidth() + 400);
     }
 
-    public void moveBullet() {
-
-        if (!onObstacle) {
-            changeBulletPosition();
-            handleObstacleCollision();
-        } else if (onObstacleWait-- <= 0)
-            moveBulletOutOfBoard();
-
-        informControllerAboutPosition();
+    private void changeBulletPosition() {
+        region.addHorizontally(isBulletFacingRight ? BULLET_SPEED : -BULLET_SPEED);
     }
 
-    public boolean outsideBoard() {
-        return region.getLayoutX() > BoardConstants.getInstance().getBoardWidth() ||
-                region.getSecondX() < 0;
-    }
-
-    public void removeBulletFromScene() {
-        controller.remove();
-    }
-
-    @Override
-    public void onTic() {
-
-        moveBullet();
-
-        if (outsideBoard())
-            removeBulletFromScene();
-
-    }
-
-    @Override
-    public void onPlayerCollision(Player player) {
-
-        if (!onObstacle) {
-
-            if (!player.isDead())
-                player.decreaseHealth();
-
-            region.setX(player.getRegion().getLayoutX() + 15);
-            onObstacle = true;
-            onObstacleWait = ON_PLAYER;
-            Blood blood = new Blood(region.getLayoutX(), region.getLayoutY());
-            BoardElements.getInstance().addBoardObject(blood);
-        }
-
-    }
-
-    @Override
-    public boolean isValid() {
-        return !outsideBoard();
-    }
-
-    public boolean equals(Object obj) {
-
-        if (obj instanceof Bullet) {
-            Bullet o = (Bullet) obj;
-            return region.equals(o.region) &&
-                    onObstacle == o.onObstacle &&
-                    isBulletFacingRight == o.isBulletFacingRight &&
-                    onObstacleWait == o.onObstacleWait;
-        }
-
-        return false;
-    }
 }

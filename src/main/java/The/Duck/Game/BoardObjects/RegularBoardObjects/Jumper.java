@@ -15,6 +15,11 @@ public class Jumper extends BoardObject {
 
     private final JumperController controller;
 
+    /**
+     * Jumper constructor.
+     *
+     * @param jumperRegion JavaFX region representing jumper.
+     */
     public Jumper(Region jumperRegion) {
 
         super(new Rectangle(jumperRegion));
@@ -25,6 +30,10 @@ public class Jumper extends BoardObject {
         controller = new JumperController(jumperRegion);
     }
 
+    /**
+     * Procedure will change jumper style after specified time
+     * if jumper is active (red).
+     */
     @Override
     public void onTic() {
 
@@ -39,6 +48,11 @@ public class Jumper extends BoardObject {
         }
     }
 
+    /**
+     * Procedure will set player vertical speed to jumper speed value.
+     *
+     * @param player Player which has collided with the jumper.
+     */
     @Override
     public void onPlayerCollision(Player player) {
 

@@ -6,6 +6,9 @@ import The.Duck.Game.BoardObjects.Utility.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class containing all BoardObjects present at the game scene.
+ */
 public class BoardElements {
 
     private List<BoardObject> boardObjects;
@@ -38,6 +41,13 @@ public class BoardElements {
         return collided;
     }
 
+    /**
+     * Performing onTic operation for all BoardObjects.
+     * <p>
+     * This procedure also erases all invalid objects
+     * present on the object list.
+     * </p>
+     */
     public void onTic() {
 
         List<BoardObject> invalid = new ArrayList<>();
@@ -51,13 +61,13 @@ public class BoardElements {
         removeInvalidObjects(invalid);
     }
 
+    public void setBoardObjectsList(List<BoardObject> l) {
+        this.boardObjects = l;
+    }
+
     private void removeInvalidObjects(List<BoardObject> invalid) {
         for (BoardObject o : invalid)
             boardObjects.remove(o);
-    }
-
-    public void setBoardObjectsList(List<BoardObject> l) {
-        this.boardObjects = l;
     }
 
 }

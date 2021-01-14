@@ -11,6 +11,20 @@ import javafx.scene.layout.Region;
 
 import java.util.List;
 
+/**
+ * Class representing Player character.
+ *
+ * <p>
+ * This class is the back-end player character management
+ * system. It stores all information about player position,
+ * speed, weapon, health etc.
+ * All constants associated with the speed gaining or
+ * character dimensions are also present.
+ * Player during gameplay does not move in binary way
+ * (full or 0 speed). It accelerates and slows down
+ * respectively in order to simulate inertia.
+ * </p>
+ */
 public class Player {
 
     private static final double MAX_SPEED = 15;
@@ -38,6 +52,13 @@ public class Player {
 
     private Weapon weapon;
 
+    /**
+     * Constructor of the Player object.
+     *
+     * @param playerModel JavaFX.Region representing the player model.
+     * @param styleClass  list of style classes associated with player object.
+     * @param health      list of nodes containing heart images representing player health.
+     */
     public Player(Region playerModel, List<String> styleClass, List<Node> health) {
         this.controller = new PlayerController(playerModel, styleClass, health);
         this.wantsToGrabWeapon = false;
@@ -80,6 +101,17 @@ public class Player {
         weapon.shoot();
     }
 
+    /**
+     * Procedure moving player at the scene.
+     *
+     * <p>
+     * Function orders player to complete his next move in both
+     * vertical and horizontal way. Next, it checks for any
+     * existing collisions and deals with them.
+     * Lastly it changes player speed and orders controller
+     * to present back-end changes to the user of the game.
+     * </p>
+     */
     public void movePlayerModel() {
         movePlayer();
         dealWithCollisions();
@@ -155,6 +187,17 @@ public class Player {
         return weapon != null;
     }
 
+    /**
+     * Procedure ordering player to drop his weapon.
+     *
+     * <p>
+     * Player is unable to drop his weapon if:
+     * a) he does not have one yet;
+     * b) he is jumping.
+     * In any other case player will drop the weapon
+     * he possesses.
+     * </p>
+     */
     public void dropWeapon() {
 
         if (!jumping) {

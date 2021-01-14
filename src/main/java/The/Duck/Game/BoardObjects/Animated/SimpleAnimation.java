@@ -5,6 +5,17 @@ import The.Duck.Game.BoardObjects.Utility.Rectangle;
 
 import java.util.List;
 
+/**
+ * Abstract class representing animated board objects.
+ *
+ * <p>
+ * By animated board objects one should consider objects
+ * which has specific styles which should be displayed
+ * one after another after some time interval.
+ * This class implements basic animated object utility
+ * procedures and functions.
+ * </p>
+ */
 public abstract class SimpleAnimation extends BoardObject {
 
     private final List<String> animations;

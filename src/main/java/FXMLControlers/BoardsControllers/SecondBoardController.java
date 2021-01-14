@@ -16,6 +16,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Class representing the Controller of the second board in the game.
+ *
+ * <p>
+ * Class extends BoardController class and
+ * naturally implements all abstract methods.
+ * </p>
+ */
 public class SecondBoardController extends BoardController {
 
     @FXML
@@ -55,52 +63,46 @@ public class SecondBoardController extends BoardController {
     @FXML
     private Region player2_heart3;
 
-    private static final List<List<Boolean>> KEY_COMBINATIONS;
-    private static final List<Integer> TIMES_OF_COMBINATIONS;
+    private static final List<List<Boolean>> KEY_COMBINATIONS = Arrays.asList(
+            // Right, Left, Up, Shoot, Grab, Interact
+            Arrays.asList(false, true, false, false, false, false), // Left click at the beginning.
+            Arrays.asList(true, false, false, false, false, false), // Right click from portal.
+            Arrays.asList(false, true, true, false, true, false),  // Grab weapon turn left and jump.
+            Arrays.asList(false, false, false, true, false, false), // Shoot 1.
+            Arrays.asList(false, false, false, true, false, false), // Shoot 2.
+            Arrays.asList(false, false, false, true, false, false), // Shoot 3.
+            Arrays.asList(false, false, false, true, false, false), // Shoot 4.
+            Arrays.asList(false, false, false, false, true, false), // Leve weapon.
+            Arrays.asList(true, false, true, false, false, false),  // Jump to the right
+            Arrays.asList(false, true, true, false, false, false), // Turn left jump.
+            Arrays.asList(false, false, false, false, true, false), // Drop gun.
+            Arrays.asList(false, true, false, false, false, false), // Go to the left.
+            Arrays.asList(false, false, false, true, false, false), // Shoot 5.
+            Arrays.asList(false, false, false, true, false, false), // Shoot 6.
+            Arrays.asList(true, false, false, true, false, false),  // Shoot 7.
+            Arrays.asList(false, false, false, true, false, false), // Shoot 8
+            Arrays.asList(false, false, false, false, true, false) // Drop second weapon.
+    );
 
-    static {
-
-        KEY_COMBINATIONS = Arrays.asList(
-                // Right, Left, Up, Shoot, Grab, Interact
-                Arrays.asList(false, true, false, false, false, false), // Left click at the beginning.
-                Arrays.asList(true, false, false, false, false, false), // Right click from portal.
-                Arrays.asList(false, true, true, false, true, false),  // Grab weapon turn left and jump.
-                Arrays.asList(false, false, false, true, false, false), // Shoot 1.
-                Arrays.asList(false, false, false, true, false, false), // Shoot 2.
-                Arrays.asList(false, false, false, true, false, false), // Shoot 3.
-                Arrays.asList(false, false, false, true, false, false), // Shoot 4.
-                Arrays.asList(false, false, false, false, true, false), // Leve weapon.
-                Arrays.asList(true, false, true, false, false, false),  // Jump to the right
-                Arrays.asList(false, true, true, false, false, false), // Turn left jump.
-                Arrays.asList(false, false, false, false, true, false), // Drop gun.
-                Arrays.asList(false, true, false, false, false, false), // Go to the left.
-                Arrays.asList(false, false, false, true, false, false), // Shoot 5.
-                Arrays.asList(false, false, false, true, false, false), // Shoot 6.
-                Arrays.asList(true, false, false, true, false, false),  // Shoot 7.
-                Arrays.asList(false, false, false, true, false, false), // Shoot 8
-                Arrays.asList(false, false, false, false, true, false) // Drop second weapon.
-        );
-
-        TIMES_OF_COMBINATIONS = Arrays.asList(
-                0, 80,
-                80, 136,
-                165, 166,
-                173, 174,
-                178, 179,
-                182, 183,
-                186, 187,
-                212, 213,
-                214, 226,
-                264, 265,
-                314, 315,
-                317, 323,
-                354, 355,
-                374, 375,
-                384, 385,
-                404, 405,
-                410, 411
-        );
-    }
+    private static final List<Integer> TIMES_OF_COMBINATIONS = Arrays.asList(
+            0, 80,
+            80, 136,
+            165, 166,
+            173, 174,
+            178, 179,
+            182, 183,
+            186, 187,
+            212, 213,
+            214, 226,
+            264, 265,
+            314, 315,
+            317, 323,
+            354, 355,
+            374, 375,
+            384, 385,
+            404, 405,
+            410, 411
+    );
 
 
     @FXML

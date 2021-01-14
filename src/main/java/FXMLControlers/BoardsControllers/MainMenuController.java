@@ -11,6 +11,17 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+/**
+ * Class representing the Controller of the Main Menu.
+ *
+ * <p>
+ * Class manages TranslateTransition objects in order
+ * to achieve smooth sliding in/out panes with
+ * How To Play instruction and credits info.
+ * It also creates and automatically starts new game
+ * when pressing the single/multi player start game button.
+ * </p>
+ */
 public class MainMenuController {
 
     private static final String GAME_NAME = "The Shooting Game";

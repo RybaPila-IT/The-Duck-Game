@@ -2,6 +2,17 @@ package The.Duck.Game.Player;
 
 import The.Duck.Game.GameManagers.ButtonInfo;
 
+/**
+ * Class responsible for managing player movement.
+ *
+ * <p>
+ * This class could be considered as the interpreter of
+ * user input for the player.
+ * It performs checks required for reasonable weapon handling
+ * and shooting.
+ * Lastly it orders player to perform movement actions.
+ * </p>
+ */
 public class PlayerManager {
 
     private boolean readyToGrabWeapon;
@@ -11,6 +22,12 @@ public class PlayerManager {
     private final Player player;
     private final ButtonInfo playerInfo;
 
+    /**
+     * Constructor of the PlayerManager class.
+     *
+     * @param player     Player which will be managed.
+     * @param playerInfo Information about buttons bound with player.
+     */
     public PlayerManager(Player player, ButtonInfo playerInfo) {
 
         this.playerInfo = playerInfo;
@@ -20,6 +37,15 @@ public class PlayerManager {
         this.readyToShoot = true;
     }
 
+    /**
+     * Procedure managing the player.
+     *
+     * <p>
+     * This procedure orders player to perform certain actions
+     * regarding to the user input. The only situation when
+     * this actions will be omitted is when player is dead.
+     * </p>
+     */
     public void movePlayer() {
 
         if (!isPlayerDead()) {
@@ -30,6 +56,10 @@ public class PlayerManager {
         }
 
         playerModelUpdates();
+    }
+
+    public boolean isPlayerDead() {
+        return player.isDead();
     }
 
     private void playerExtraActions() {
@@ -77,10 +107,6 @@ public class PlayerManager {
         player.setPlayerGraphic();
         player.movePlayerModel();
 
-    }
-
-    public boolean isPlayerDead() {
-        return player.isDead();
     }
 
 }

@@ -16,21 +16,16 @@ public class WeaponRespawn {
     private final double[] spawns;
     private int weapons;
 
+    /**
+     * WeaponRespawn constructor
+     *
+     * @param s Array with spawn points in format (x1, y1, x2, y2, ....)
+     *          where each pair of xM, yM describes single spawn point.
+     */
     public WeaponRespawn(double[] s) {
         this.random = new Random();
         this.weapons = 0;
         this.spawns = s;
-    }
-
-    private int getSpawnPointIdx() {
-        return random.nextInt((spawns.length / 2));
-    }
-
-    private void createNewWeapon(int idx) {
-        Rectangle weaponRectangle = new Rectangle(spawns[idx * 2], spawns[idx * 2 + 1], WEAPON_WIDTH, WEAPON_HEIGHT);
-        String style = Math.random() < 0.5 ? WEAPON_STYLE_1 : WEAPON_STYLE_2;
-        Weapon weapon = new Weapon(BoardConstants.getInstance().getController().createNewRegion(weaponRectangle, style));
-        BoardElements.getInstance().addBoardObject(weapon);
     }
 
     public void spawnWeapon() {
@@ -46,5 +41,15 @@ public class WeaponRespawn {
         weapons++;
     }
 
+    private int getSpawnPointIdx() {
+        return random.nextInt((spawns.length / 2));
+    }
+
+    private void createNewWeapon(int idx) {
+        Rectangle weaponRectangle = new Rectangle(spawns[idx * 2], spawns[idx * 2 + 1], WEAPON_WIDTH, WEAPON_HEIGHT);
+        String style = Math.random() < 0.5 ? WEAPON_STYLE_1 : WEAPON_STYLE_2;
+        Weapon weapon = new Weapon(BoardConstants.getInstance().getController().createNewRegion(weaponRectangle, style));
+        BoardElements.getInstance().addBoardObject(weapon);
+    }
 
 }

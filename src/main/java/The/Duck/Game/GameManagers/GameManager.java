@@ -4,6 +4,16 @@ import The.Duck.Game.Bots.Bot;
 import The.Duck.Game.Player.PlayerManager;
 import javafx.animation.AnimationTimer;
 
+/**
+ * Class creating game loop.
+ *
+ * <p>
+ * This class can be considered as the "heart" of the game.
+ * It creates and manages game loop.
+ * It tries to maintain stable FPS rate (which is about 60)
+ * so it will slow down faster renders.
+ * </p>
+ */
 public class GameManager {
 
     private final int DEAD_WAIT = 120;
@@ -16,6 +26,14 @@ public class GameManager {
     private double frameDuration;
     private long previousTic;
 
+    /**
+     * Constructor of the game manager.
+     *
+     * @param firstPlayerManager  Manager of the first player.
+     * @param secondPlayerManager Manager of the second player.
+     * @param bot                 Bot which will give input for Second Manager (null
+     *                            if playing PvP).
+     */
     public GameManager(PlayerManager firstPlayerManager, PlayerManager secondPlayerManager, Bot bot) {
 
         deadWait = 0;
@@ -32,7 +50,13 @@ public class GameManager {
                 double duration = (now - previousTic) / GIGA;
                 frameDuration -= duration;
 
-
+                /*
+                    Attempt to maintain moreover
+                    stable rendering rate. If
+                    frame has been presented for sufficient
+                    time it will be eventually replaced
+                    by the new one.
+                 */
                 if (frameDuration <= 0) {
 
                     if (bot != null)
@@ -60,16 +84,16 @@ public class GameManager {
 
     }
 
-    private void tickBoardElements() {
-        BoardElements.getInstance().onTic();
-    }
-
     public void startGameLoop() {
         timer.start();
     }
 
     public void stopGameLoop() {
         timer.stop();
+    }
+
+    private void tickBoardElements() {
+        BoardElements.getInstance().onTic();
     }
 
 }

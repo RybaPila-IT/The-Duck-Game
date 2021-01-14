@@ -17,6 +17,15 @@ import javafx.stage.Stage;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Top of the board controllers hierarchy.
+ * <p>
+ * BoardController is the abstract class implementing features
+ * and actions used for every board controller.
+ * It implies on later board controllers to enable
+ * specific actions in order to communicate with board managers
+ * correctly.
+ */
 abstract public class BoardController {
 
     protected static final List<String> player1StyleClass = Arrays.asList(
@@ -113,6 +122,13 @@ abstract public class BoardController {
         gameBoardStage.getIcons().add(new Image(ICON_PATH));
     }
 
+    /*
+        Function used as "init" in regular board controllers.
+        It sets all necessary action listeners
+        and creates board Scene and Stage for pane
+        delivered by controller. Controller has this pane
+        presumably from FXML file specifying the board layout.
+     */
     protected void makeInit(AnchorPane pane) {
 
         gameBoardScene = new Scene(pane);
@@ -139,10 +155,23 @@ abstract public class BoardController {
         gameBoardStage.close();
     }
 
+    /**
+     * Utility function creating JavaFX Region.
+     *
+     * <p>
+     * Function creates JavaFX Region from acquired
+     * The.Duck.Game.Rectangle object. It also
+     * adds freshly created Region to the Scene and
+     * displays it.
+     * </p>
+     *
+     * @param r Rectangle describing Region to create.
+     * @return Created Region.
+     */
     public Region createNewRegion(Rectangle r) {
 
         Region region = new Region();
-        BoardConstants.getInstance().getController().addToScene(region);
+        addToScene(region);
         region.setLayoutY(r.getLayoutY());
         region.setLayoutX(r.getLayoutX());
         region.setPrefWidth(r.getWidth());
@@ -151,6 +180,21 @@ abstract public class BoardController {
         return region;
     }
 
+    /**
+     * Utility function creating JavaFX Region with Style.
+     *
+     * <p>
+     * Function creates JavaFX Region from acquired
+     * The.Duck.Game.Rectangle object. It also
+     * adds freshly created Region to the Scene and
+     * displays it. Lastly it sets Region style class
+     * to Style specified as the argument.
+     * </p>
+     *
+     * @param r     Rectangle describing Region to create.
+     * @param style Style of the Region.
+     * @return Created Region.
+     */
     public Region createNewRegion(Rectangle r, String style) {
 
         Region region = createNewRegion(r);
@@ -159,18 +203,68 @@ abstract public class BoardController {
         return region;
     }
 
+    /**
+     * Function creating Bot.
+     *
+     * <p>
+     * This abstract function creates bot
+     * which will move itself during the game
+     * and will attempt to fight player.
+     * Bot should be implemented with respect
+     * to the board on which he will be fighting.
+     * </p>
+     *
+     * @return Bot object.
+     */
     abstract public Bot getBoardBot();
 
+    /**
+     * Function creating Player object.
+     *
+     * @return First player object.
+     */
     abstract public Player getFirstPlayer();
 
+    /**
+     * Function creating Player object.
+     *
+     * @return Second player object.
+     */
     abstract public Player getSecondPlayer();
 
+    /**
+     * Getter for all BoardObjects.
+     *
+     * <p>
+     * Function returns the list of the all
+     * BoardObjects which are present
+     * at the very beginning of the gameplay
+     * on the board.
+     * </p>
+     *
+     * @return List of all BoardObjects.
+     */
     abstract public List<BoardObject> getBoardObjectsList();
 
     abstract public void addToScene(Node node);
 
     abstract public void removeNodeFromScene(Node node);
 
+    /**
+     * Getter for spawn points of the weapons.
+     *
+     * <p>
+     * Function returns the array of points (x,y)
+     * which do represent the positions of the
+     * upper left corner of the area for the spawn point.
+     * They are usually equal to beginning weapon
+     * positions.
+     * In the array coordinates are placed in following
+     * order : (x1, y1, x2, y2, ..., xN, yN).
+     * </p>
+     *
+     * @return Array of coordinates of the spawn points.
+     */
     abstract public double[] getSpawnPointsForWeapons();
 
 }

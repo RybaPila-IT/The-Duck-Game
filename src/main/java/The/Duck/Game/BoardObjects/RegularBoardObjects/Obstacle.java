@@ -7,14 +7,28 @@ import javafx.scene.layout.Region;
 public class Obstacle extends BoardObject implements BulletCollisionSensitive {
 
 
+    /**
+     * Obstacle constructor.
+     *
+     * @param region JavaFX region representing obstacle.
+     */
     public Obstacle(Region region) {
         super(new Rectangle(region));
     }
 
+    /**
+     * Empty procedure.
+     */
     @Override
     public void onTic() {
     }
 
+    /**
+     * Procedure will change player position and will not let him
+     * go through the obstacle.
+     *
+     * @param player Player which has collided with the obstacle.
+     */
     @Override
     public void onPlayerCollision(Player player) {
 
@@ -32,6 +46,12 @@ public class Obstacle extends BoardObject implements BulletCollisionSensitive {
         return true;
     }
 
+    /**
+     * Procedure will not let bullet go through the
+     * obstacle.
+     *
+     * @param bullet Bullet with which obstacle has collided.
+     */
     @Override
     public void onBulletCollision(Bullet bullet) {
 

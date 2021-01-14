@@ -2,6 +2,9 @@ package The.Duck.Game.BoardObjects.Utility;
 
 import javafx.scene.layout.Region;
 
+/**
+ * Most inner class representing the area of the BoardObject.
+ */
 public class Rectangle {
 
     /**
@@ -53,7 +56,12 @@ public class Rectangle {
         y2 = y1 + h;
     }
 
-
+    /**
+     * Information whether two rectangles intersect.
+     *
+     * @param r Rectangle with which we are checking the intersection.
+     * @return True if rectangles do intersect; False otherwise.
+     */
     public boolean intersects(Rectangle r) {
 
         if (x1 > r.x2 || r.x1 > x2)
@@ -120,16 +128,6 @@ public class Rectangle {
 
     public double getHeight() {
         return h;
-    }
-
-    public boolean equals(Object obj) {
-
-        if (obj instanceof Rectangle) {
-            Rectangle o = (Rectangle) obj;
-            return x1 == o.x1 && y1 == o.y1 && x2 == o.x2 && y2 == o.y2;
-        }
-
-        return false;
     }
 
 }

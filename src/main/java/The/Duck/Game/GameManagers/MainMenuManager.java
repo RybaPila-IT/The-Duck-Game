@@ -61,6 +61,19 @@ public class MainMenuManager {
 
     }
 
+    private void slideHowToPlayIn() {
+        if (isCreditsSlided)
+            slideCreditsOut();
+
+        isHowToPlaySlided = true;
+        controller.slideHowToPlayPaneIn();
+    }
+
+    private void slideHowToPlayOut() {
+        isHowToPlaySlided = false;
+        controller.slideHowToPlayPaneOut();
+    }
+
     private void slideCreditsIn() {
 
         if (isHowToPlaySlided)
@@ -74,19 +87,6 @@ public class MainMenuManager {
     private void slideCreditsOut() {
         isCreditsSlided = false;
         controller.slideCreditsPaneOut();
-    }
-
-    public void slideHowToPlayIn() {
-        if (isCreditsSlided)
-            slideCreditsOut();
-
-        isHowToPlaySlided = true;
-        controller.slideHowToPlayPaneIn();
-    }
-
-    public void slideHowToPlayOut() {
-        isHowToPlaySlided = false;
-        controller.slideHowToPlayPaneOut();
     }
 
 }

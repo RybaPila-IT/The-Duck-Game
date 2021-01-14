@@ -19,6 +19,89 @@ public class Weapon extends BoardObject {
     private boolean isWeaponFacingRight;
     private int shots;
 
+    /**
+     * Weapon constructor.
+     *
+     * @param weaponCharacter JavaFX Region representing the area of the weapon.
+     */
+    public Weapon(Region weaponCharacter) {
+        super(new Rectangle(weaponCharacter));
+        this.controller = new WeaponController(weaponCharacter);
+        this.shots = SHOTS_AMOUNT;
+        this.owner = null;
+        this.isWeaponFacingRight = true;
+    }
+
+    public void shoot() {
+
+        if (shots > 0 && noCollision()) {
+            BoardElements.getInstance().addBoardObject(new Bullet(region, isWeaponFacingRight));
+            shots--;
+        }
+
+    }
+
+    /**
+     * Procedure will set weapon layout simulating dropping it
+     * by the player.
+     */
+    public void fallDown() {
+        setOwner(null);
+        region.setY(region.getLayoutY() + 65);
+        controller.setLayoutY(region.getLayoutY());
+    }
+
+
+    /**
+     * Procedure managing weapon during board tic.
+     *
+     * <p>
+     * Weapon will "follow" the owner if it has one.
+     * If it does not have the owner it will
+     * remove itself from scene if it is no longer valid.
+     * </p>
+     */
+    @Override
+    public void onTic() {
+
+        if (hasOwner())
+            followOwner();
+        else if (!isValid()) {
+            controller.remove();
+            BoardConstants.getInstance().getWeaponRespawn().weaponNotValid();
+        }
+    }
+
+    /**
+     * Procedure will set owner of the weapon to player
+     * if player wants to grab it.
+     *
+     * @param player Player which has collided with the weapon.
+     */
+    @Override
+    public void onPlayerCollision(Player player) {
+
+        if (player.wantsToGrabWeapon() && !hasOwner()) {
+            setOwner(player);
+            player.setWeapon(this);
+        }
+
+    }
+
+    /**
+     * Weapon is valid until it has owner or has shoots left.
+     *
+     * @return True if weapon is valid; False otherwise.
+     */
+    @Override
+    public boolean isValid() {
+        return shots > 0 || hasOwner();
+    }
+
+    private void setOwner(Player owner) {
+        this.owner = owner;
+    }
+
     private boolean hasOwner() {
         return owner != null;
     }
@@ -43,24 +126,6 @@ public class Weapon extends BoardObject {
 
     }
 
-
-    public Weapon(Region weaponCharacter) {
-        super(new Rectangle(weaponCharacter));
-        this.controller = new WeaponController(weaponCharacter);
-        this.shots = SHOTS_AMOUNT;
-        this.owner = null;
-        this.isWeaponFacingRight = true;
-    }
-
-    public void shoot() {
-
-        if (shots > 0 && noCollision()) {
-            BoardElements.getInstance().addBoardObject(new Bullet(region, isWeaponFacingRight));
-            shots--;
-        }
-
-    }
-
     private boolean noCollision() {
 
         List<BoardObject> collided = BoardElements.getInstance().collidedWith(region);
@@ -70,53 +135,5 @@ public class Weapon extends BoardObject {
                 return false;
 
         return true;
-    }
-
-    private void setOwner(Player owner) {
-        this.owner = owner;
-    }
-
-    public void fallDown() {
-        setOwner(null);
-        region.setY(region.getLayoutY() + 65);
-        controller.setLayoutY(region.getLayoutY());
-    }
-
-
-    @Override
-    public void onTic() {
-
-        if (hasOwner())
-            followOwner();
-        else if (!isValid()) {
-            controller.remove();
-            BoardConstants.getInstance().getWeaponRespawn().weaponNotValid();
-        }
-    }
-
-    @Override
-    public void onPlayerCollision(Player player) {
-
-        if (player.wantsToGrabWeapon() && !hasOwner()) {
-            setOwner(player);
-            player.setWeapon(this);
-        }
-
-    }
-
-    @Override
-    public boolean isValid() {
-        return shots > 0 || hasOwner();
-    }
-
-    public boolean equals(Object obj) {
-
-        if (obj instanceof Weapon) {
-            Weapon o = (Weapon) obj;
-            return region.equals(o.region) && shots == o.shots &&
-                    isWeaponFacingRight == o.isWeaponFacingRight;
-        }
-
-        return false;
     }
 }

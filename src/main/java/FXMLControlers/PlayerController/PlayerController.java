@@ -6,6 +6,15 @@ import javafx.scene.Node;
 
 import java.util.List;
 
+/**
+ * Class controlling player display.
+ *
+ * <p>
+ * This class is strictly connected with Player class.
+ * It is crucial for proper MVC pattern accomplishment.
+ * PlayerController extends BasicController class.
+ * </p>
+ */
 public class PlayerController extends BasicController {
 
     private static final int JUMPING_RIGHT = 0;
@@ -26,6 +35,13 @@ public class PlayerController extends BasicController {
     private int walkAnimationCounter;
     private int healthLevel;
 
+    /**
+     * Constructor of the PlayerController class.
+     *
+     * @param playerCharacter Node which displays player character.
+     * @param styleClasses    Classes used for styling Player character.
+     * @param health          List of nodes containing health pictures.
+     */
     public PlayerController(Node playerCharacter, List<String> styleClasses, List<Node> health) {
         super(playerCharacter);
         this.health = health;
@@ -35,6 +51,20 @@ public class PlayerController extends BasicController {
         this.walkAnimationCounter = COUNTER_VALUE;
     }
 
+    /**
+     * Function setting required style class for player.
+     *
+     * <p>
+     * This function operates closely with Player class itself.
+     * It generally decides in which position player is
+     * currently placed (walking, standing etc.) and
+     * sets proper graphic.
+     * </p>
+     *
+     * @param jumping      information whether player is jumping.
+     * @param isFacedRight information whether player is facing right side.
+     * @param horSpeed     information about horizontal player speed.
+     */
     public void setPlayerGraphic(boolean jumping, boolean isFacedRight, double horSpeed) {
 
         String animation = styleClasses.get(STANDING);
@@ -75,6 +105,9 @@ public class PlayerController extends BasicController {
 
     }
 
+    /**
+     * Function removing heart picture belonging to player from the Scene.
+     */
     public void decreaseHealth() {
         BoardConstants.getInstance().getController().removeNodeFromScene(health.get(healthLevel--));
     }

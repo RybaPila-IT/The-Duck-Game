@@ -26,7 +26,9 @@ public class Blood extends SimpleAnimation {
         this.controller = new AnimationController(region);
     }
 
-
+    /**
+     * Blood will simply change it`s picture.
+     */
     @Override
     public void onTic() {
 
@@ -39,6 +41,11 @@ public class Blood extends SimpleAnimation {
 
     }
 
+    /**
+     * Empty function.
+     *
+     * @param player Player.
+     */
     @Override
     public void onPlayerCollision(Player player) {
     }

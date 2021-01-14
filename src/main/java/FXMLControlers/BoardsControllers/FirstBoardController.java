@@ -17,6 +17,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Class representing the Controller of the first board in the game.
+ *
+ * <p>
+ * Class extends BoardController class and
+ * naturally implements all abstract methods.
+ * </p>
+ */
 public class FirstBoardController extends BoardController {
 
     @FXML
@@ -54,52 +62,47 @@ public class FirstBoardController extends BoardController {
     @FXML
     private Region player2_heart3;
 
-    private static final List<List<Boolean>> KEY_COMBINATIONS;
-    private static final List<Integer> TIMING;
+    private static final List<List<Boolean>> KEY_COMBINATIONS = Arrays.asList(
+            // Right, Left, Up, Shoot, Grab, Interact
+            Arrays.asList(true, false, false, false, true, false),      // Right click and dropping weapon.
+            Arrays.asList(false, true, false, false, false, false),     // Left click 1.
+            Arrays.asList(false, false, false, false, true, false),     // Grab and weapon.
+            Arrays.asList(false, true, true, true, false, false),      // Shoot, Jump, Go left
+            Arrays.asList(false, false, false, true, false, false),     // Shoot 1
+            Arrays.asList(false, false, false, true, false, false),     // Shoot 2
+            Arrays.asList(false, false, false, true, false, false),     // Shoot 3
+            Arrays.asList(false, true, false, false, false, false),    // Go left
+            Arrays.asList(false, true, false, false, true, false),     // Go left and drop weapon
+            Arrays.asList(false, false, false, false, true, false),     // Grab weapon
+            Arrays.asList(true, false, false, false, false, false),    // Go right
+            Arrays.asList(false, true, false, false, false, false),     // Turn left
+            Arrays.asList(false, false, false, true, false, false),    // Shoot 1
+            Arrays.asList(false, false, false, true, false, false),     // Shoot 2
+            Arrays.asList(false, false, false, true, false, false),    // Shoot 3
+            Arrays.asList(false, false, false, true, false, false),    // Shoot 4
+            Arrays.asList(false, false, false, false, true, false)     // Drop Weapon
 
-    static {
-        KEY_COMBINATIONS = Arrays.asList(
-                // Right, Left, Up, Shoot, Grab, Interact
-                Arrays.asList(true, false, false, false, true, false),      // Right click and dropping weapon.
-                Arrays.asList(false, true, false, false, false, false),     // Left click 1.
-                Arrays.asList(false, false, false, false, true, false),     // Grab and weapon.
-                Arrays.asList(false, true, true, true, false, false),      // Shoot, Jump, Go left
-                Arrays.asList(false, false, false, true, false, false),     // Shoot 1
-                Arrays.asList(false, false, false, true, false, false),     // Shoot 2
-                Arrays.asList(false, false, false, true, false, false),     // Shoot 3
-                Arrays.asList(false, true, false, false, false, false),    // Go left
-                Arrays.asList(false, true, false, false, true, false),     // Go left and drop weapon
-                Arrays.asList(false, false, false, false, true, false),     // Grab weapon
-                Arrays.asList(true, false, false, false, false, false),    // Go right
-                Arrays.asList(false, true, false, false, false, false),     // Turn left
-                Arrays.asList(false, false, false, true, false, false),    // Shoot 1
-                Arrays.asList(false, false, false, true, false, false),     // Shoot 2
-                Arrays.asList(false, false, false, true, false, false),    // Shoot 3
-                Arrays.asList(false, false, false, true, false, false),    // Shoot 4
-                Arrays.asList(false, false, false, false, true, false)     // Drop Weapon
+    );
+    private static final List<Integer> TIMING = Arrays.asList(
+            80, 100,
+            100, 105,
+            120, 121,
+            121, 140,
+            145, 146,
+            151, 152,
+            170, 171,
+            180, 190,
+            190, 200,
+            230, 231,
+            250, 294,
+            340, 341,
+            350, 351,
+            355, 356,
+            360, 361,
+            365, 366,
+            375, 376
+    );
 
-        );
-
-        TIMING = Arrays.asList(
-                80, 100,
-                100, 105,
-                120, 121,
-                121, 140,
-                145, 146,
-                151, 152,
-                170, 171,
-                180, 190,
-                190, 200,
-                230, 231,
-                250, 294,
-                340, 341,
-                350, 351,
-                355, 356,
-                360, 361,
-                365, 366,
-                375, 376
-        );
-    }
 
     @FXML
     public void initialize() {

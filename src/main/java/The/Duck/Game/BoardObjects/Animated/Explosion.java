@@ -30,6 +30,16 @@ public class Explosion extends SimpleAnimation {
         this.controller = new AnimationController(region);
     }
 
+    /**
+     * Procedure managing explosion on game tic.
+     *
+     * <p>
+     * On game tic explosion will change it`s animation after
+     * pre-defined amount of board tics.
+     * If it has ended it will remove itself from scene
+     * and inform explosion manager about it`s end.
+     * </p>
+     */
     @Override
     public void onTic() {
 
@@ -43,6 +53,11 @@ public class Explosion extends SimpleAnimation {
         }
     }
 
+    /**
+     * On collision, explosion will automatically kill player.
+     *
+     * @param player Player which has collided with the explosion.
+     */
     @Override
     public void onPlayerCollision(Player player) {
         while (!player.isDead())

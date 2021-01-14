@@ -39,6 +39,28 @@ public class GameBoardManager {
         controller.showGameBoard();
     }
 
+    public void loadNewMap() {
+
+        if (!isMapLeft())
+            endGame();
+        else {
+
+            if (existsBoard())
+                endGameBoard();
+
+            clearBoardConstants();
+            loadNewDataForMap();
+            startGameBoard();
+        }
+
+    }
+
+    public void endGame() {
+        gameManager.stopGameLoop();
+        controller.endGame();
+        callingManager.showMainMenu();
+    }
+
     private void endGameBoard() {
         controller.endGame();
         gameManager.stopGameLoop();
@@ -86,28 +108,6 @@ public class GameBoardManager {
 
     private boolean isMapLeft() {
         return boardIdx < GAME_BOARDS.size();
-    }
-
-    public void loadNewMap() {
-
-        if (!isMapLeft())
-            endGame();
-        else {
-
-            if (existsBoard())
-                endGameBoard();
-
-            clearBoardConstants();
-            loadNewDataForMap();
-            startGameBoard();
-        }
-
-    }
-
-    public void endGame() {
-        gameManager.stopGameLoop();
-        controller.endGame();
-        callingManager.showMainMenu();
     }
 
 }

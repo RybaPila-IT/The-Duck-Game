@@ -16,6 +16,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Class representing the Controller of the third board in the game.
+ *
+ * <p>
+ * Class extends BoardController class and
+ * naturally implements all abstract methods.
+ * </p>
+ */
 public class ThirdBoardController extends BoardController {
 
     @FXML
@@ -67,84 +75,74 @@ public class ThirdBoardController extends BoardController {
     @FXML
     private AnchorPane GameBoardPane;
 
-    private static final List<List<Boolean>> KEY_COMBINATIONS_BEG;
-    private static final List<Integer> TIMING_BEG;
+    private static final List<List<Boolean>> KEY_COMBINATIONS_BEG = Arrays.asList(
+            // Right, Left, Up, Shoot, Grab, Interact
+            Arrays.asList(false, true, true, false, false, false),      // Jump to left.
+            Arrays.asList(false, true, false, false, false, true),     // Open doors.
+            Arrays.asList(true, false, true, false, false, false),       // Jump to the right.
+            Arrays.asList(false, true, true, false, false, false),       // Jump to the left.
+            Arrays.asList(true, false, true, false, false, false),      // Jump to right
+            Arrays.asList(false, true, true, false, false, false),       // Jump to left
+            Arrays.asList(false, true, true, false, false, false)       // Jump to left
+    );
 
-    private static final List<List<Boolean>> KEY_COMBINATIONS_LOOP;
-    private static final List<Integer> TIMING_LOOP;
+    private static final List<Integer> TIMING_BEG = Arrays.asList(
+            80, 100,
+            120, 128,
+            150, 170,
+            175, 190,
+            220, 230,
+            250, 260,
+            270, 290
+    );
 
-    static {
+    private static final List<List<Boolean>> KEY_COMBINATIONS_LOOP = Arrays.asList(
+            // Right, Left, Up, Shoot, Grab, Interact
+            Arrays.asList(false, false, false, false, true, false),    // Grab weapon
+            Arrays.asList(true, false, true, false, false, false),      // Jump to right
+            Arrays.asList(false, false, false, true, false, false),     // Shoot 1
+            Arrays.asList(false, false, false, true, false, false),     // Shoot 2
+            Arrays.asList(true, false, true, false, false, false),      // Jump to right
+            Arrays.asList(false, false, false, true, false, false),     // Shoot 3
+            Arrays.asList(false, false, false, true, false, false),     // Shoot 4
+            Arrays.asList(false, false, false, false, true, false),    // Drop weapon
+            Arrays.asList(true, false, false, false, false, false),     // Go to right.
+            Arrays.asList(true, false, true, false, false, false),      // Jump to right
+            Arrays.asList(false, false, false, false, true, false),    // Grab weapon
+            Arrays.asList(false, true, false, false, false, false),    // Go to left
+            Arrays.asList(false, false, false, true, false, false),     // Shoot 1
+            Arrays.asList(false, false, false, true, false, false),     // Shoot 2
+            Arrays.asList(false, false, false, true, false, false),     // Shoot 3
+            Arrays.asList(false, false, false, true, false, false),     // Shoot 4
+            Arrays.asList(false, false, false, false, true, false),    // Drop weapon
+            Arrays.asList(false, true, false, false, false, false),    // Go to left
+            Arrays.asList(false, true, true, false, false, false),       // Jump to left
+            Arrays.asList(false, true, true, false, false, false)       // Jump to left
+    );
 
-        KEY_COMBINATIONS_BEG = Arrays.asList(
-                // Right, Left, Up, Shoot, Grab, Interact
-                Arrays.asList(false, true, true, false, false, false),      // Jump to left.
-                Arrays.asList(false, true, false, false, false, true),     // Open doors.
-                Arrays.asList(true, false, true, false, false, false),       // Jump to the right.
-                Arrays.asList(false, true, true, false, false, false),       // Jump to the left.
-                Arrays.asList(true, false, true, false, false, false),      // Jump to right
-                Arrays.asList(false, true, true, false, false, false),       // Jump to left
-                Arrays.asList(false, true, true, false, false, false)       // Jump to left
-        );
+    private static final List<Integer> TIMING_LOOP = Arrays.asList(
+            60, 61,
+            62, 68,
+            113, 114,
+            116, 117,
+            125, 130,
+            133, 134,
+            136, 137,
+            155, 156,
+            157, 162,
+            174, 190,
+            200, 201,
+            208, 212,
+            250, 251,
+            258, 259,
+            265, 266,
+            271, 272,
+            280, 281,
+            282, 288,
+            289, 300,
+            330, 350
 
-        TIMING_BEG = Arrays.asList(
-                80, 100,
-                120, 128,
-                150, 170,
-                175, 190,
-                220, 230,
-                250, 260,
-                270, 290
-        );
-
-        KEY_COMBINATIONS_LOOP = Arrays.asList(
-                // Right, Left, Up, Shoot, Grab, Interact
-                Arrays.asList(false, false, false, false, true, false),    // Grab weapon
-                Arrays.asList(true, false, true, false, false, false),      // Jump to right
-                Arrays.asList(false, false, false, true, false, false),     // Shoot 1
-                Arrays.asList(false, false, false, true, false, false),     // Shoot 2
-                Arrays.asList(true, false, true, false, false, false),      // Jump to right
-                Arrays.asList(false, false, false, true, false, false),     // Shoot 3
-                Arrays.asList(false, false, false, true, false, false),     // Shoot 4
-                Arrays.asList(false, false, false, false, true, false),    // Drop weapon
-                Arrays.asList(true, false, false, false, false, false),     // Go to right.
-                Arrays.asList(true, false, true, false, false, false),      // Jump to right
-                Arrays.asList(false, false, false, false, true, false),    // Grab weapon
-                Arrays.asList(false, true, false, false, false, false),    // Go to left
-                Arrays.asList(false, false, false, true, false, false),     // Shoot 1
-                Arrays.asList(false, false, false, true, false, false),     // Shoot 2
-                Arrays.asList(false, false, false, true, false, false),     // Shoot 3
-                Arrays.asList(false, false, false, true, false, false),     // Shoot 4
-                Arrays.asList(false, false, false, false, true, false),    // Drop weapon
-                Arrays.asList(false, true, false, false, false, false),    // Go to left
-                Arrays.asList(false, true, true, false, false, false),       // Jump to left
-                Arrays.asList(false, true, true, false, false, false)       // Jump to left
-        );
-
-        TIMING_LOOP = Arrays.asList(
-                60, 61,
-                62, 68,
-                113, 114,
-                116, 117,
-                125, 130,
-                133, 134,
-                136, 137,
-                155, 156,
-                157, 162,
-                174, 190,
-                200, 201,
-                208, 212,
-                250, 251,
-                258, 259,
-                265, 266,
-                271, 272,
-                280, 281,
-                282, 288,
-                289, 300,
-                330, 350
-
-        );
-
-    }
+    );
 
 
     @FXML

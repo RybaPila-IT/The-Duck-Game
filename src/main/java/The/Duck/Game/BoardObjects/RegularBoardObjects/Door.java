@@ -15,6 +15,11 @@ public class Door extends BoardObject implements BulletCollisionSensitive {
     private boolean readyToChange;
     private int health;
 
+    /**
+     * Door constructor.
+     *
+     * @param region JavaFX region representing doors.
+     */
     public Door(Region region) {
 
         super(new Rectangle(region));
@@ -25,6 +30,14 @@ public class Door extends BoardObject implements BulletCollisionSensitive {
         this.health = INITIAL_HEALTH;
     }
 
+    /**
+     * Doors procedure on game tic.
+     *
+     * <p>
+     * Doors simply check whether they are still valid.
+     * If not, they remove themself from the game scene.
+     * </p>
+     */
     @Override
     public void onTic() {
 
@@ -33,6 +46,18 @@ public class Door extends BoardObject implements BulletCollisionSensitive {
 
     }
 
+    /**
+     * Procedure handling player collision.
+     *
+     * <p>
+     * If doors are closed they do not let player through.
+     * If doors are opened they let player through.
+     * They do respond to players actions such as willingness
+     * to open or lock the doors.
+     * </p>
+     *
+     * @param player Player which has collided with door.
+     */
     @Override
     public void onPlayerCollision(Player player) {
 

@@ -7,6 +7,9 @@ import The.Duck.Game.GameManagers.MainMenuManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+/**
+ * Class required for proper JavaFX application launch.
+ */
 public class App extends Application {
 
     public static void main(String[] args) {

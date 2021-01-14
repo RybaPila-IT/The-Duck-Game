@@ -1,5 +1,15 @@
 package The.Duck.Game.GameManagers;
 
+/**
+ * Class containing information necessary for player movement.
+ *
+ * <p>
+ * This class stores information received by
+ * the board controller. Eventually it passes it
+ * to the PlayerManager which orders Player
+ * to perform specified task.
+ * </p>
+ */
 public class ButtonInfo {
 
     private boolean pressedRight;

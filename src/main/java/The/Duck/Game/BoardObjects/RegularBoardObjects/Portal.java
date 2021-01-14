@@ -11,6 +11,14 @@ public class Portal extends BoardObject implements BulletCollisionSensitive {
 
     private final boolean isLeft;
 
+    /**
+     * Portal constructor.
+     *
+     * @param region JavaFX region representing portal.
+     * @param x,y    Coordinates of the point to which player will be teleported.
+     * @param l      Information if the portal is teleporting from left to right (player
+     *               will enter through left side of the portal).
+     */
     public Portal(Region region, double x, double y, boolean l) {
 
         super(new Rectangle(region));
@@ -20,10 +28,19 @@ public class Portal extends BoardObject implements BulletCollisionSensitive {
         isLeft = l;
     }
 
+    /**
+     * Empty procedure.
+     */
     @Override
     public void onTic() {
     }
 
+    /**
+     * Procedure will teleport player into point (x,y) specified at
+     * the constructor.
+     *
+     * @param player Player which has collided with the portal.
+     */
     @Override
     public void onPlayerCollision(Player player) {
 
@@ -47,6 +64,12 @@ public class Portal extends BoardObject implements BulletCollisionSensitive {
         return true;
     }
 
+    /**
+     * Procedure will teleport bullet to point (x,y)
+     * specified at the constructor.
+     *
+     * @param bullet Bullet with which portal has collided.
+     */
     @Override
     public void onBulletCollision(Bullet bullet) {
 

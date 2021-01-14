@@ -3,6 +3,14 @@ package FXMLControlers.BoardObjectsControllers;
 import The.Duck.Game.GameManagers.BoardConstants;
 import javafx.scene.Node;
 
+/**
+ * Class representing the most basic controller of the game object.
+ *
+ * <p>
+ * Basic Controller enables changing positions of game objects
+ * (moving them) and also removing them from the game scene.
+ * </p>
+ */
 public class BasicController {
 
     protected Node region;
