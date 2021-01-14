@@ -4,10 +4,10 @@
 
 ## Project overview.
 
-The Shooting Game project is a game which has been made to look like The Duck Game which is a popular platformer
+The Shooting Game project is a game, which has been made to look like The Duck Game, which is a popular platformer
 shooting game. <br>
 Game can be played alone (wow much fun) or with a friend. <br>
-Project is build with the usage of the gradle software so in order to compile it and run it one should have it
+Project is build with the usage of the gradle software, so in order to compile/run it, one should have gradle software
 installed.
 
 ---
@@ -15,9 +15,9 @@ installed.
 ## How to run the application.
 
 Running the application is really easy. <br>
-After installing gradle software and downloading the repository type in the terminal following command: <br>
+After installing gradle software and downloading the repository, type in the terminal following command: <br>
 `./gradlew run` <br>
-After performing those actions game should lunch without any problems.
+After performing those actions game should launch without any problems.
 
 ---
 
