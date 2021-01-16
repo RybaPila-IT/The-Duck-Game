@@ -89,7 +89,10 @@ public class Player {
 
     public void decreaseHealth() {
         health--;
-        controller.decreaseHealth();
+
+        if (health >= 0)
+            controller.decreaseHealth();
+
     }
 
     public boolean isDead() {
@@ -247,7 +250,8 @@ public class Player {
         List<BoardObject> elements = BoardElements.getInstance().collidedWith(playerModel);
 
         for (BoardObject e : elements)
-            e.onPlayerCollision(this);
+            if (e.intersects(playerModel))
+                e.onPlayerCollision(this);
 
     }
 
